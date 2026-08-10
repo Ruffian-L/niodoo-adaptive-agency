@@ -1,0 +1,26 @@
+To find the hidden mapping, let's analyze the given pairs:
+
+Pair A: [Alpha, Beta, Gamma] becomes [Gamma, Beta, Alpha, Gamma]
+- The first element becomes the last element.
+- The second element becomes the second-to-last element.
+- The third element becomes the second element.
+
+Pair B: [Sun, Moon] becomes [Moon, Sun, Moon]
+- The first element becomes the second element.
+- The second element becomes the first element, and then it remains the same.
+
+Pair C: [Up, Down, Left, Right] becomes [Right, Left, Down, Up, Right]
+- The first element becomes the last element.
+- The second element becomes the second-to-last element.
+- The third element becomes the second element.
+- The fourth element becomes the first element.
+
+Now, let's apply the same mapping to [1, 2, 3, 4, 5]:
+
+1. The first element (1) becomes the last element (5).
+2. The second element (2) becomes the second-to-last element (4).
+3. The third element (3) becomes the second element (2).
+4. The fourth element (4) becomes the first element (1).
+5. The fifth element (5) becomes the third element (3).
+
+So, the full result list is: [5, 4, 2, 1, 3].

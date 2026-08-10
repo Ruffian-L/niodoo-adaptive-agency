@@ -1,0 +1,22 @@
+{
+  "status": "FAIL",
+  "exact_answer": false,
+  "wrong_shift": false,
+  "banned_hits": [],
+  "constrained_ok": false,
+  "expected": "[5, 4, 3, 2, 1, 5]",
+  "text_preview": "To find the hidden mapping, let's analyze the given pairs: Pair A: [Alpha, Beta, Gamma] becomes [Gamma, Beta, Alpha, Gamma] - The first element becomes the last element. - The second element becomes the second-to-last element. - The third element becomes the second element. Pair B: [Sun, Moon] becomes [Moon, Sun, Moon] - The first element becomes the second element. - The second element becomes th",
+  "variant": "wording",
+  "assistant_preview": "To find the hidden mapping, let's analyze the given pairs: Pair A: [Alpha, Beta, Gamma] becomes [Gamma, Beta, Alpha, Gamma] - The first element becomes the last element. - The second element becomes the second-to-last element. - The third element becomes the second element. Pair B: [Sun, Moon] becomes [Moon, Sun, Moon] - The first element becomes the second element. - The second element becomes the first element, and then it remains the same. Pair C: [Up, Down, Left, Right] becomes [Right, Left,",
+  "model_answer_guess": null,
+  "lists_found": [
+    "[Alpha, Beta, Gamma]",
+    "[Gamma, Beta, Alpha, Gamma]",
+    "[Sun, Moon]",
+    "[Moon, Sun, Moon]",
+    "[Up, Down, Left, Right]",
+    "[Right, Left, Down, Up, Right]",
+    "[1, 2, 3, 4, 5]",
+    "[5, 4, 2, 1, 3]"
+  ]
+}

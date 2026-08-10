@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this map package, please cite it."
+title: "Adaptive Agency in a Frozen 8B Model"
+type: dataset
+authors:
+  - family-names: "Pham"
+    given-names: "Jason Van"
+date-released: 2026-08-09
+license: MIT
+abstract: "A map of store-mediated, cross-restart transfer on one ARC-style mapping family in a frozen Llama 3.1 8B model."
+keywords:
+  - adaptive agency
+  - language models
+  - persistent memory
+  - hidden-state steering
+  - reproducibility

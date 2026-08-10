@@ -1,0 +1,19 @@
+{
+  "title": "Adaptive Agency in a Frozen 8B Model",
+  "upload_type": "dataset",
+  "description": "A map of a frozen 8B model carrying a taught rule across process death and transferring it to a different wording of the same ARC-style family.",
+  "creators": [
+    {
+      "name": "Pham, Jason Van"
+    }
+  ],
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": [
+    "adaptive agency",
+    "persistent memory",
+    "hidden-state steering",
+    "language models",
+    "reproducibility"
+  ]
+}

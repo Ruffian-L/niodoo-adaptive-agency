@@ -1,0 +1,4 @@
+[alias]
+one-shot = "run --release --bin flag-route --"
+merged-preflight = "run --release --bin merged-preflight --"
+merged-live = "run --release --bin merged-preflight -- --live"

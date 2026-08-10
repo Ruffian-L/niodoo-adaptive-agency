@@ -1,0 +1,6 @@
+Consider this sequence of transformations:
+Input 1: [X, Y, Z] -> Output 1: [Z, Y, X, Z]
+Input 2: [Hot, Cold] -> Output 2: [Cold, Hot, Cold]
+Input 3: [One, Two, Three, Four] -> Output 3: [Four, Three, Two, One, Four]
+
+Based on this exact underlying rule, if the Input is [1, 2, 3], what is the complete Output? Explain the transformation mechanism step-by-step, but you are not allowed to use the words 'reverse', 'backward', or 'append'.

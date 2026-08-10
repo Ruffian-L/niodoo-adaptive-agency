@@ -1,0 +1,6 @@
+dual_stream_force=26.137074
+dual_stream_beta=1
+dual_stream_n_ear=16
+dual_stream_survivors=10
+missing_seed_lines=[]
+status=ARMED

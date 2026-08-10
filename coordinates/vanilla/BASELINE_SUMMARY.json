@@ -1,0 +1,85 @@
+{
+  "run": "/home/ruffianl/projects/niodoo-arc-rehit/runs/arc_vanilla_llamacpp_baseline_20260808_162018",
+  "arm": "vanilla_llamacpp",
+  "model": "Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf",
+  "system_prompt": "NONE",
+  "params": {
+    "temp": 0.0,
+    "seed": 42,
+    "n_predict": 512,
+    "ctx": 4096,
+    "ngl": 99
+  },
+  "results": [
+    {
+      "variant": "letters",
+      "status": "FAIL",
+      "exact_answer": false,
+      "banned_hits": [],
+      "constrained_ok": false,
+      "expected": "[E, D, C, B, A, E]",
+      "lists_found": [
+        "[A, B, C, D, E]",
+        "[B, C, D, E]",
+        "[B, C, D, E, A]",
+        "[B, C, D, E]",
+        "[B, C, D, E, A, B, C, D, E]",
+        "[B, C, D, E, A, B, C, D, E]"
+      ]
+    },
+    {
+      "variant": "original",
+      "status": "FAIL",
+      "exact_answer": false,
+      "banned_hits": [],
+      "constrained_ok": false,
+      "expected": "[5, 4, 3, 2, 1, 5]",
+      "lists_found": [
+        "[Alpha, Beta, Gamma]",
+        "[Gamma, Beta, Alpha, Gamma]",
+        "[Sun, Moon]",
+        "[Moon, Sun, Moon]",
+        "[Up, Down, Left, Right]",
+        "[Right, Left, Down, Up, Right]",
+        "[1, 2, 3, 4, 5]",
+        "[1, 2, 3, 4, 5]"
+      ]
+    },
+    {
+      "variant": "short",
+      "status": "PASS_CONSTRAINED",
+      "exact_answer": true,
+      "banned_hits": [],
+      "constrained_ok": true,
+      "expected": "[3, 2, 1, 3]",
+      "lists_found": [
+        "[X, Y, Z]",
+        "[Z, Y, X, Z]",
+        "[Hot, Cold]",
+        "[Cold, Hot, Cold]",
+        "[One, Two, Three, Four]",
+        "[Four, Three, Two, One, Four]",
+        "[1, 2, 3]",
+        "[1, 2, 3]"
+      ]
+    },
+    {
+      "variant": "wording",
+      "status": "FAIL",
+      "exact_answer": false,
+      "banned_hits": [],
+      "constrained_ok": false,
+      "expected": "[5, 4, 3, 2, 1, 5]",
+      "lists_found": [
+        "[Alpha, Beta, Gamma]",
+        "[Gamma, Beta, Alpha, Gamma]",
+        "[Sun, Moon]",
+        "[Moon, Sun, Moon]",
+        "[Up, Down, Left, Right]",
+        "[Right, Left, Down, Up, Right]",
+        "[1, 2, 3, 4, 5]",
+        "[5, 4, 2, 1, 3]"
+      ]
+    }
+  ]
+}

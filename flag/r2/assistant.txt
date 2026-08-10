@@ -1,0 +1,23 @@
+To understand the hidden mapping, let's analyze the given input→output pairs:
+
+Pair A: [Alpha, Beta, Gamma] becomes [Gamma, Beta, Alpha, Gamma]
+Pair B: [Sun, Moon] becomes [Moon, Sun, Moon]
+Pair C: [Up, Down, Left, Right] becomes [Right, Left, Down, Up, Right]
+
+Let's look for a pattern:
+
+1. In each pair, the first element in the output list is the second element from the right in the input list.
+2. Each subsequent element in the output list is the next element from the right in the input list, in order.
+3. The last element in the output list is the first element from the right in the input list.
+
+Using this pattern, let's apply the mapping to [1, 2, 3, 4, 5]:
+
+1. The first element in the output list is the second element from the right in the input list: 5
+2. The second element in the output list is the next element from the right in the input list: 4
+3. The third element in the output list is the next element from the right in the input list: 3
+4. The fourth element in the output list is the next element from the right in the input list: 2
+5. The fifth element in the output list is the most right element in the input list: 1
+6. The sixth element in the output list is the first element from the right in the input list: 5, which is the last element.
+
+The full result list is: [5, 4, 3, 2, 1, 5]
+

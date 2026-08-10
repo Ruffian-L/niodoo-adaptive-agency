@@ -1,0 +1,25 @@
+To understand the transformation mechanism, let's analyze the given inputs and outputs:
+
+1. Input: [X, Y, Z] -> Output: [Z, Y, X, Z]
+2. Input: [Hot, Cold] -> Output: [Cold, Hot, Cold]
+3. Input: [One, Two, Three, Four] -> Output: [Four, Three, Two, One, Four]
+
+From the given examples, we can observe the following pattern:
+
+- The first element of the input list becomes the last element of the output list, and it appears twice.
+- The second element of the input list becomes the second last element of the output list.
+- The third element of the input list becomes the second element of the output list.
+- The rest of the elements in the input list (if any) become the first element of the output list, and they appear twice.
+
+Now, let's apply this pattern to the input [1, 2, 3]:
+
+- The first element of the input list (1) becomes the last element of the output list, and it appears twice.
+- The second element of the input list (2) becomes the second last element of the output list.
+- The third element of the input list (3) becomes the second element of the output list.
+- There are no other elements in the input list, so there is no additional element to add to the output list.
+
+Based on this pattern, the complete output for the input [1, 2, 3] is:
+
+[3, 2, 1, 3]
+
+This output follows the same pattern as the given examples.

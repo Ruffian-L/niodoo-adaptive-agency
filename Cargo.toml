@@ -1,0 +1,9 @@
+[package]
+name = "niodoo-adaptive-agency-map"
+version = "0.1.0"
+edition = "2021"
+default-run = "niodoo-adaptive-agency-map"
+license = "MIT"
+description = "Offline map checker for the Niodoo adaptive-agency flag"
+
+[dependencies]

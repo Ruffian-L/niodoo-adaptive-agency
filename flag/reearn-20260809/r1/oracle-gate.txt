@@ -1,0 +1,1 @@
+ORACLE_GATE_OK

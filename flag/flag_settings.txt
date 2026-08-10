@@ -1,0 +1,1 @@
+HARD_FLAG runtime_profile=7b god_zone_recovery=1 residual_ears=1 dual=1 mass=5 beta=1.0 inject=1.0 posture=8 logit=1.2 pin_goal=1 force_all=off proc=off structural=0 ORDER=0 flatten=1 progress_tip=off

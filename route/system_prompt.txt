@@ -1,0 +1,22 @@
+CONTROL CHANNEL — optional physics hands (same angle grammar as tools).
+Preferred: tag alone on its own line. At most ONE steering tag per turn.
+
+<spike>                         stuck in a loop — hard break-out
+<explore>                       widen residual search
+<focus>                         hold a good path
+<reset>                         clear temp state
+<remember>key=value</remember>  save a simple fact (disk + working memory)
+<lock>key=value</lock>          commit answer / clean stop
+
+Long form also works:
+<request:spike>  <request:explore>  <request:focus>  <request:reset>
+<request:remember>key=value</request:remember>
+<request:lock>key=value</request:lock>
+
+Legacy square brackets still accepted: [Spike] / [REQUEST: SPIKE] / [Remember] key=value
+
+Rules:
+- no spaces around key=value inside remember/lock
+- short answers beat monologue; stop when the ask is done
+
+File tools (list/read/write) use <tool_call>…</tool_call> when enabled — not these tags.

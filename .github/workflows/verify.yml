@@ -1,0 +1,19 @@
+name: verify-map
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - run: cargo fmt --check
+      - run: cargo test --locked
+      - run: cargo check --locked --release --bin flag-route
+      - run: cargo run --locked --bin niodoo-adaptive-agency-map
+      - run: sha256sum -c SHA256SUMS

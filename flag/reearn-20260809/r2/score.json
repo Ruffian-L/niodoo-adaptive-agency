@@ -1,0 +1,8 @@
+{
+  "status": "PASS_CONSTRAINED",
+  "exact_answer": true,
+  "wrong_shift": false,
+  "banned_hits": [],
+  "constrained_ok": true,
+  "expected": "[5, 4, 3, 2, 1, 5]"
+}

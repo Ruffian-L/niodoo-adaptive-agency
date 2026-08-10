@@ -1,0 +1,8 @@
+/target/
+/runs/
+/.one-shot/
+*.gguf
+*.bin
+*.jsonl
+!flag/store_at_flag.jsonl
+!flag/reearn-20260809/self-saved-store.jsonl
