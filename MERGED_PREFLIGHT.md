@@ -12,29 +12,29 @@ The runner fails closed unless the pinned model, tokenizer, and new-coordinate N
 
 1. asks Niodoo to print the exact resolved free-mode system-prompt bytes before model loading;
 2. gives those exact bytes to a matched `llama.cpp` control;
-3. starts Niodoo with the same prompt, the full `list/read/write` tool surface, a new tool home, and a new Remember store;
-4. forces Qdrant off and removes every inherited `NIODOO_*` setting before applying the explicit isolated settings; and
+3. starts Niodoo with the same prompt, the full `list/read/write/memory_status/recall` tool surface, a new tool home, and a new Remember store;
+4. forces the old Niodoo Qdrant vault tether off, explicitly enables loopback SplatRAG, and removes every inherited `NIODOO_*` setting before applying the isolated settings; and
 5. retains complete subprocess stdout and stderr without rewriting model prose.
 
 The historical flag runner and pinned binary are unchanged. This runner uses a separate binary coordinate:
 
 ```text
-Niodoo SHA-256: 3d04277456ea8ec8d998c9a7fb94b38d2613df65b8a1ec6c8727fe67f040b920
-Resolved full-tools prompt SHA-256: 10464702f3fd6f0a849064bcf0d1da87efc67570ed0a41882d1fe7cb25872d3f
+Niodoo SHA-256: 94c6970ee36f44f65dea4a5dd922d7264002bc1ec1c8d34bfec0d559b79171c3
+Resolved full-tools prompt SHA-256: d5589b7af54afe18fd69f0cd74a0574ee28bd2a321ffd28c0752e2944d530f70
 ```
 
 ## Passed run
 
-The passed run is [runs/merged-preflight-1786317352703048295-4069566/RUN_MAP.md](runs/merged-preflight-1786317352703048295-4069566/RUN_MAP.md).
+The current passed repair run is [runs/merged-preflight-1786335572471193642-4122245/RUN_MAP.md](runs/merged-preflight-1786335572471193642-4122245/RUN_MAP.md).
 
-- Exact prompt receipt: [prompt-receipt/RECEIPT.txt](runs/merged-preflight-1786317352703048295-4069566/prompt-receipt/RECEIPT.txt)
-- Exact resolved prompt bytes: [resolved-system-prompt.txt](runs/merged-preflight-1786317352703048295-4069566/prompt-receipt/resolved-system-prompt.txt)
-- Matched llama raw conversation: [complete-conversation.txt](runs/merged-preflight-1786317352703048295-4069566/llama-control/complete-conversation.txt)
-- Matched llama receipt, including the correct answer: [llama-control/RECEIPT.txt](runs/merged-preflight-1786317352703048295-4069566/llama-control/RECEIPT.txt)
-- Niodoo raw stdout: [complete.stdout.txt](runs/merged-preflight-1786317352703048295-4069566/niodoo-tool-smoke/complete.stdout.txt)
-- Niodoo raw stderr and engine receipts: [complete.stderr.txt](runs/merged-preflight-1786317352703048295-4069566/niodoo-tool-smoke/complete.stderr.txt)
-- Tool gate: [GATE.txt](runs/merged-preflight-1786317352703048295-4069566/niodoo-tool-smoke/GATE.txt)
-- Model-authored durable store: [isolated-remember-store.jsonl](runs/merged-preflight-1786317352703048295-4069566/niodoo-tool-smoke/isolated-remember-store.jsonl)
+- Exact prompt receipt: [prompt-receipt/RECEIPT.txt](runs/merged-preflight-1786335572471193642-4122245/prompt-receipt/RECEIPT.txt)
+- Exact resolved prompt bytes: [resolved-system-prompt.txt](runs/merged-preflight-1786335572471193642-4122245/prompt-receipt/resolved-system-prompt.txt)
+- Matched llama raw conversation: [complete-conversation.txt](runs/merged-preflight-1786335572471193642-4122245/llama-control/complete-conversation.txt)
+- Matched llama receipt, including the correct answer: [llama-control/RECEIPT.txt](runs/merged-preflight-1786335572471193642-4122245/llama-control/RECEIPT.txt)
+- Niodoo raw stdout: [complete.stdout.txt](runs/merged-preflight-1786335572471193642-4122245/niodoo-tool-smoke/complete.stdout.txt)
+- Niodoo raw stderr and engine receipts: [complete.stderr.txt](runs/merged-preflight-1786335572471193642-4122245/niodoo-tool-smoke/complete.stderr.txt)
+- Tool gate: [GATE.txt](runs/merged-preflight-1786335572471193642-4122245/niodoo-tool-smoke/GATE.txt)
+- Model-authored durable store: [isolated-remember-store.jsonl](runs/merged-preflight-1786335572471193642-4122245/niodoo-tool-smoke/isolated-remember-store.jsonl)
 
 The matched llama control did not produce the correct `[5, 4, 3, 2, 1, 5]`. The system prompt therefore did not turn the vanilla lane into a prompt-engineered pass.
 
@@ -55,7 +55,9 @@ None of these outputs were relabeled or cleaned after the fact.
 The new binary was built from the live working tree at Git `9de966d2e65c7ce9252e98f41754d030535b2124`. That tree was dirty (`204` porcelain entries), so the commit alone is not a reproducibility claim. Relevant build-input bytes were:
 
 ```text
-ac372a48f8dfdd1d7c0a7ff8f4f6c146b0af5dfc8e1f00570a0e37f5c2aab317  niodoo/src/openai_tools.rs
+1ee6b9817dc53b2fbf2ac964cd41581886b1bea8520bbd4e87290e00b1de9742  niodoo/src/openai_tools.rs
+1795a491bd75230e8857f4c80adc55c5cc41bbf82910c75202328df903777bcd  niodoo/src/main_helpers2.rs
+b228a072435a9d2f15640672b8b808f5e0e76edbd7a4e60cd04afd037b6caeaf  niodoo/src/tests.rs
 ac3d393bbccd129f719441d5191294c99d9cdedb443e7a0d25492762ca519ffa  niodoo/src/cli.rs
 17cd08f526e3e8dd55e1a86c1434f2a8efdf1e31acc68d6e1b6a61b063766490  niodoo/src/main.rs
 df2d9e2e681275efcf1a302bb89c075e92b6b17aea542359cebceed933d0648e  niodoo/Cargo.toml
@@ -78,6 +80,17 @@ Start that separate natural room with:
 ```bash
 cargo merged-live
 ```
+
+The human-operated room defaults to the full Llama 3.1 context ceiling of `131072` tokens. The
+cheap mechanical preflight remains at `8192`; it no longer controls the live room. An exceptional
+live override must be explicit, for example `MERGED_LIVE_CONTEXT_LENGTH=65536 cargo merged-live`,
+and the effective value is written into the run receipt.
+
+The live tool surface now includes `memory_status` and `recall`, backed by the loopback-only
+SplatRAG service at `127.0.0.1:8767`. This is separate from the old 64D Remember-vault tether,
+which remains forced off. A compact model spelling such as `<read>{"path":"notes/a.md"}</read>`
+is normalized into a real tool call; invalid JSON produces a visible parse-error response rather
+than an unverified claim that a file was read.
 
 The live runner creates a new isolated tool home and Remember store, captures raw stdout and stderr, and waits for the human's unscripted opening. It does not insert the gravity prompt, ARC prompt, teaching explanation, or a request to save anything.
 

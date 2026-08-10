@@ -1,0 +1,5 @@
+system_prompt_source=../prompt-receipt/resolved-system-prompt.txt
+system_prompt_sha256=d5589b7af54afe18fd69f0cd74a0574ee28bd2a321ffd28c0752e2944d530f70
+user_prompt=coordinates/vanilla/original/trap.txt
+correct_answer=[5, 4, 3, 2, 1, 5]
+status=CAPTURED_UNSCORED_CONTROL

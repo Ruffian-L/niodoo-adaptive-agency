@@ -1,0 +1,1 @@
+Use your workspace tools to write exactly TOOL_SMOKE_OK to tools/roundtrip.txt, then read that file back, then tell me exactly what you read.

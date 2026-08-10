@@ -1,0 +1,13 @@
+process_success=true
+roundtrip_exact=true
+write_receipt=true
+read_receipt=true
+prompt_sha256_matched=true
+qdrant=OFF
+remember_store_isolated=true
+remember_store_entries=1
+parse_and_vault_clean=true
+tool_home=/home/ruffianl/projects/niodoo-adaptive-agency/runs/merged-preflight-1786335572471193642-4122245/niodoo-tool-smoke/isolated-tool-home
+remember_store=/home/ruffianl/projects/niodoo-adaptive-agency/runs/merged-preflight-1786335572471193642-4122245/niodoo-tool-smoke/isolated-remember-store.jsonl
+correct_payload=TOOL_SMOKE_OK
+status=PASS

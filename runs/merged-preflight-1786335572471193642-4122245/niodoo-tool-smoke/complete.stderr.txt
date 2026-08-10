@@ -1,0 +1,30 @@
+[RUNTIME_CONFIG] {"runtime_profile":"legacy-public","cache_backend":"legacy-concat","kv_cache_dtype":"f32","context_policy":"exact-no-silent-eviction","cache_budget_tokens":null,"retention_page_tokens":null,"retention_sink_tokens":null,"retention_pin_budget_percent":null,"retention_recent_budget_percent":null,"system_prompt_mode":"free","system_prompt_sha256":"d5589b7af54afe18fd69f0cd74a0574ee28bd2a321ffd28c0752e2944d530f70","immutable_tag_protocol_applied":true,"auto_output_contract_policy":"off-unless-explicitly-selected"}
+Starting Runtime...
+ [MODEL_SCALE] size=8B archetype=Instruct scale=1.000 sigma=0.135 theta=0.50 beta=100.0 repulsion=0.54 temp=0.700 motif=0.315 recovery=0.405 guard=1.42 focus_lock=27
+ [MODEL_SCALE] applied sigma=0.135 physics_blend=1.50 repulsion_strength=-0.54 temperature=0.700
+DEVICE: Cuda(CudaDevice(DeviceId(1)))
+[GPU] cuda_device_selected=true
+MODE: niodoo residual physics (arch resolved after load)
+ [BRIDGE] No runtime bridge found from 'off'; continuing without motif-memory bootstrap
+ [MEMORY] Loading Model...
+ [LOADER] Loading model from: "/home/ruffianl/Hub/Projects/niodoo/niodoo-live/model/Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf"
+ [LOADER] GGUF architecture: Llama
+ [LOADER] Using tokenizer: "/home/ruffianl/projects/niodoo-arc-rehit/model/tokenizer.json"
+MODE: niodoo residual physics · arch=llama · hook=post-attn apply_forces
+ [MEMORY] Loading Universe...
+ [UNIVERSE] Using live model token embeddings (n=1000)
+ [UNIVERSE] Loaded: source=model_token_embeddings tensor_rows=128256 usable_rows=1000 dim=4096 token_map=tokenizer.decode(token_id) (Model hidden=4096)
+ [REPEL] Initializing Black Holes: ["swift", "very", "really", "basically"]
+ [BRIDGE] Loaded 8 ghost basins from /home/ruffianl/Hub/Projects/niodoo/niodoo-live/niodv4/data/results/summaries/ghost_candidate_registry.json
+ [VQ] specialists_loaded=0 codebook_loaded=false correction_packets=0
+ [VOICE_PROMPT] mode=free immutable_tags=true auto_output_contract=off
+ [SESSION] source=/home/ruffianl/projects/niodoo-adaptive-agency/runs/merged-preflight-1786335572471193642-4122245/niodoo-tool-smoke/session.txt turns=1 persistent_kv=true
+ [REMEMBER_STORE] loaded=/home/ruffianl/projects/niodoo-adaptive-agency/runs/merged-preflight-1786335572471193642-4122245/niodoo-tool-smoke/isolated-remember-store.jsonl entries=0
+ [REMEMBER_STORE] saved=/home/ruffianl/projects/niodoo-adaptive-agency/runs/merged-preflight-1786335572471193642-4122245/niodoo-tool-smoke/isolated-remember-store.jsonl entries=1 accepted=["path=tools/roundtrip.txt"]
+ [TOOLS] round=0 calls=["write", "read"] → feeding <tool_response>
+
+=== CHAT SESSION COMPLETE ===
+Turns: 1
+ [TELEMETRY] Saving to "/home/ruffianl/projects/niodoo-adaptive-agency/runs/merged-preflight-1786335572471193642-4122245/niodoo-tool-smoke/telemetry.jsonl"
+ [TIMING] Saving to "/home/ruffianl/projects/niodoo-adaptive-agency/runs/merged-preflight-1786335572471193642-4122245/niodoo-tool-smoke/telemetry.run_timing.json"
+[forward_profile] disabled (set NIODOO_PROFILE_FORWARD=1 to enable)

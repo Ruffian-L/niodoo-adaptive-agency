@@ -9,7 +9,8 @@ use std::time::{SystemTime, UNIX_EPOCH};
 
 const MODEL_SHA256: &str = "14e10feba0c82a55da198dcd69d137206ad22d116a809926d27fa5f2398c69c7";
 const TOKENIZER_SHA256: &str = "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4";
-const NIODOO_SHA256: &str = "3d04277456ea8ec8d998c9a7fb94b38d2613df65b8a1ec6c8727fe67f040b920";
+const NIODOO_SHA256: &str = "94c6970ee36f44f65dea4a5dd922d7264002bc1ec1c8d34bfec0d559b79171c3";
+const DEFAULT_LIVE_CONTEXT_LENGTH: usize = 131_072;
 
 struct Config {
     map_root: PathBuf,
@@ -22,6 +23,7 @@ struct Config {
     out: PathBuf,
     live_resume: Option<PathBuf>,
     live_cold_store_only: bool,
+    live_context_length: usize,
 }
 
 struct Captured {
@@ -51,6 +53,19 @@ fn env_path(name: &str, default: impl Into<PathBuf>) -> PathBuf {
         .unwrap_or_else(|| default.into())
 }
 
+fn parse_context_length(value: Option<&str>) -> Result<usize, String> {
+    let Some(value) = value else {
+        return Ok(DEFAULT_LIVE_CONTEXT_LENGTH);
+    };
+    let parsed = value.trim().parse::<usize>().map_err(|_| {
+        format!("MERGED_LIVE_CONTEXT_LENGTH must be a positive integer, got {value:?}")
+    })?;
+    if parsed == 0 {
+        return Err("MERGED_LIVE_CONTEXT_LENGTH must be greater than zero".to_string());
+    }
+    Ok(parsed)
+}
+
 fn config(mode: Mode) -> Result<Config, String> {
     let map_root = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     let home = env::var_os("HOME")
@@ -77,6 +92,8 @@ fn config(mode: Mode) -> Result<Config, String> {
         "MERGED_PREFLIGHT_OUT",
         map_root.join(format!("runs/{prefix}-{run_id}-{}", std::process::id())),
     );
+    let live_context_length =
+        parse_context_length(env::var("MERGED_LIVE_CONTEXT_LENGTH").ok().as_deref())?;
     Ok(Config {
         llama_cli: env_path(
             "MERGED_PREFLIGHT_LLAMA_CLI",
@@ -102,6 +119,7 @@ fn config(mode: Mode) -> Result<Config, String> {
         live_cold_store_only: env::var("MERGED_LIVE_COLD_STORE_ONLY")
             .map(|value| matches!(value.trim(), "1" | "true" | "on"))
             .unwrap_or(false),
+        live_context_length,
     })
 }
 
@@ -485,6 +503,7 @@ fn run_tool_smoke(config: &Config, prompt_sha: &str) -> Result<(), String> {
         .env("NIODOO_REPO_ROOT", &config.product_root)
         .env("NIODOO_SPACE_HOME", &tool_home)
         .env("NIODOO_VAULT_URL", "off")
+        .env("NIODOO_SPLATRAG_URL", "http://127.0.0.1:8767")
         .arg("--model-path")
         .arg(&config.model)
         .args(["--model-size", "8b", "--model-arch", "auto"])
@@ -594,6 +613,7 @@ fn run_live_session(config: &Config, prompt_sha: &str) -> Result<(), String> {
         .env("NIODOO_REPO_ROOT", &config.product_root)
         .env("NIODOO_SPACE_HOME", &tool_home)
         .env("NIODOO_VAULT_URL", "off")
+        .env("NIODOO_SPLATRAG_URL", "http://127.0.0.1:8767")
         .arg("--model-path")
         .arg(&config.model)
         .args(["--model-size", "8b", "--model-arch", "auto"])
@@ -604,7 +624,9 @@ fn run_live_session(config: &Config, prompt_sha: &str) -> Result<(), String> {
         .args(["--cache-backend", "legacy-concat"])
         .args(["--session-mode", "continuous"])
         .args(["--stdout-profile", "chat"])
-        .args(["--output-contract-mode", "off", "--context-length", "8192"])
+        .args(["--output-contract-mode", "off"])
+        .arg("--context-length")
+        .arg(config.live_context_length.to_string())
         .args(["--max-steps", "768", "--temperature", "0.0"])
         .args(["--theta-override", "1.5", "--physics-blend", "0.9"])
         .args(["--physics-start-layer", "16", "--physics-end-layer", "33"])
@@ -644,10 +666,11 @@ fn run_live_session(config: &Config, prompt_sha: &str) -> Result<(), String> {
         .filter(|line| !line.trim().is_empty())
         .count();
     let receipt = format!(
-        "process_success={}\nprompt_sha256_matched={}\nprompt_sha256={}\nqdrant={}\nresume_source={}\nresume_scope={}\nuser_input_capture={}\ncompact_resume_state={}\nremember_store_entries={}\ntool_home={}\nremember_store={}\nstatus={}\n",
+        "process_success={}\nprompt_sha256_matched={}\nprompt_sha256={}\ncontext_length={}\nruntime_profile=legacy-public\ncache_backend=legacy-concat\nqdrant={}\nsplatrag=http://127.0.0.1:8767\nresume_source={}\nresume_scope={}\nuser_input_capture={}\ncompact_resume_state={}\nremember_store_entries={}\ntool_home={}\nremember_store={}\nstatus={}\n",
         output.success,
         prompt_matched,
         prompt_sha,
+        config.live_context_length,
         if vault_off { "OFF" } else { "UNEXPECTED_ACTIVITY" },
         resume_source
             .as_deref()
@@ -786,5 +809,17 @@ mod tests {
         let first = config(Mode::Preflight).unwrap().out;
         let second = config(Mode::Preflight).unwrap().out;
         assert_ne!(first, second);
+    }
+
+    #[test]
+    fn live_context_defaults_to_llama_31_full_context() {
+        assert_eq!(parse_context_length(None).unwrap(), 131_072);
+    }
+
+    #[test]
+    fn live_context_override_is_validated() {
+        assert_eq!(parse_context_length(Some("65536")).unwrap(), 65_536);
+        assert!(parse_context_length(Some("0")).is_err());
+        assert!(parse_context_length(Some("eight thousand")).is_err());
     }
 }

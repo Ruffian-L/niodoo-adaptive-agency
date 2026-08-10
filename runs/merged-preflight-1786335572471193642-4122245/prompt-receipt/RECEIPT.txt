@@ -1,0 +1,5 @@
+source=Niodoo --print-resolved-system-prompt
+bytes=3723
+sha256=d5589b7af54afe18fd69f0cd74a0574ee28bd2a321ffd28c0752e2944d530f70
+stderr_bytes=0
+status=EXACT

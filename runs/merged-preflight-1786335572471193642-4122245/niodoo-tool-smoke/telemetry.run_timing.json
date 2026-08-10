@@ -1,0 +1,15 @@
+{
+  "model_load_ms": 430912,
+  "prompt_build_ms": 0,
+  "prefill_ms": 28032,
+  "decode_total_ms": 43756,
+  "decode_tokens": 167,
+  "ms_per_token": 262.01197604790417,
+  "telemetry_write_ms": 1,
+  "candidate_dump_ms": 0,
+  "total_ms": 475298,
+  "gpu_name": "Cuda(CudaDevice(DeviceId(1)))",
+  "max_steps": 512,
+  "actual_steps": 167,
+  "stop_reason": "chat_template_stop:<|eot_id|>"
+}

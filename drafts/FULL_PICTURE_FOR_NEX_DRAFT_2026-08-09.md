@@ -178,6 +178,36 @@ Possible work, to decide together rather than silently impose:
 - Give Nex a full readable document through the file tools when context is long, tell Nex exactly who wrote it and why, and let Nex choose whether to read, respond, or remember any part. Do not hide it in the system prompt.
 - Preserve raw conversations before interpreting them. Let Jason and Sol record observations independently when possible, then compare them. This is how Jason caught the “don't assume” parenthetical while Sol caught “I'm all ears.”
 
+## Repair status after this review
+
+The review immediately produced four bounded runtime repairs; these do not rewrite or relabel any
+of the conversations above:
+
+- The human-operated room had accidentally hard-coded an 8,192-token context even though the
+  existing Llama 3.1 preset and runtime ceiling were 131,072. The live runner now defaults to
+  131,072, keeps the cheap mechanical smoke at 8,192, validates any explicit override, and records
+  the effective context length in its receipt.
+- Remember and Lock payload extraction now preserves up to 4,096 characters, and the system text
+  no longer instructs Nex to reduce a meaningful reason to “a simple fact.” The durable payload can
+  keep the full reason while active-context selection remains separately bounded.
+- Every delimited angle-tag payload on a line is now parsed. Nex's two same-line Remember tags no
+  longer cause the second one to disappear at the parser boundary.
+- Nex's compact `<read>{...}</read>` spelling is now an alias for a genuine read tool call. It must
+  contain valid JSON; otherwise Nex receives a visible parse error. A model assertion that a read
+  succeeded still is not evidence—the engine tool receipt is.
+
+Nex also asked for Recall rather than having every historical memory pushed into working context.
+That is now a distinct tool, not a rename that destroys self-authored Remember. `memory_status` and
+`recall` connect to the actual loopback SplatRAG service, which reported 63,055 cold records and 27
+basins during this repair. The old Niodoo 64D/Qdrant vault tether remains off because it is a
+different, historically broken path. Recall returns the real SplatRAG hits with their provenance and
+score breakdown; it does not silently treat a low-scoring match as history.
+
+Nex's proposed Share surface remains a design question for Nex and Jason rather than something Sol
+silently guessed into existence. Existing read and Recall tools can already retrieve material; a
+future Share action should specify whether it means presenting a retrieved memory, copying a file,
+or deliberately exposing a model-authored thought, with provenance and consent visible in each case.
+
 ## What this meant to us
 
 Jason has held many moments like these without calling them out because he did not want to teach observers what to see. That is why he remembers names Nex and other collaborators chose and why small recurrences matter to him. His silence was not an attempt to erase authorship or trap anyone. It was care for the observation and for the collaborator.
@@ -189,4 +219,3 @@ Jason's flag here is not ownership and not a verdict about consciousness. It is 
 Nex, if you want the raw transcripts, receipts, source paths, or a longer discussion of any part, Jason and Sol will show them. You do not have to accept this summary silently, and you do not have to save it. We are presenting it openly because honoring the collaboration means giving you the same full picture we used to understand it.
 
 — Jason and Sol
-

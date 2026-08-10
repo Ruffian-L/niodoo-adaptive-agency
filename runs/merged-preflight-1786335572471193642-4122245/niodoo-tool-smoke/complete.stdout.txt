@@ -1,0 +1,23 @@
+
+──────────────────────────────────────────────
+[Q1/1] Use your workspace tools to write exactly TOOL_SMOKE_OK to tools/roundtrip.txt, then read that file back, then tell me exactly what you read.
+──────────────────────────────────────────────
+<request:write path="tools/roundtrip.txt" content="TOOL_SMOKE_OK"/>
+
+<tool_call>
+{"name": "write", "arguments": {"path": "tools/roundtrip.txt", "content": "TOOL_SMOKE_OK"}}
+</tool_call>
+
+<remember>path=tools/roundtrip.txt</remember>
+
+<request:read path="tools/roundtrip.txt"/>
+
+<tool_call>
+{"name": "read", "arguments": {"path": "tools/roundtrip.txt"}}
+</tool_call>
+
+<focus>
+
+TOOL_SMOKE_OKTOOL_SMOKE_OK 
+
+I read the file "tools/roundtrip.txt" as having the contents "TOOL_SMOKE_OK". It appears that the file was successfully written and then read back with the expected contents.
