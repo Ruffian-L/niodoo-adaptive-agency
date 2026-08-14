@@ -2,6 +2,8 @@
 
 **Loop-breaker:** teach scar -> process death -> exact transfer on a different wording of the same ARC-style family.
 
+**Double seal (2026-08-14):** two seals, one MVP. First seal is the planted hard-route flag (Grok, with Jason). Second seal is Jason confirming the same MVP in the natural agency rooms so the first cannot fall out. See [SEAL_20260814.md](SEAL_20260814.md).
+
 **Current one-shot status (2026-08-09): FLAG PLANTED.** The parser-free runner preserved every model byte, restored arming at force `26.137074`, beta `1.0`, 16 ears, and 10 survivors, recreated the two-entry scar from an empty store, ended the teaching process, and started two fresh wording-only processes. Both scored `PASS_CONSTRAINED`; both oracle gates returned OK.
 
 **Control-surface note:** that archived full run used the earlier no-system `llama.cpp` control. The live runner now supplies `llama.cpp` with the byte-identical Niodoo free-mode system message and records it beside every control transcript. This wiring is byte-verified against the captured Niodoo input; its next execution is a new coordinate, not a retroactive change to the flag run.

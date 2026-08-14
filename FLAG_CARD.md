@@ -1,5 +1,7 @@
 # Flag Card
 
+This card is the first seal of the MVP. The second seal is Jason's natural-agency confirmation in [SEAL_20260814.md](SEAL_20260814.md).
+
 ## Reached destination
 
 On 2026-08-08, a frozen Llama 3.1 8B Instruct Q5_K_M model, mediated by Niodoo residual scar ears and a durable rule store created during teaching, produced the exact constrained answer on a wording-changed task from the same ARC-style mapping family after process restart. Two independent restarts reached the destination. No model weights changed, and the flagged path did not inject rule text or install gold answer tokens.
