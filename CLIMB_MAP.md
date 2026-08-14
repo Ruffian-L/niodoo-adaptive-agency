@@ -21,3 +21,5 @@
 | 17 | Flag | Full parser-free five-phase re-earn | Empty teach -> autonomous scar -> death -> `PASS_CONSTRAINED ×2` -> gate OK ×2 |
 
 The wrong routes are coordinates, not shame. The boosts are milestones, not ownership. The flag makes the destination available to the next explorer.
+
+Muse / Glimmer is a **new climb**, not a rewrite of rows 1–17. The boost checklist lives in one place: [CLIMB_MUSE.md](CLIMB_MUSE.md).
