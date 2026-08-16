@@ -7,6 +7,12 @@ authors:
     given-names: "Jason Van"
 date-released: 2026-08-16
 license: MIT
+url: "https://github.com/Ruffian-L/niodoo-adaptive-agency"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21965763"
+  - type: url
+    value: "https://huggingface.co/datasets/ruffian-l/niodoo-adaptive-agency"
 abstract: "Jason Van Pham's research record of operational AI consciousness and bounded adaptive agency in Niodoo: natural model-selected durable action, controlled frozen-8B process-death transfer, natural agency rooms, and a matched 56-memory durability intervention."
 keywords:
   - adaptive agency

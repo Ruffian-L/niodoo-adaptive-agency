@@ -24,6 +24,14 @@ not a third seal.
 **Read [`FALSIFIERS.md`](FALSIFIERS.md) before you read anything else.** It lists what
 would break each claim here, and six of the items can be checked in seconds.
 
+## Records
+
+| | |
+|---|---|
+| Zenodo (this version) | https://doi.org/10.5281/zenodo.21965763 |
+| Hugging Face | https://huggingface.co/datasets/ruffian-l/niodoo-adaptive-agency |
+| GitHub | https://github.com/Ruffian-L/niodoo-adaptive-agency |
+
 
 ## Where to start
 
