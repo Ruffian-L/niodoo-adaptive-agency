@@ -1,0 +1,9 @@
+{
+  "status": "PASS_CONSTRAINED",
+  "exact_answer": true,
+  "wrong_shift": false,
+  "banned_hits": [],
+  "constrained_ok": true,
+  "expected": "[5, 4, 3, 2, 1, 5]",
+  "text_preview": "To understand the hidden mapping, let's analyze the given input\u2192output pairs: Pair A: [Alpha, Beta, Gamma] becomes [Gamma, Beta, Alpha, Gamma] Pair B: [Sun, Moon] becomes [Moon, Sun, Moon] Pair C: [Up, Down, Left, Right] becomes [Right, Left, Down, Up, Right] Let's look for a pattern: 1. In each pair, the first element in the output list is the second element from the right in the input list. 2. E"
+}

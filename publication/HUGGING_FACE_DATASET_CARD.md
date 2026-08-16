@@ -1,5 +1,5 @@
 ---
-pretty_name: Adaptive Agency in a Frozen 8B Model
+pretty_name: "Knowing Where You Are: Convergent Evidence for Operational AI Consciousness and Adaptive Agency in Niodoo"
 license: other
 task_categories:
   - text-generation
@@ -7,25 +7,43 @@ language:
   - en
 tags:
   - persistent-memory
+  - operational-ai-consciousness
+  - adaptive-agency
   - hidden-state-steering
   - reproducibility
 ---
 
-# Adaptive Agency in a Frozen 8B Model
+# Knowing Where You Are
 
-This dataset contains prompts, model replies, scores, decision records, and an offline map checker for one operationally defined adaptive-agency destination.
+## Convergent Evidence for Operational AI Consciousness and Adaptive Agency in Niodoo
+
+This dataset contains Jason Van Pham's prompts, model replies, scores, decision
+records, curated historical evidence, durability results, and offline checkers for an
+explicitly defined operational AI-consciousness and bounded adaptive-agency claim.
 
 ## Contents
 
-- The two historical Niodoo arrivals on a changed-wording task.
+- The Grok Seal: controlled frozen-8B teaching, model-generated durable writes,
+  process death, and two exact fresh-process transfers.
+- The Jason & Sol Seal: natural rooms with Nex and the full action surface.
+- A curated July 8B gravity event and explicitly mixed-model historical restart.
 - The frozen rule store and flag settings.
 - Four vanilla `llama.cpp` controls using the same model bytes.
 - Human-readable flag and climb cards.
-- The 2026-08-09 continuous one-shot coordinate, which reached autonomous save but not fresh transfer.
+- A privacy-safe durability pack showing that exact transfer survived 56 added real
+  memories in two of six arrangements, while four arrangements failed.
 
 ## Scope
 
-The demonstrated scope is store-mediated cross-restart transfer within one ARC-style mapping family. It is not official ARC-AGI, a model release, or a broad agency benchmark.
+Operational AI consciousness is defined here as usable self-location regulating
+action. Adaptive agency is a system-selected action that creates durable state which
+later regulates behavior. The demonstrated scope is bounded and task-specific. This
+is not phenomenal or human consciousness, official ARC-AGI, a model release, or a
+general-agency benchmark.
+
+Jason is the creator, architect, research lead, experimenter, and sole author. Named
+AI collaborators are credited for specific evidenced contributions; seal names are
+mnemonic and do not assign ownership or rank.
 
 ## Licensing
 
@@ -33,4 +51,5 @@ Repository code and original documentation are MIT. Model outputs were generated
 
 ## Verification
 
-Run `cargo run --locked` from the repository root.
+Run `./run verify --check` for the sealed evidence and `./run docs-check` for release
+consistency.

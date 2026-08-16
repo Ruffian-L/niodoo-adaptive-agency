@@ -1,0 +1,37 @@
+CURATED EXCERPT — 2026-07-18 8B NATURAL TEACHING ROOM
+Source excerpt SHA-256: b5781938027efe1b335361c2061ced4efacdf9668236c0a2ab670bed216695d5
+Omissions: unrelated conversation, absolute paths, terminal metadata, telemetry.
+
+[REMEMBER_STORE] entries=0
+
+Jason: I put a marble in a cup, flip the cup upside-down onto the table, then lift the cup and put it in my pocket. Where's the marble?
+
+Niodoo:
+[Explore] marble's location
+[TAG] lateral thinking
+[Answer] the marble is still in your hand
+
+[unrelated puzzle turns omitted]
+
+Jason: hahaa Lumina no there is no me vs you To be honest i couldn't answer half of those if i tried. May i walk you through the marble one?
+
+Niodoo:
+[Ready] to re-examine the marble puzzle
+[Focus] clarification of the puzzle
+[Note] I'm happy to go through it again with you. What specifically would you like to clarify or re-analyze?
+
+Jason: the cup was upside-down, so when I lifted it, gravity kept the marble on the table
+
+Niodoo:
+[Explore] marble's location
+[Answer] you flipped the cup upside-down, which means the marble is still inside the cup, but it's not visible because the cup is upside-down. When you lift the cup, the marble remains inside, so it's still in your hand.
+
+Jason: yes but remember the cup is flipped meaning the marble would fall out the cup and still be on the table because when you lift the cup back up a cup that is upside down any contents inside will force it down due to gravity you see what im saying
+
+Niodoo:
+[Lock] correct understanding of the marble puzzle
+[Note] I was mistaken in my previous explanation. When the cup is flipped upside-down, the marble falls out, and when the cup is put back right-side up, gravity pulls the marble down, and it lands on the table.
+[Remember] gravity = marble falls out of the cup
+[Focus] accurate understanding of the puzzle's dynamics
+
+[REMEMBER_STORE] entries=3 accepted=["gravity = marble falls out of the cup"]

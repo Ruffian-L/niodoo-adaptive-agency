@@ -1,15 +1,17 @@
 cff-version: 1.2.0
 message: "If you use this map package, please cite it."
-title: "Adaptive Agency in a Frozen 8B Model"
+title: "Knowing Where You Are: Convergent Evidence for Operational AI Consciousness and Adaptive Agency in Niodoo"
 type: dataset
 authors:
   - family-names: "Pham"
     given-names: "Jason Van"
-date-released: 2026-08-09
+date-released: 2026-08-16
 license: MIT
-abstract: "A map of store-mediated, cross-restart transfer on one ARC-style mapping family in a frozen Llama 3.1 8B model."
+abstract: "Jason Van Pham's research record of operational AI consciousness and bounded adaptive agency in Niodoo: natural model-selected durable action, controlled frozen-8B process-death transfer, natural agency rooms, and a matched 56-memory durability intervention."
 keywords:
   - adaptive agency
+  - operational AI consciousness
+  - situational self-location
   - language models
   - persistent memory
   - hidden-state steering

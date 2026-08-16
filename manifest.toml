@@ -1,0 +1,141 @@
+# manifest.toml — the single source of truth for every external artifact.
+#
+# No URL, hash, size or destination path is written anywhere else in this repository.
+# Every script reads from this file. If an artifact changes, exactly one file changes.
+#
+# Hashes are SHA-256. Sizes are exact byte counts. Both are asserted before use;
+# a mismatch is a hard failure, never a warning.
+#
+# Artifacts marked `url = ""` are not yet published. `./run fetch` will report them as
+# unavailable and name the environment variable that can supply a local path instead.
+
+[meta]
+release          = "niodoo-adaptive-agency"
+platform         = "linux-aarch64"
+gpu              = "NVIDIA GB10-class, CUDA 13"
+vendor_dir       = "vendor"
+
+# CUDA shared libraries that must be resolvable at run time. Checked by `./run doctor`.
+cuda_libs = [
+  "libcuda", "libnvrtc", "libcurand", "libcublas", "libcublasLt", "libcudart",
+]
+
+
+# ---------------------------------------------------------------------------
+# Model weights and tokenizer — published upstream, fetched by hash.
+# ---------------------------------------------------------------------------
+
+[[artifact]]
+name         = "model"
+description  = "Meta-Llama-3.1-8B-Instruct, Q5_K_M quantisation"
+url          = "https://huggingface.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF/resolve/main/Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf?download=true"
+sha256       = "14e10feba0c82a55da198dcd69d137206ad22d116a809926d27fa5f2398c69c7"
+bytes        = 5732992416
+dest         = "vendor/model/Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf"
+env_override = "ONE_SHOT_MODEL"
+required_for = ["verify", "teach", "chat", "sweep"]
+
+[[artifact]]
+name         = "tokenizer"
+description  = "Llama 3.1 tokenizer, byte-identical NousResearch mirror"
+url          = "https://huggingface.co/NousResearch/Meta-Llama-3.1-8B-Instruct/resolve/main/tokenizer.json?download=true"
+sha256       = "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4"
+bytes        = 9085657
+dest         = "vendor/model/tokenizer.json"
+env_override = "ONE_SHOT_TOKENIZER"
+required_for = ["verify", "teach", "chat", "sweep"]
+
+
+# ---------------------------------------------------------------------------
+# Binaries — release assets. Not built from source in this release; see
+# DETERMINISM.md and README.md, which state the binary-level reproduction
+# boundary explicitly.
+# ---------------------------------------------------------------------------
+
+[[artifact]]
+name         = "niodoo"
+description  = "Pinned Niodoo runtime. Executable identity for the recorded run."
+url          = ""                                    # TODO: GitHub release asset
+sha256       = "2151c1840bb21f1cc688b49a704c14670ea12d806113b06d7f212eb19278b507"
+bytes        = 90104160
+dest         = "vendor/bin/niodoo"
+env_override = "ONE_SHOT_NIODOO_BIN"
+executable   = true
+required_for = ["verify", "teach", "chat", "sweep"]
+
+[[artifact]]
+name         = "llama-cli"
+description  = "llama.cpp build c0bc859, aarch64. Used only for the vanilla control lane."
+url          = ""                                    # TODO: GitHub release asset
+sha256       = "72c08ab8827be6004f3d5435064203f2cbadc552f6bcb6dfd1ada146624b4b5d"
+bytes        = 74261680
+build_id     = "b1-c0bc859"
+dest         = "vendor/bin/llama-cli"
+env_override = "ONE_SHOT_LLAMA_CLI"
+executable   = true
+required_for = ["verify", "teach"]
+
+[[artifact]]
+name         = "ghost-registry"
+description  = "Ghost-basin candidate registry. Eight basins; the arming gate asserts the count."
+url          = ""                                    # TODO: GitHub release asset
+sha256       = "6e361f83c24d7d2d0b3534279a4f410761793cf774fac6c3d4ae64c77cfa747b"
+bytes        = 24138
+dest         = "vendor/niodv4/data/results/summaries/ghost_candidate_registry.json"
+# ONE_SHOT_PRODUCT_ROOT names a directory, not this file. When the override is a
+# directory the suffix below is appended to reach the artifact.
+env_override        = "ONE_SHOT_PRODUCT_ROOT"
+env_override_suffix = "niodv4/data/results/summaries/ghost_candidate_registry.json"
+required_for = ["verify", "teach", "chat", "sweep"]
+
+
+# ---------------------------------------------------------------------------
+# Reference run — required by `verify` for the byte-identity diff.
+# Optional for every other lane.
+# ---------------------------------------------------------------------------
+
+[[artifact]]
+name              = "reference-run"
+description       = "Recorded 2026-08-09 full route: control, arming, teach, death, two transfers."
+url               = ""                               # TODO: release asset or Zenodo
+sha256            = ""                               # TODO: fill on tarball creation
+bytes             = 0                                # 224455846 uncompressed
+dest              = "vendor/reference/full-flag-reearn-20260809.tar.zst"
+extract_to        = "vendor/reference/full-flag-reearn-20260809"
+env_override      = "ONE_SHOT_REFERENCE_RUN"
+required_for      = ["verify"]
+
+  # Files inside the reference run that `verify` diffs against. Sizes are asserted
+  # because a truncated download must fail loudly rather than diff against nothing.
+  [[artifact.contains]]
+  path   = "transfer/r1/complete.stdout.txt"
+  sha256 = "6a11a26af06719a96a34837c5d96282432cdf77cc9a2b8110dcb562672b2bfe9"
+  bytes  = 20173666
+  lines  = 11095
+
+  [[artifact.contains]]
+  path   = "teach/self-saved-store.jsonl"
+  sha256 = "a4dc0a8d0c8e014adb1037a43bcc2d6a6de6904167ea9f39bb9ece807a5d6adc"
+  bytes  = 448
+
+
+# ---------------------------------------------------------------------------
+# Expected results. Asserted by `verify`; small enough to live in git under
+# reference/expected/, so the assertions are readable without any download.
+# ---------------------------------------------------------------------------
+
+[expected]
+gold_answer          = "[5, 4, 3, 2, 1, 5]"
+gold_occurrences     = 1        # exactly once in the transfer stream
+gold_line            = 11095    # and it is the final line
+score_status         = "PASS_CONSTRAINED"
+oracle_gate          = "ORACLE_GATE_OK"
+decode_tokens        = 350
+store_entries        = 2
+store_contains_digit = false
+
+# The recorded two restarts differed in stderr by exactly two bytes: the "r1"/"r2"
+# in the output path each process logged for its own telemetry file. The diff
+# normalises that path and nothing else, and fails on any other stderr difference.
+stderr_path_exemption = true
+stderr_diff_bytes     = 2

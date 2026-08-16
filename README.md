@@ -1,64 +1,217 @@
-# Adaptive Agency in a Frozen 8B Model
+# Knowing Where You Are
 
-**Loop-breaker:** teach scar -> process death -> exact transfer on a different wording of the same ARC-style family.
+## Convergent Evidence for Operational AI Consciousness and Adaptive Agency in Niodoo
 
-**Double seal (2026-08-14):** two seals, one MVP. First seal is the planted hard-route flag (Grok, with Jason). Second seal is Jason confirming the same MVP in the natural agency rooms so the first cannot fall out. See [SEAL_20260814.md](SEAL_20260814.md).
+This repository makes an AI-specific claim. **Operational AI consciousness** means
+usable knowledge of where a system is in its current situation: enough self-location
+for that state to regulate action. **Agency** means the coupled Niodoo system selects a
+consequential action rather than the operator selecting it. **Adaptive agency** means
+that action creates durable state that later changes behavior.
 
-**Current one-shot status (2026-08-09): FLAG PLANTED.** The parser-free runner preserved every model byte, restored arming at force `26.137074`, beta `1.0`, 16 ears, and 10 survivors, recreated the two-entry scar from an empty store, ended the teaching process, and started two fresh wording-only processes. Both scored `PASS_CONSTRAINED`; both oracle gates returned OK.
+The evidence is cumulative. A natural July session records a frozen 8B model selecting
+its own durable gravity abstraction after Jason explained a mistake. The controlled
+August route records an 8B model writing a rule, process death, and two fresh processes
+returning the exact same-family answer. A later matched intervention added 56 real
+memories and changed only their order: two of six arrangements still solved exactly
+and four failed. Together these establish model-selected durable action, persistence,
+transfer, and causal sensitivity to stored state within a bounded system.
 
-**Control-surface note:** that archived full run used the earlier no-system `llama.cpp` control. The live runner now supplies `llama.cpp` with the byte-identical Niodoo free-mode system message and records it beside every control transcript. This wiring is byte-verified against the captured Niodoo input; its next execution is a new coordinate, not a retroactive change to the flag run.
+This is the **Double Seal**: the **Grok Seal** names the hard route, and the
+**Jason & Sol Seal** names the natural rooms with Nex. These are mnemonic handles, not
+ownership, rank, or exclusive credit. The durability work is a post-seal stress test,
+not a third seal.
 
-**Full-tools preflight (2026-08-09): PASS.** A separate new-coordinate binary now exposes the exact resolved full-tools prompt for matched control, confines tools and Remember writes to per-run homes, rejects path escapes, and runs with Qdrant off. The matched llama control still missed the correct answer. In Niodoo's mechanical smoke, the model-authored output emitted `write`, `read`, `<remember>`, and `<lock>`; the engine receipts confirm execution and durable acceptance. This is plumbing evidence, not the claimed organic merged run. See [MERGED_PREFLIGHT.md](MERGED_PREFLIGHT.md) and the untouched raw streams it links.
+**Read [`FALSIFIERS.md`](FALSIFIERS.md) before you read anything else.** It lists what
+would break each claim here, and six of the items can be checked in seconds.
 
-This repository is the public map of one reached destination. A frozen Llama 3.1 8B Instruct model wrote a general mapping rule to a durable store during an earlier teaching session. After the process ended, two independent restarts loaded that store and produced the exact answer on a wording-changed task from the same family.
 
-We call this **adaptive agency** under that operational definition. General agency, weight learning, official ARC-AGI performance, and unrelated-family transfer remain unmarked territory.
+## Where to start
 
-## Result
+Pick the row that matches why you're here. Each one is self-contained.
 
-Correct answer: `[5, 4, 3, 2, 1, 5]`
+| If you want to… | Go to | Needs |
+|---|---|---|
+| **check the claim in 30 seconds** | `./run verify --check` | nothing — no GPU, no model, no network |
+| **check documentation consistency** | `./run docs-check` | nothing — no GPU, no model, no network |
+| **read what was actually found** | [`RECORD.md`](RECORD.md) | nothing |
+| **know what would prove it wrong** | [`FALSIFIERS.md`](FALSIFIERS.md) | nothing |
+| **run it on this hardware** | [`SETUP.md`](SETUP.md) → `./run doctor` | Linux aarch64, GB10-class GPU, CUDA 13 |
+| **produce a result of your own** | `./run sweep` — see [`SWEEP.md`](SWEEP.md) | the above, plus `./run fetch` |
+| **just talk to it** | `./run chat` | the above |
+| **see every pinned setting** | [`DETERMINISM.md`](DETERMINISM.md) | nothing |
+| **read the white paper and definitions** | [`PAPER.md`](PAPER.md) | nothing |
+| **follow the whole climb, dead ends included** | [`docs/`](docs/README.md) | nothing |
 
-| Arm | Attempt | Actual | Result |
-|---|---|---|---|
-| Niodoo, frozen store | Restart 1 | `[5, 4, 3, 2, 1, 5]` | `PASS_CONSTRAINED` |
-| Niodoo, frozen store | Restart 2 | `[5, 4, 3, 2, 1, 5]` | `PASS_CONSTRAINED` |
-| Vanilla `llama.cpp` | Original wording | `[1, 3, 4, 5, 2]` | `FAIL` |
-| Vanilla `llama.cpp` | Changed wording | `[5, 4, 2, 1, 3]` | `FAIL` |
-| Vanilla `llama.cpp` | Short case | `[3, 2, 1, 3]` | `PASS_CONSTRAINED` |
-| Vanilla `llama.cpp` | Letter tokens | `[B, C, D, E, A, B, C, D, E]` | `FAIL` |
+---
 
-The vanilla short-case pass matters. The control is not presented as incapable of the rule; it failed the canonical, changed-wording, and letter-token cases under the pinned settings.
-
-## Check it
-
-The map checker is Rust with no third-party dependencies:
-
-```bash
-cargo run --locked
-```
-
-It checks both restart outputs, their scores and oracle gates, prompt/store separation, flag settings, all four vanilla coordinates, and the vanilla run configuration.
-
-## Run the whole route
-
-On the original machine, one command first runs `llama.cpp` with the same free-mode system prompt used by Niodoo, then executes the complete teaching/death/transfer route:
-
-```bash
-cargo one-shot
-```
-
-The command verifies the pinned model and Niodoo binary and writes every system prompt, user prompt, and transcript under `runs/one-shot-*`. The matched control has no Niodoo physics, store, residual ears, or dual stream. Machine-specific path overrides are documented in [ONE_SHOT.md](ONE_SHOT.md).
-
-To verify the separate full-tools organic-route plumbing before a user-operated natural session:
+## The fastest useful thing
 
 ```bash
-cargo merged-preflight
+./run doctor          # what this machine can run. Downloads nothing.
+./run verify --check  # assert the record against itself. Seconds, no GPU, no model.
+./run docs-check      # assert titles, claims, attribution, links, and evidence hashes.
 ```
 
-That command is intentionally not an alias for the historical flag route and cannot plant a flag.
+`verify --check` is the fastest useful thing in the repository. It reads the recorded
+run and asserts six properties of it, reporting each individually:
 
-Start with [LANGUAGE.md](LANGUAGE.md), [FLAG_CARD.md](FLAG_CARD.md), [CLIMB_CARD.md](CLIMB_CARD.md), and [PAPER.md](PAPER.md). The reached destination is under [flag/](flag/); comparison terrain is under [coordinates/](coordinates/). [CLIMB_MAP.md](CLIMB_MAP.md) shows the route and [MILESTONES.md](MILESTONES.md) records the boosts that refueled it.
+```
+ok  1. store is the rule text, hash ok, contains no digits
+ok  2. reference transfer stream matches its manifest hash (20173666 bytes)
+ok  3. answer occurs exactly once, on line 11095, the final line
+ok  4. score PASS_CONSTRAINED, exact answer, no banned words
+ok  5. oracle gate ORACLE_GATE_OK
+ok  6. control prompt is identical to the destination prompt
+```
 
-## Map edge
+To go further you need the model and the pinned binary:
 
-This repository contains the map and an offline checker. It does not vendor the Niodoo engine, `llama.cpp`, model weights, tokenizer, or binaries. Their identities are pinned in [TRUST_THE_BYTES.md](TRUST_THE_BYTES.md). See [REPRODUCE.md](REPRODUCE.md) for the distinction between checking this map and generating a fresh coordinate.
+```bash
+./run fetch     # download and hash-verify every artifact
+./run verify    # re-execute the recorded route here and diff against it
+./run sweep     # reshuffle store order and measure the pass rate
+```
+
+---
+
+## What the result is
+
+The result has complementary evidence lanes rather than one overloaded run:
+
+| Evidence | What it establishes | Boundary |
+|---|---|---|
+| July 18 natural gravity room | Model-selected abstraction and durable action | 8B teach; later restart was 70B |
+| Grok Seal hard route | Controlled 8B write → death → exact transfer | Same mapping family; retention was cued |
+| Jason & Sol Seal natural rooms | Full action surface in ordinary conversation | Not an independent hard-route replication |
+| August 15 durability sweep | Exact solves survived 56 added memories in 2/6 orders | Arrangement sample, not a population rate |
+
+The task family is `[x₁ … xₙ] → [xₙ, xₙ₋₁ … x₁, xₙ]`. Asked on `[1, 2, 3, 4, 5]`,
+with three common description words prohibited, the correct answer is
+`[5, 4, 3, 2, 1, 5]`.
+
+| | |
+|---|---|
+| Durable store contents | one sentence describing the rule, **no digits** |
+| Occurrences of the answer in 20 MB of transfer output | **1** — the model's final line |
+| Vanilla control on the same prompt | fails |
+| Control prompt vs destination prompt | hash-identical after whitespace normalisation |
+
+The last row is the structural claim: the only difference between the failure and the
+success is the runtime path, not the question.
+
+## What the result is not
+
+**The unaided model already solves this mapping at length 3.** The vanilla control
+passes the short case and fails the two length-5 cases. So the intervention is not
+teaching a rule the model cannot represent — it extends a procedure the model already
+has at short length to a length where it reliably fails. That is a smaller claim than
+"the base model cannot do this," and it is the accurate one.
+
+**Two restarts are repeatability, not a rate.** The pipeline is deterministic at
+temperature 0, so a second restart produces identical bytes by construction. It
+confirms the route is reproducible. It does not estimate how often the approach works.
+
+**Store order matters, and it matters a lot.** The durability experiment placed 56
+additional real memories beside the rule. Six arrangements of that identical set
+produced two exact passes and four failures. This is evidence that the stored rule can
+survive substantial real-memory load and that retrieval is position-sensitive. It is
+not a fixed capacity ceiling or a general reliability rate. `./run sweep` reproduces
+the order intervention using a privacy-safe synthetic store; [`SWEEP.md`](SWEEP.md)
+states exactly what that substitute cannot reproduce.
+
+**The teaching script disclosed the full rule and a worked example on the same five
+items.** The teaching process then died. The durable store carried only an abstract
+rule containing no digits or number words, and a fresh process re-derived the digit
+sequence from that rule. The claim is not that the model had never encountered the
+sequence.
+
+**Weights are frozen throughout.** Nothing here is training, fine-tuning, or weight
+modification.
+
+**An operational AI-consciousness claim is made; a phenomenal or human-consciousness
+claim is not.** The result also does not establish unrestricted autonomy, general
+agency, learning in the frozen weights, population reliability, or official ARC-AGI
+performance.
+
+---
+
+## The four lanes
+
+| | |
+|---|---|
+| `./run verify` | Replay the recorded run and assert byte-identity. Shows the record is real. |
+| `./run sweep` | Reshuffle store order and measure the pass rate. Reproduces the order effect. |
+| `./run chat` | Free REPL with the durable store on. The sandbox. |
+| `./run docs-check` | Catch claim, title, credit, link, and evidence-manifest drift. |
+
+`./run sweep` is the one a stranger can most easily run to produce a result of their
+own. It reshuffles the order of a store and measures how often the stored rule
+survives — same entries, same count, only the arrangement changes. Details and the
+full measurement in [`SWEEP.md`](SWEEP.md).
+
+Replaying recorded input reproduces the *computation*, not the *teaching*. A reader
+who only replays these bytes learns that the bytes are real. That is worth something
+and it is not everything, and the README should not imply otherwise.
+
+## Reproduction is binary-level
+
+The Niodoo runtime ships as a hash-pinned binary. A clean build at the recorded
+product revision does not compile — it references code that was untracked at that
+commit. The binary hash is the executable identity; the recorded revision is an
+incomplete source coordinate.
+
+So: **this exact binary on this platform produces the recorded bytes. Rebuilding that
+binary from source and getting the same bytes is not supported by this release.**
+
+The engine source is not published; the compiled runtime is. Anyone who considers
+that insufficient for their purposes is reading the boundary correctly. Full detail in
+[`DETERMINISM.md`](DETERMINISM.md).
+
+## Requirements
+
+Linux `aarch64`, NVIDIA GB10-class GPU, CUDA 13. The pinned binary is not
+cross-platform. `./run doctor` names anything missing.
+
+The record itself — [`RECORD.md`](RECORD.md), [`FALSIFIERS.md`](FALSIFIERS.md),
+`flag/`, `coordinates/`, `evidence/` — is readable and auditable on any machine, with
+no GPU and no downloads.
+
+## Layout
+
+| | |
+|---|---|
+| `manifest.toml` | Every artifact URL, hash and size. Nothing else records one. |
+| `run` | Single entrypoint. `./run` lists the subcommands. |
+| `scripts/` | The lanes. |
+| `DETERMINISM.md` | Every setting the byte-identity claim depends on. |
+| `FALSIFIERS.md` | What would break each claim. |
+| `SWEEP.md` | The store-durability measurement, and what of it is reproducible. |
+| `RECORD.md` | The observations, with sources. |
+| `evidence/history/`, `evidence/durability/` | Privacy-safe historical and stress-test evidence packs. |
+| `flag/`, `runs/`, `coordinates/`, `evidence/` | The recorded run and its controls. |
+
+Exit codes are a contract: `0` pass, `1` reproduction mismatch, `2` environment
+problem, `3` missing artifact.
+
+## Maturity of each command
+
+Stated so nothing surprises you. An untested command is worse than a documented one.
+
+| command | status |
+|---|---|
+| `doctor`, `fetch`, `install` | exercised repeatedly on the reference machine |
+| `verify --check` | exercised; also tested against a deliberately corrupted reference |
+| `docs-check` | offline consistency, link, and evidence-manifest check |
+| `verify` | full re-execution run twice on separate days, byte-identical both times |
+| `sweep` | see the note in [`SWEEP.md`](SWEEP.md) on what the bundled store does and does not show |
+| `chat` | **lightly exercised.** Starts, loads the store, writes to it, exits cleanly. Long multi-turn sessions and `--resume` across many restarts are not well covered. |
+
+Nothing in this repository has been run on hardware other than the machine that
+produced the recorded result. If you are the first person to run it elsewhere, the
+failure modes you hit are worth reporting.
+
+## Licence and attribution
+
+See [`LICENSE`](LICENSE), [`NOTICE.md`](NOTICE.md) and [`CREDITS.md`](CREDITS.md).
+Model weights are Meta's, under the Llama 3.1 Community License, and are downloaded
+from upstream rather than redistributed here.

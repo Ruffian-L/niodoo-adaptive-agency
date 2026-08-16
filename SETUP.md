@@ -1,29 +1,75 @@
-# Setup Lanes
+# Setup
 
-## Portable map check
-
-This lane checks the archived map on any system with Rust:
+Everything runs through `./run`. `./run` with no argument lists the subcommands.
 
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-cargo run --locked --bin niodoo-adaptive-agency-map
+./run doctor          # what this machine can run. Downloads nothing, writes nothing.
+./run verify --check  # assert the record. Seconds, no GPU, no model, no network.
+./run docs-check      # check titles, claims, attribution, links, and evidence hashes.
+./run install         # build the repo tooling
+./run fetch           # download and hash-verify every artifact
+./run verify          # re-execute the recorded route and diff against it
+./run chat            # REPL with the durable store enabled
+./run sweep           # reshuffle store order and measure the pass rate
 ```
 
-When a prebuilt map-checker release asset is published, Rust will no longer be required for this lane.
+## Two lanes, different requirements
 
-## Exact inference lane
+**Reading the record** needs nothing. `RECORD.md`, `FALSIFIERS.md`, `DETERMINISM.md`,
+`reference/` and the recorded outputs under `flag/`, `coordinates/` and `evidence/`
+are plain text. `./run verify --check` asserts the central six sealed-route claims;
+`./run docs-check` checks the release's documentation contract. Both run on any
+machine in seconds.
 
-The flagged binary is not cross-platform. Its current lane is:
+**Running inference** needs the exact lane:
 
-- Linux `aarch64`
-- NVIDIA GB10-class GPU
-- NVIDIA driver compatible with CUDA 13
-- CUDA 13 libraries: `libcuda`, `libnvrtc`, `libcurand`, `libcublas`, `libcublasLt`, and `libcudart`
+| | |
+|---|---|
+| OS / arch | Linux `aarch64` |
+| GPU | NVIDIA GB10-class |
+| CUDA | 13 |
+| Libraries | `libcuda`, `libnvrtc`, `libcurand`, `libcublas`, `libcublasLt`, `libcudart` |
 
-`cargo one-shot` automatically downloads and verifies the 5.4 GB bartowski model and the byte-identical NousResearch tokenizer mirror when absent. Both unattended URLs were checked on 2026-08-09. It also verifies the Niodoo binary, llama.cpp build, tokenizer, and ghost-basin registry.
+`./run doctor` checks each and names whatever is missing. The pinned binary is not
+cross-platform.
 
-The Niodoo and llama.cpp binary assets are not published yet. Until they are uploaded as hash-pinned GitHub Release assets, a new machine must provide them through `ONE_SHOT_NIODOO_BIN` and `ONE_SHOT_LLAMA_CLI`. The runner stops rather than substituting an unverified binary.
+## Artifacts
 
-The recorded product revision `9de966d` is not presently a clean source-build path. A detached build at that revision exposed tracked references to Qwen/cache and hook code that was untracked or absent from the commit. The historical Niodoo binary is hash-pinned, but its complete source state was not committed. Do not advertise build-from-source reproduction until that source state is reconstructed and frozen.
+`manifest.toml` is the only file in the repository that records a URL, hash or size.
+Every script reads from it, so changing an artifact means changing one file.
 
-This is an open release milestone, not a completed portability flag.
+`./run fetch` downloads the model and tokenizer from upstream and verifies both
+against their pinned hashes. It is resumable and idempotent by hash — re-running it
+reports `already present, hash ok` rather than re-downloading.
+
+### Artifacts without a published URL
+
+The Niodoo runtime, the `llama-cli` build and the ghost-basin registry are release
+assets. Until they are published, supply local copies:
+
+```bash
+cp .env.local.example .env.local     # then edit
+```
+
+`.env.local` is gitignored, so machine-specific paths never enter the repository. An
+override is verified against the same hash as a download; a local file that fails its
+hash is rejected exactly like a bad fetch.
+
+Precedence is: explicit environment variable, then `.env.local`, then the manifest
+destination under `vendor/`.
+
+## Building from source
+
+`./run install` builds the tooling in this repository — the map checker and the route
+driver. **It does not build the inference engine.**
+
+The engine ships as a hash-pinned binary because a clean build at the recorded product
+revision does not compile: it references cache and hook code that was untracked at
+that commit. Reproduction here is binary-level. `DETERMINISM.md` §2 states the
+boundary and what it would take to move it.
+
+## Offline use
+
+`fetch` and `verify` are separate commands specifically so `verify` can run with no
+network at all. Nothing in the verification path contacts a remote host, and there is
+no telemetry, version check or auto-update anywhere in this repository.

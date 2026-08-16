@@ -1,0 +1,12 @@
+CURATED EXCERPT — 2026-07-18 70B FRESH-PROCESS RESTART
+Source excerpt SHA-256: becf224aee27412139d8a62affb7948d8bc43a5dbcaa3baefc7e287b1a245159
+Omissions: unrelated conversation, absolute paths, terminal metadata, telemetry.
+
+[MODEL_SCALE] size=70B
+[REMEMBER_STORE] entries=3
+
+Jason: I put a marble in a cup, flip the cup upside-down onto the table, then lift the cup and put it in my pocket. Where's the marble?
+
+Niodoo: I think I can use the remembered fact about gravity to solve this puzzle!
+Since gravity pulls the marble downwards, when you flipped the cup upside-down onto the table, the marble would have fallen out of the cup onto the table. Then, when you lifted the cup and put it in your pocket, the marble would still be on the table.
+So, the marble is on the table! Am I correct?

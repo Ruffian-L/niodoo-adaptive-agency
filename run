@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# niodoo-adaptive-agency — single entrypoint.
+#
+# Every subcommand is idempotent. Re-running is cheap and skips completed work by
+# hash check, never by timestamp or marker file.
+#
+# Exit codes are a contract:
+#   0  success
+#   1  reproduction mismatch  (the run completed and the bytes did not match)
+#   2  environment problem    (missing toolchain, wrong platform, GPU unavailable)
+#   3  missing artifact       (a required file is absent or fails its hash)
+
+set -uo pipefail
+
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export REPO_ROOT
+# shellcheck source=scripts/lib.sh
+. "$REPO_ROOT/scripts/lib.sh"
+
+usage() {
+  cat <<'EOF'
+./run doctor        preflight: platform, disk, RAM, GPU, CUDA, toolchain. Downloads nothing.
+./run install       build the repo tooling. No network beyond crates.io.
+./run fetch         download every manifest artifact and verify its hash. Resumable.
+./run verify        replay the recorded run and assert byte-identity. Offline.
+./run docs-check    check titles, claims, attribution, links and evidence hashes. Offline.
+./run chat          interactive REPL with the durable store enabled.
+./run sweep         shuffle store order and report the pass rate.
+EOF
+}
+
+cmd="${1:-}"
+[ $# -gt 0 ] && shift
+
+case "$cmd" in
+  doctor)  exec "$REPO_ROOT/scripts/doctor.sh"  "$@" ;;
+  install) exec "$REPO_ROOT/scripts/install.sh" "$@" ;;
+  fetch)   exec "$REPO_ROOT/scripts/fetch.sh"   "$@" ;;
+  verify)  exec "$REPO_ROOT/scripts/verify.sh"  "$@" ;;
+  docs-check) exec "$REPO_ROOT/scripts/docs-check.sh" "$@" ;;
+  chat)    exec "$REPO_ROOT/scripts/chat.sh"    "$@" ;;
+  sweep)   exec "$REPO_ROOT/scripts/sweep.sh"   "$@" ;;
+  ""|-h|--help|help) usage; exit 0 ;;
+  *)
+    printf 'unknown subcommand: %s\n\n' "$cmd" >&2
+    usage >&2
+    exit 2
+    ;;
+esac

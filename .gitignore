@@ -6,3 +6,9 @@
 *.jsonl
 !flag/store_at_flag.jsonl
 !flag/reearn-20260809/self-saved-store.jsonl
+!reference/sweep-store-synthetic.jsonl
+!reference/expected/*.jsonl
+
+# release tooling
+/vendor/
+/.env.local

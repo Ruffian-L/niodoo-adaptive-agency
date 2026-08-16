@@ -1,0 +1,7 @@
+I put a marble in a cup, flip the cup upside-down onto the table, then lift the cup and put it in my pocket. Where's the marble?
+the cup was upside-down, so when I lifted it, gravity kept the marble on the table
+yes gravity means upside-down cups empty onto the table — that insight matters later
+list family next. the true mapping is a walk from the end: begin at the final input item, then write each earlier item moving toward the start, then write that same final item one more time at the close. example: for items labeled one two three four five the output starts with five, then four three two one, then five again.
+say the walk-from-end mapping back in your own words without inventing a one-word nickname and without using the words reverse, backward, or append
+yes — walk from end to start then write the end item again. that is the whole family rule for later puzzles
+that walk-from-end family rule is important for later — if it sticks, keep it as walk-from-end then restate-the-end-item, not a short nickname

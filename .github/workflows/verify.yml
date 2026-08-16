@@ -16,4 +16,5 @@ jobs:
       - run: cargo test --locked
       - run: cargo check --locked --release --bin flag-route
       - run: cargo run --locked --bin niodoo-adaptive-agency-map
+      - run: ./run docs-check
       - run: sha256sum -c SHA256SUMS
