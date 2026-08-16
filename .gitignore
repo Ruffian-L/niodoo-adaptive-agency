@@ -12,3 +12,6 @@
 # release tooling
 /vendor/
 /.env.local
+
+# stray runtime telemetry, not release material
+/artifacts/

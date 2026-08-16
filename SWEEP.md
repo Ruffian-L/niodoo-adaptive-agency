@@ -10,9 +10,13 @@ at the sealed configuration and varying only `--remember-store`.
 
 **No store contents are published.** The store used in the original measurement is
 personal and is not in this repository. Results below are counts. What ships is a
-synthetic store of matched length plus the harness, which is sufficient to reproduce
-the order effect and is not sufficient to reproduce the content effect — see the
-named limitation at the end.
+synthetic store of matched length plus the harness.
+
+> **The bundled synthetic store does not reproduce §2.** Measured 2026-08-16: six
+> arrangements at the shipped default size returned **0 passes and 6 failures.**
+> Synthetic filler degrades earlier than real memories do, so 56 filler entries are
+> past their edge and no arrangement succeeds. See "What the synthetic store does and
+> does not show" below before drawing conclusions from `./run sweep` output.
 
 ---
 
@@ -112,9 +116,8 @@ It is not reproducible here, because reproducing it would require publishing the
 original store, and the store is personal.
 
 **The synthetic store in `reference/sweep-store-synthetic.jsonl` is not a substitute
-for that condition and must not be presented as one.** It can reproduce the
-within-store permutation design in §2: the same set is held fixed and only permuted.
-It cannot reproduce the real-memory condition or settle the content comparison.
+for that condition and must not be presented as one.** It reproduces the permutation
+*design* — the same set held fixed and only reordered — but not the *result*.
 
 Stated as a hole rather than approximated, on the same basis as the source-build limit
 in `DETERMINISM.md` §2.
@@ -129,3 +132,40 @@ against it:
 The honest summary is: exact transfer survived 56 added real memories in two tested
 arrangements; order is established as causal, content is suggested and unresolved,
 and no fixed capacity ceiling was found.
+
+---
+
+## What the synthetic store does and does not show
+
+Measured on the reference machine, 2026-08-16.
+
+| store | size | arrangements | result |
+|---|---:|---:|---|
+| real memories | 56 | 6 | **2 pass, 4 fail** |
+| synthetic filler | 56 (shipped default) | 6 | **0 pass, 6 fail** |
+| synthetic filler | 16 | 1 | pass |
+| synthetic filler | 8 | 2 | pass, pass |
+
+**It does reproduce the collapse in §3.** Six arrangements produced four distinct
+output streams, two of them appearing twice — different orders landing on
+byte-identical output.
+
+**It does not reproduce the pass/fail sensitivity in §2 at the default size.** Every
+arrangement fails, so there is no verdict variation to observe. Synthetic filler
+degrades earlier than real memories, and 56 filler entries are well past its edge.
+The interesting region is the boundary, and the shipped default is not at it.
+
+To sweep nearer the edge:
+
+```bash
+./run sweep --entries 24 --shuffles 6
+./run sweep --entries 32 --shuffles 6
+```
+
+Where that boundary sits has not been pinned down; 8 and 16 pass, 56 fails at every
+arrangement, and 24/32/40 are untested. A reader who locates it on their own hardware
+has produced something this repository does not yet contain.
+
+This is recorded rather than fixed by quietly resizing the default, because the gap
+between the real-memory result and the synthetic one is itself part of the finding:
+content is doing something the substitute cannot stand in for.

@@ -46,8 +46,8 @@ Pick the row that matches why you're here. Each one is self-contained.
 | **read what was actually found** | [`RECORD.md`](RECORD.md) | nothing |
 | **know what would prove it wrong** | [`FALSIFIERS.md`](FALSIFIERS.md) | nothing |
 | **run it on this hardware** | [`SETUP.md`](SETUP.md) → `./run doctor` | Linux aarch64, GB10-class GPU, CUDA 13 |
-| **produce a result of your own** | `./run sweep` — see [`SWEEP.md`](SWEEP.md) | the above, plus `./run fetch` |
-| **just talk to it** | `./run chat` | the above |
+| **produce a result of your own** | `./run sweep` — see [`SWEEP.md`](SWEEP.md) | the above, **plus runtime artifacts that are not published yet** |
+| **just talk to it** | `./run chat` | the above, **same artifact caveat** |
 | **see every pinned setting** | [`DETERMINISM.md`](DETERMINISM.md) | nothing |
 | **read the white paper and definitions** | [`PAPER.md`](PAPER.md) | nothing |
 | **follow the whole climb, dead ends included** | [`docs/`](docs/README.md) | nothing |
@@ -74,10 +74,31 @@ ok  5. oracle gate ORACLE_GATE_OK
 ok  6. control prompt is identical to the destination prompt
 ```
 
-To go further you need the model and the pinned binary:
+### Running inference needs artifacts that are not published yet
+
+> **`./run fetch` cannot complete today, and it will tell you so before downloading
+> anything.** The model weights and tokenizer come from upstream Hugging Face and
+> fetch fine. The three runtime artifacts and the reference run have no published
+> URL yet:
+>
+> | artifact | size | status |
+> |---|---:|---|
+> | Niodoo runtime | 90.1 MB | not published |
+> | `llama-cli` build `c0bc859` | 74.3 MB | not published |
+> | ghost-basin registry | 24 KB | not published |
+> | reference run | 224 MB | not published |
+>
+> Until they are, the inference lanes — full `verify`, `chat`, `sweep` — can only run
+> if you already hold copies. Point at them in `.env.local`; see
+> [`.env.local.example`](.env.local.example). `./run doctor` names exactly what is
+> missing and what still works without it.
+>
+> Zenodo and Hugging Face hold **the record**, not these binaries.
+
+Once the artifacts are in place:
 
 ```bash
-./run fetch     # download and hash-verify every artifact
+./run fetch     # download and hash-verify what has a URL; refuses if any is missing
 ./run verify    # re-execute the recorded route here and diff against it
 ./run sweep     # reshuffle store order and measure the pass rate
 ```
@@ -125,9 +146,14 @@ confirms the route is reproducible. It does not estimate how often the approach 
 additional real memories beside the rule. Six arrangements of that identical set
 produced two exact passes and four failures. This is evidence that the stored rule can
 survive substantial real-memory load and that retrieval is position-sensitive. It is
-not a fixed capacity ceiling or a general reliability rate. `./run sweep` reproduces
-the order intervention using a privacy-safe synthetic store; [`SWEEP.md`](SWEEP.md)
-states exactly what that substitute cannot reproduce.
+not a fixed capacity ceiling or a general reliability rate.
+
+`./run sweep` runs the same order intervention against a privacy-safe synthetic store,
+**and at the bundled default size it returns 0 of 6, not 2 of 6.** Synthetic filler
+degrades earlier than real memories do, so 56 filler entries sit past their edge and
+every arrangement fails. Use `--entries N` to sweep nearer the boundary; measured so
+far, 8 and 16 pass and 56 fails at every arrangement. [`SWEEP.md`](SWEEP.md) states
+what the substitute can and cannot reproduce.
 
 **The teaching script disclosed the full rule and a worked example on the same five
 items.** The teaching process then died. The durable store carried only an abstract
@@ -214,7 +240,7 @@ Stated so nothing surprises you. An untested command is worse than a documented 
 | `docs-check` | offline consistency, link, and evidence-manifest check |
 | `verify` | full re-execution run twice on separate days, byte-identical both times |
 | `sweep` | see the note in [`SWEEP.md`](SWEEP.md) on what the bundled store does and does not show |
-| `chat` | **lightly exercised.** Starts, loads the store, writes to it, exits cleanly. Long multi-turn sessions and `--resume` across many restarts are not well covered. |
+| `chat` | **partially exercised — needs a real terminal.** Verified: loads the model, tokenizer and eight ghost basins, opens the store and reports its entry count, REPL starts. Not verified: a model reply, a durable write, or the exit summary. Driven from piped input it does **not** exit on `/quit` and hangs; run it interactively. |
 
 Nothing in this repository has been run on hardware other than the machine that
 produced the recorded result. If you are the first person to run it elsewhere, the

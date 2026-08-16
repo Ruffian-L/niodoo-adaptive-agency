@@ -119,7 +119,11 @@ fi
 # ---------------------------------------------------------------- artifacts
 step "Artifacts"
 note "Presence only. ./run fetch downloads and verifies; this never touches the network."
-missing=0
+# Absent-and-fetchable and absent-with-no-URL are different problems with different
+# remedies. Counting them together tells a stranger to run fetch for artifacts fetch
+# can never obtain, which wastes a multi-gigabyte download and ends at exit 3.
+fetchable=0
+unpublished=()
 while read -r name; do
   [ -z "$name" ] && continue
   p="$(artifact_path "$name")"
@@ -129,19 +133,38 @@ while read -r name; do
     url="$(mf get "$name" url)"
     if [ -n "$url" ]; then
       note "$name — absent, fetchable"
+      fetchable=$((fetchable+1))
     else
       warn "$name — absent, and no URL is published yet"
-      note "supply it with $(mf env "$name")=<path>"
+      note "supply it with $(mf env "$name")=<path> in .env.local"
+      unpublished+=("$name")
     fi
-    missing=$((missing+1))
   fi
 done < <(mf list)
 
 # ---------------------------------------------------------------- summary
 step "Summary"
 if [ "$problems" -eq 0 ]; then
-  ok "environment supports every lane"
-  [ "$missing" -gt 0 ] && note "$missing artifact(s) still to fetch — run: ./run fetch"
+  if [ "${#unpublished[@]}" -eq 0 ]; then
+    ok "this machine supports every lane"
+    [ "$fetchable" -gt 0 ] && note "$fetchable artifact(s) still to download — run: ./run fetch"
+  else
+    # The hardware is fine; the artifacts are not obtainable. Say which, and say what
+    # still works, rather than reporting a green summary a stranger cannot act on.
+    ok "hardware and toolchain are fine"
+    warn "${#unpublished[@]} artifact(s) have no published URL: ${unpublished[*]}"
+    note ""
+    note "./run fetch cannot obtain these. It will download the $fetchable artifact(s)"
+    note "that do have URLs and then stop, because the inference lanes need all of them."
+    note ""
+    note "Available to you right now, with no artifacts at all:"
+    note "  ./run verify --check     assert the recorded run against itself"
+    note "  ./run docs-check         check the documentation contract"
+    note "  RECORD.md, PAPER.md, FALSIFIERS.md, reference/"
+    note ""
+    note "Blocked until those artifacts exist: verify (full), chat, sweep."
+    note "If you already hold a copy, point at it in .env.local — see .env.local.example."
+  fi
   exit "$EX_OK"
 fi
 

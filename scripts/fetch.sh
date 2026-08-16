@@ -33,6 +33,36 @@ else
   names="$(mf list)"
 fi
 
+# Fail fast. Downloading gigabytes and *then* discovering a required artifact has no
+# URL costs the caller the bandwidth and leaves them at exit 3 with no route forward.
+# Check every URL first; if any required artifact is unobtainable and not already
+# present locally, say so and stop before touching the network.
+blockers=()
+for name in $names; do
+  [ -n "$(mf get "$name" url)" ] && continue
+  p="$(artifact_path "$name")"
+  [ -e "$p" ] && continue                     # already supplied locally; not a blocker
+  blockers+=("$name")
+done
+
+if [ "${#blockers[@]}" -gt 0 ]; then
+  step "Cannot complete this fetch"
+  bad "${#blockers[@]} required artifact(s) have no published URL and are not present locally"
+  for b in "${blockers[@]}"; do
+    printf '    %-16s %s\n' "$b" "$(mf get "$b" description)"
+    note "      supply with $(mf env "$b")=<path>"
+  done
+  note ""
+  note "Nothing was downloaded. The remaining artifacts total several GB and the"
+  note "inference lanes need all of them, so fetching part of the set would not help."
+  note ""
+  note "Copy .env.local.example to .env.local and point at local copies, or wait for"
+  note "these to be published. Meanwhile these need no artifacts at all:"
+  note "  ./run verify --check     assert the recorded run against itself"
+  note "  ./run docs-check         check the documentation contract"
+  exit "$EX_MISSING"
+fi
+
 for name in $names; do
   step "$name — $(mf get "$name" description)"
 
