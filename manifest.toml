@@ -6,8 +6,9 @@
 # Hashes are SHA-256. Sizes are exact byte counts. Both are asserted before use;
 # a mismatch is a hard failure, never a warning.
 #
-# Artifacts marked `url = ""` are not yet published. `./run fetch` will report them as
-# unavailable and name the environment variable that can supply a local path instead.
+# Every artifact here has a published URL. If one is ever set back to `url = ""`,
+# `./run fetch` refuses before downloading anything and names the environment variable
+# that can supply a local path instead.
 
 [meta]
 release          = "niodoo-adaptive-agency"
@@ -55,7 +56,7 @@ required_for = ["verify", "teach", "chat", "sweep"]
 [[artifact]]
 name         = "niodoo"
 description  = "Pinned Niodoo runtime. Executable identity for the recorded run."
-url          = ""                                    # TODO: GitHub release asset
+url          = "https://github.com/Ruffian-L/niodoo-adaptive-agency/releases/download/v1.0.0/niodoo"
 sha256       = "2151c1840bb21f1cc688b49a704c14670ea12d806113b06d7f212eb19278b507"
 bytes        = 90104160
 dest         = "vendor/bin/niodoo"
@@ -66,7 +67,7 @@ required_for = ["verify", "teach", "chat", "sweep"]
 [[artifact]]
 name         = "llama-cli"
 description  = "llama.cpp build c0bc859, aarch64. Used only for the vanilla control lane."
-url          = ""                                    # TODO: GitHub release asset
+url          = "https://github.com/Ruffian-L/niodoo-adaptive-agency/releases/download/v1.0.0/llama-cli"
 sha256       = "72c08ab8827be6004f3d5435064203f2cbadc552f6bcb6dfd1ada146624b4b5d"
 bytes        = 74261680
 build_id     = "b1-c0bc859"
@@ -78,7 +79,7 @@ required_for = ["verify", "teach"]
 [[artifact]]
 name         = "ghost-registry"
 description  = "Ghost-basin candidate registry. Eight basins; the arming gate asserts the count."
-url          = ""                                    # TODO: GitHub release asset
+url          = "https://github.com/Ruffian-L/niodoo-adaptive-agency/releases/download/v1.0.0/ghost_candidate_registry.json"
 sha256       = "6e361f83c24d7d2d0b3534279a4f410761793cf774fac6c3d4ae64c77cfa747b"
 bytes        = 24138
 dest         = "vendor/niodv4/data/results/summaries/ghost_candidate_registry.json"
@@ -97,9 +98,9 @@ required_for = ["verify", "teach", "chat", "sweep"]
 [[artifact]]
 name              = "reference-run"
 description       = "Recorded 2026-08-09 full route: control, arming, teach, death, two transfers."
-url               = ""                               # TODO: release asset or Zenodo
-sha256            = ""                               # TODO: fill on tarball creation
-bytes             = 0                                # 224455846 uncompressed
+url               = "https://github.com/Ruffian-L/niodoo-adaptive-agency/releases/download/v1.0.0/full-flag-reearn-20260809.tar.zst"
+sha256            = "f3e1738dcd328bf5743ae832d5229f9b1e8429b2c719c2de2791d1c94b640f6c"
+bytes             = 83955417
 dest              = "vendor/reference/full-flag-reearn-20260809.tar.zst"
 extract_to        = "vendor/reference/full-flag-reearn-20260809"
 env_override      = "ONE_SHOT_REFERENCE_RUN"
