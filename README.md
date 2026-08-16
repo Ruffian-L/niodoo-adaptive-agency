@@ -1,5 +1,7 @@
 # Knowing Where You Are
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21965763.svg)](https://doi.org/10.5281/zenodo.21965763)
+
 ## Convergent Evidence for Operational AI Consciousness and Adaptive Agency in Niodoo
 
 This repository makes an AI-specific claim. **Operational AI consciousness** means
