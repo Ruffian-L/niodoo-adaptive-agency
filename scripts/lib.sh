@@ -81,6 +81,25 @@ artifact_path() {
   printf '%s\n' "$REPO_ROOT/$dest"
 }
 
+# artifact_usable_path <name>
+# The path a CONSUMER should read. For artifacts that unpack, that is the extracted
+# tree, not the archive: artifact_path returns the download destination, which for the
+# reference run is a .tar.zst. Resolving a reader to the archive is why the clean
+# checkout could fetch successfully and then fail to verify.
+artifact_usable_path() {
+  local name="$1" envvar override extract
+  envvar="$(mf env "$name")"
+  if [ -n "$envvar" ]; then
+    override="${!envvar:-}"
+    [ -n "$override" ] && [ -e "$override" ] && { printf '%s\n' "$override"; return 0; }
+  fi
+  extract="$(mf get "$name" extract_to)"
+  if [ -n "$extract" ] && [ -d "$REPO_ROOT/$extract" ]; then
+    printf '%s\n' "$REPO_ROOT/$extract"; return 0
+  fi
+  artifact_path "$name"
+}
+
 # sha_of <path>
 sha_of() { sha256sum "$1" 2>/dev/null | cut -d' ' -f1; }
 

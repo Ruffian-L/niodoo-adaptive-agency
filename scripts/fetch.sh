@@ -75,7 +75,11 @@ for name in $names; do
   [ -n "$want_sha" ]   && note "expect sha256 $want_sha"
   [ -n "$want_bytes" ] && [ "$want_bytes" != "0" ] && note "expect $want_bytes bytes"
 
-  if check_artifact "$name"; then
+  # Probe quietly. check_artifact reports a hard FAILED when a file is absent, which
+  # is correct for verification and wrong here: absent simply means "download it".
+  # Printing FAILED before every successful download makes a clean run look broken.
+  if check_artifact "$name" >/dev/null 2>&1; then
+    check_artifact "$name"
     continue
   fi
 

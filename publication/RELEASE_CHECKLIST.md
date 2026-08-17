@@ -73,9 +73,14 @@
 
 ## Known open items, to state rather than fix silently
 
-- **Build from source is not supported.** A clean build at the recorded product
-  revision does not compile. Reproduction is binary-level and `DETERMINISM.md` §2
-  says so. `verify --from-source` is the next milestone, not part of this release.
+- **The recorded binary cannot be rebuilt from its recorded revision.** Not the same
+  as "the source does not build" — the engine compiles clean from a current tree
+  (confirmed 2026-08-17, zero errors). What fails is `9de966d` specifically, on two
+  symbols referenced by committed code and never committed:
+  `crate::physics::cache` and `observe_attention_hook`. Reproduction is therefore
+  binary-level; `DETERMINISM.md` §2 names both. `verify --from-source` is the next
+  milestone and would build a current tree, which is not the tree behind the pinned
+  binary — a distinction that must be stated, not glossed.
 - **A `teach` lane was built and cut.** Parameterising the route to teach an
   arbitrary rule worked mechanically. Three new rule families produced no transfer;
   the result is recorded in `RECORD.md` §7 as a stated boundary. Shipping three

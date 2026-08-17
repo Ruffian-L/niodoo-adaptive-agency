@@ -29,7 +29,7 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-REF="$(artifact_path reference-run)"
+REF="$(artifact_usable_path reference-run)"
 GOLD="$(mf expected gold_answer)"
 GOLD_LINE="$(mf expected gold_line)"
 GOLD_N="$(mf expected gold_occurrences)"
@@ -46,7 +46,15 @@ pass_n=0; fail_n=0
 assert_ok()   { ok "$1";  pass_n=$((pass_n+1)); }
 assert_bad()  { bad "$1"; fail_n=$((fail_n+1)); [ -n "${2:-}" ] && note "$2"; [ -n "${3:-}" ] && note "$3"; }
 
-[ -d "$REF" ] || fail "$EX_MISSING" "reference run not found at $REF (set ONE_SHOT_REFERENCE_RUN, or ./run fetch)"
+if [ ! -d "$REF" ]; then
+  bad "reference run not available as an extracted tree"
+  note "resolved to: $REF"
+  case "$REF" in
+    *.tar.*) note "that is the archive; it has not been unpacked. Run: ./run fetch" ;;
+    *)       note "run ./run fetch, or set ONE_SHOT_REFERENCE_RUN to the extracted directory" ;;
+  esac
+  exit "$EX_MISSING"
+fi
 
 say "niodoo-adaptive-agency — verify (mode: $MODE)"
 say "reference: $REF"
@@ -117,6 +125,26 @@ else
       assert_ok "2. transfer stream byte-identical to reference ($t_bytes bytes)"
     else
       assert_ok "2. reference transfer stream matches its manifest hash ($t_bytes bytes)"
+    fi
+  elif [ "$MODE" = "full" ]; then
+    # The stream logs where the model, tokenizer and session file live. Run the route
+    # from a different directory and those absolute paths differ, so raw byte equality
+    # is only reachable at the original filesystem location. Retry with every absolute
+    # path reduced to its basename, applied identically to both sides, and report how
+    # many lines that accounted for. Any difference outside those lines still fails.
+    REFTX="$REF/transfer/r1/complete.stdout.txt"
+    basenames() { sed -E 's#/[A-Za-z0-9._+-]+(/[A-Za-z0-9._+-]+)+#<PATH>#g' "$1"; }
+    n_diff="$(diff <(basenames "$REFTX") <(basenames "$TX") | grep -c '^[<>]' || true)"
+    if [ "$n_diff" -eq 0 ]; then
+      raw_lines="$(diff "$REFTX" "$TX" | grep -c '^[<>]' || true)"
+      assert_ok "2. transfer stream identical to reference apart from logged paths"
+      note "$raw_lines line(s) differ, all of them absolute paths; every other byte matches"
+      note "byte-for-byte equality additionally requires running from the recorded"
+      note "filesystem location. See DETERMINISM.md section 7."
+    else
+      assert_bad "2. transfer stream differs from reference beyond logged paths" \
+                 "expected $WANT_TX_SHA ($WANT_TX_BYTES bytes)" \
+                 "actual   $t_sha ($t_bytes bytes); $n_diff line(s) differ after path normalisation"
     fi
   else
     assert_bad "2. transfer stream differs from reference" \

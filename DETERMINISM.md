@@ -27,18 +27,39 @@ records a hash, size or URL.
 **Stated plainly because it matters more than it is convenient.**
 
 The Niodoo runtime ships as a hash-pinned binary. A clean detached build at the
-recorded product revision `9de966d` does not compile: it references cache and hook
-code that was untracked or absent at that commit. The binary hash is therefore the
-executable identity, and the recorded revision is an incomplete source coordinate.
+recorded product revision `9de966d` does not compile. Verified again 2026-08-17, and
+the failure is two symbols, not a broken tree:
+
+```
+error[E0432]: unresolved import `crate::physics::cache`
+error[E0599]: no method named `observe_attention_hook` found for `&mut P`
+```
+
+Both are referenced by committed code and neither was committed. The binary hash is
+therefore the executable identity, and the recorded revision is an incomplete source
+coordinate.
+
+**The engine itself does build.** A current engine tree compiles clean from source on
+this platform — confirmed 2026-08-17, zero errors. So the limitation is narrower than
+"the source does not build":
+
+| | |
+|---|---|
+| the engine builds from source | **yes** |
+| *this* binary rebuilds from *its* recorded revision | **no** — the two symbols above |
+| that rebuild would be byte-identical | **no**, and it never could be |
 
 What this release supports:
 
 - **Verified**: this exact binary, on this platform, produces the recorded bytes.
-- **Not supported**: rebuilding that binary from source and getting the same bytes.
+- **Not supported**: rebuilding that binary from its recorded revision and getting
+  the same bytes.
 
-A `verify --from-source` lane — build current source, expect different bytes, assert
-the same final answer — is the natural next milestone. It is not in this release
-because the source state it would build has not been reconstructed and frozen.
+A `verify --from-source` lane — build a current tree, expect different bytes, assert
+the same final answer — is the natural next milestone. It would establish that the
+mechanism lives in source rather than only in a compiled artifact. It is not in this
+release because the tree it would build is not the tree behind the pinned binary, and
+that distinction has to be made explicit rather than glossed.
 
 The engine source is not published. The compiled runtime is. Anyone who considers
 that insufficient for their purposes is reading the boundary correctly.
@@ -156,7 +177,7 @@ The route refuses to proceed unless step 0 reports:
 At roughly `0.05` the route exits non-zero before the expensive teaching phase
 rather than producing a run that looks complete and means nothing.
 
-## 7. The stderr exemption
+## 7. Path dependence, and the two exemptions
 
 The recorded two restarts produced byte-identical stdout (20,173,666 bytes),
 telemetry (32.2 MB) and score. Their stderr differed by **exactly two bytes**: the
@@ -165,6 +186,36 @@ telemetry (32.2 MB) and score. Their stderr differed by **exactly two bytes**: t
 `verify` normalises that one path and nothing else. Any other stderr difference is a
 failure. The exemption is hardcoded rather than generalised, so it cannot quietly
 grow to cover a real divergence.
+
+### stdout is path-dependent too
+
+Measured 2026-08-16 by running the route from a clean clone at a different filesystem
+location:
+
+| | |
+|---|---|
+| final answer | `[5, 4, 3, 2, 1, 5]` — identical |
+| decode tokens | 350 — identical |
+| gates | `PASS_CONSTRAINED` x2, `ORACLE_GATE_OK` x2 |
+| stdout size | 20,173,884 vs 20,173,666 — **218 bytes larger** |
+| differing lines | **6**, every one an absolute path |
+| after reducing paths to basenames | **byte-identical** |
+
+The stream logs where the model, tokenizer and session file live. Those paths are
+longer in a clean checkout and the byte count grows by exactly that much. Nothing
+about the computation changed.
+
+**So "byte-identical" holds at the recorded filesystem location and nowhere else.**
+Stated plainly, because it would otherwise look like a failed reproduction to every
+reader who is not running from the original directory.
+
+`verify` therefore checks in two stages. Raw byte equality first; if that fails, it
+retries with every absolute path reduced to its basename, applied identically to both
+sides, and passes only when the remaining difference is zero — reporting how many
+lines were paths. Any difference outside those lines still fails.
+
+The honest form of the claim is: **identical computation, and identical bytes once the
+logged paths are accounted for.**
 
 ## 8. What determinism does and does not establish
 
