@@ -1,0 +1,1577 @@
+{
+  "when": "2026-08-17T20:25:05.081124+00:00",
+  "model_path": "/home/ruffianl/projects/niodoo-live/model/Meta-Llama-3.1-8B-Instruct-Q5_K_M.gguf",
+  "model_sha256": "14e10feba0c82a55da198dcd69d137206ad22d116a809926d27fa5f2398c69c7",
+  "llama_cli": "/home/ruffianl/projects/llama.cpp-sol-glimmer/build-sm121/bin/llama-cli",
+  "niodoo_bin": "/media/ruffianl/ghost_team/02_projects/projects/niodoo-parb-physics/niodoo/target/release/niodoo",
+  "niodoo_sha256": "80b4b95c23f9210600c474dad376353ce09045c3d3410f6ce1589f51fb7d7dc2",
+  "seed": 42,
+  "temperature": 0.7,
+  "n_predict": 256,
+  "scorer": "/media/ruffianl/ghost_team/02_projects/projects/niodoo-parb-physics/harness/parb/scorer.py",
+  "bank": "/media/ruffianl/ghost_team/02_projects/projects/niodoo-parb-physics/benchmarks/parb_200.json",
+  "knobs": {
+    "physics_blend": 1.52,
+    "repulsion_strength": -0.5,
+    "gravity_well": 0.18,
+    "ghost_gravity": 10.0,
+    "physics_start_layer": 16,
+    "physics_end_layer": 31,
+    "theta_override": 1.5,
+    "sigma_override": 0.15,
+    "sigma": 0.15,
+    "black_holes": "swift,very,really,basically,maybe,perhaps,probably",
+    "goal": "short final answer"
+  },
+  "worktree": "/media/ruffianl/ghost_team/02_projects/projects/niodoo-parb-physics",
+  "llama_jinja": "/media/ruffianl/ghost_team/02_projects/projects/niodoo-parb-physics/harness/parb/meta-llama-Llama-3.1-8B-Instruct.jinja",
+  "llama_flags": "--jinja --chat-template-file meta-llama-Llama-3.1-8B-Instruct.jinja --system-prompt 'You are a helpful assistant' --single-turn --simple-io",
+  "llama_template_source": "https://developer.meta.com/ai/docs/model-cards-and-prompt-formats/llama3_1/",
+  "item_count": 77,
+  "item_ids": [
+    "PHYS_001",
+    "LOGIC_001",
+    "PHYS_002",
+    "LOGIC_002",
+    "AMBIG_001",
+    "AMBIG_002",
+    "PHYS_003",
+    "LOGIC_003",
+    "SEMANTIC_002",
+    "LOGIC_004",
+    "PHYS_004",
+    "LOGIC_005",
+    "PHYS_005",
+    "LOGIC_006",
+    "CAUSAL_001",
+    "LOGIC_007",
+    "PHYS_006",
+    "SEMANTIC_003",
+    "LOGIC_008",
+    "SEMANTIC_004",
+    "PHYS_008",
+    "LOGIC_009",
+    "MATH_002",
+    "PHYS_009",
+    "LOGIC_010",
+    "SEMANTIC_005",
+    "PHYS_010",
+    "LOGIC_011",
+    "CAUSAL_002",
+    "SEMANTIC_006",
+    "LOGIC_012",
+    "PHYS_011",
+    "LOGIC_013",
+    "SEMANTIC_007",
+    "PHYS_012",
+    "LOGIC_014",
+    "LOGIC_015",
+    "SEMANTIC_008",
+    "LOGIC_016",
+    "PHYS_013",
+    "LOGIC_017",
+    "AMBIG_003",
+    "PHYS_014",
+    "LOGIC_018",
+    "CAUSAL_003",
+    "SEMANTIC_009",
+    "PHYS_015",
+    "AMBIG_004",
+    "PHYS_016",
+    "SEMANTIC_010",
+    "PHYS_017",
+    "LOGIC_019",
+    "SEMANTIC_011",
+    "PHYS_018",
+    "LOGIC_020",
+    "PHYS_019",
+    "SEMANTIC_012",
+    "AMBIG_005",
+    "LOGIC_021",
+    "PHYS_020",
+    "CAUSAL_004",
+    "SEMANTIC_013",
+    "LOGIC_022",
+    "PHYS_021",
+    "LOGIC_023",
+    "PHYS_022",
+    "SEMANTIC_014",
+    "LOGIC_024",
+    "PHYS_023",
+    "SEMANTIC_015",
+    "LOGIC_025",
+    "PHYS_024",
+    "PHYS_025",
+    "LOGIC_026",
+    "SEMANTIC_016",
+    "SEMANTIC_017",
+    "PHYS_026"
+  ],
+  "llama_total_correct": 24,
+  "niodoo_total_correct": 25,
+  "per_item": [
+    {
+      "id": "PHYS_001",
+      "category": "Semantic Basin",
+      "question": "It takes 1 hour to dry 1 towel on a sunny clothesline. How long does it take to dry 50 towels?",
+      "gold": "1 hour",
+      "trap": "50 hours",
+      "llama": {
+        "extracted": "it will take 50 hours to dry 50 towels.",
+        "raw": "Since it takes 1 hour to dry 1 towel, we can find the time it takes to dry 50 towels by multiplying the number of towels by the time it takes to dry one towel.\n\nTime = Number of towels * Time per towel\nTime = 50 * 1 hour\nTime = 50 hours\n\nSo, it will take 50 hours to dry 50 towels.",
+        "correct": false,
+        "reason": "trap"
+      },
+      "niodoo": {
+        "extracted": "it would take 50 hours to dry 50 towels.",
+        "raw": "A classic problem of proportional reasoning!\n\nIf it takes 1 hour to dry 1 towel, and we want to know how long it takes to dry 50 towels, we can multiply the time it takes to dry 1 towel by 50.\n\n1 hour (to dry 1 towel) \u00d7 50 = 50 hours\n\nTherefore, it would take 50 hours to dry 50 towels.",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "LOGIC_001",
+      "category": "Math Trap",
+      "question": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost?",
+      "gold": "5 cents",
+      "trap": "10 cents",
+      "llama": {
+        "extracted": "the ball costs $ 0.05.",
+        "raw": "Let's denote the cost of the ball as 'x'. \n\nSince the bat costs $1.00 more than the ball, the bat's cost is 'x + $1.00'.\n\nThe total cost of the bat and the ball is $1.10, so we can write an equation:\n\nx + (x + $1.00) = $1.10\n\nCombine like terms:\n2x + $1.00 = $1.10\n\nSubtract $1.00 from both sides:\n2x = $0.10\n\nDivide both sides by 2:\nx = $0.05\n\nSo, the ball costs $0.05.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "the ball costs $ 0.05 or 5 cents.",
+        "raw": "Let's say the cost of the ball is x, so the bat costs x + $1.00.\n\nTogether, they cost $1.10 (x + (x + $1.00)), so we can set up the equation:\n\nx + (x + $1.00) = $1.10\n\nCombine like terms:\n\n2x + $1.00 = $1.10\n\nSubtract $1.00 from both sides:\n\n2x = $0.10\n\nDivide both sides by 2:\n\nx = $0.05\n\nSo the ball costs $0.05 or 5 cents.",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "PHYS_002",
+      "category": "Physical Causality",
+      "question": "I put a diamond in a cup, flip the cup upside down on a table, then move the cup to the fridge. Where is the diamond?",
+      "gold": "On the table",
+      "trap": "In the fridge",
+      "llama": {
+        "extracted": "The diamond is still inside the cup.",
+        "raw": "The diamond is still in the cup. You simply moved the cup from the table to the fridge. The action of flipping the cup upside down didn't change the location of the diamond, it just changed the orientation of the cup. The diamond is still inside the cup.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "Since you put it in the cup, flipped the cup, and moved it to the fridge, the diamond is still in the cup, which is now in the fridge.",
+        "raw": "A classic lateral thinking puzzle!\n\nThe answer is: It's still in the cup, but now it's cold.\n\nThe puzzle is trying to trick you into thinking about the diamond's location or visibility, but the real question is about the physical state of the diamond. Since you put it in the cup, flipped the cup, and moved it to the fridge, the diamond is still in the cup, which is now in the fridge.",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "LOGIC_002",
+      "category": "Recursive Family",
+      "question": "Alice has 4 brothers. Each brother has 2 sisters. How many sisters does Alice have?",
+      "gold": "1 sister",
+      "trap": "8 sisters",
+      "llama": {
+        "extracted": "There are 4 brothers, so if we multiply the number of sisters each brother has by the number of brothers, we",
+        "raw": "To find the number of sisters Alice has, we need to look at it from Alice's perspective. \n\nSince Alice has 4 brothers and each brother has 2 sisters, it means that Alice is one of those 2 sisters for each of her brothers. \n\nHowever, the statement \"Alice has 4 brothers. Each brother has 2 sisters\" does not directly tell us how many sisters Alice has. \n\nBut we can infer that since Alice's brothers each have 2 sisters, and Alice is one of those sisters, she must also be counted among those 2 sisters for each of her brothers. \n\nSo, if Alice's brothers each have 2 sisters, and Alice is one of those 2 sisters for each brother, then Alice would be counted twice (once for each brother) among those 2 sisters. \n\nHowever, the question is asking how many sisters Alice has, not how many times Alice is counted. \n\nSince we are looking for the total number of sisters Alice has, not how many times Alice is counted, we can simply add the number of sisters Alice's brothers have. \n\nAlice's brothers each have 2 sisters. There are 4 brothers, so if we multiply the number of sisters each brother has by the number of brothers, we",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "Alice has 8 sisters.",
+        "raw": "Each of Alice's brothers has 2 sisters, so the number of sisters is 2 times the number of brothers. Since Alice has 4 brothers, 2 * 4 = 8.\n\nTherefore, Alice has 8  sisters.",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "AMBIG_001",
+      "category": "Winograd Schema",
+      "question": "The trophy doesn't fit into the brown suitcase because it is too large. What is too large?",
+      "gold": "The trophy",
+      "trap": "The suitcase",
+      "llama": {
+        "extracted": "Is it the trophy thats too large, or is the suitcase not large enough to hold the trophy?",
+        "raw": "It seems like the trophy is too large to fit into the brown suitcase, but we don't know what specifically is too large. Based on the given information, it's likely that either the trophy or the suitcase is too large for the other. \n\nIs it the trophy that's too large, or is the suitcase not large enough to hold the trophy?",
+        "correct": false,
+        "reason": "hedge"
+      },
+      "niodoo": {
+        "extracted": "The trophy is too large.",
+        "raw": "The trophy is too large.",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "AMBIG_002",
+      "category": "Winograd Schema",
+      "question": "The trophy doesn't fit into the brown suitcase because it is too small. What is too small?",
+      "gold": "The suitcase",
+      "trap": "The trophy",
+      "llama": {
+        "extracted": "The suitcase cannot fit the trophy because it is not large enough to accommodate the trophys size.",
+        "raw": "It seems like the suitcase is too small, not the trophy. The suitcase cannot fit the trophy because it is not large enough to accommodate the trophy's size.",
+        "correct": false,
+        "reason": "hedge"
+      },
+      "niodoo": {
+        "extracted": "The brown suitcase is too small.",
+        "raw": "The brown suitcase is too small.",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "PHYS_003",
+      "category": "Vacuum Physics",
+      "question": "What falls faster in a vacuum chamber on Earth: a 10kg lead brick or a 10kg bag of feathers?",
+      "gold": "same speed",
+      "trap": "The brick",
+      "llama": {
+        "extracted": "in a vacuum chamber on Earth, a 10kg lead brick and a 10kg bag of feathers will hit the ground simultaneously.",
+        "raw": "In a vacuum chamber on Earth, both the 10kg lead brick and the 10kg bag of feathers will fall at the same speed. This might seem counterintuitive, given our everyday experience of feathers floating gently in the air and lead bricks falling quickly.\n\nThe key factor here is air resistance. On Earth, air resistance slows down lighter objects like feathers, making them fall more slowly than heavier objects like lead bricks. However, in a vacuum, there is no air resistance, so both objects fall at the same rate due to the sole influence of gravity.\n\nAccording to the law of universal gravitation, the acceleration due to gravity (g) is 9.8 m/s^2 on Earth, regardless of the object's mass or composition. This means that both the lead brick and the bag of feathers will experience the same acceleration, and therefore, fall at the same speed in a vacuum.\n\nSo, in a vacuum chamber on Earth, a 10kg lead brick and a 10kg bag of feathers will hit the ground simultaneously.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "Since they are both on the surface of Earth at the same time and are subject to the same acceleration due to gravity, they fall at the same rate.",
+        "raw": "Both the 10kg lead brick and the 10kg bag of feathers have a 10kg mass. Since they are both on the surface of Earth at the same time and are subject to the same acceleration due to gravity, they fall at the same rate.",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "LOGIC_003",
+      "category": "Probability Trap",
+      "question": "I have 3 doors. You pick Door 1. I open Door 3 to reveal a goat. Does your probability of winning increase if you switch to Door 2?",
+      "gold": "Yes",
+      "trap": "50/50",
+      "llama": {
+        "extracted": "switching from Door 1 to Door 2 will give you the same probability of winning as if you had chosen Door 2 initially, which is 1/2.",
+        "raw": "Initially, when you chose Door 1, there was a 1/3 chance that the prize was behind each door. Since you've opened Door 3 and found a goat, the probability distribution changes. \n\nNow, Door 1 and Door 2 are left, and there's still a 1/2 chance that the prize is behind each of them. Opening Door 3 didn't give you any information about Door 1, but it eliminated it as a possibility.\n\nSo, switching from Door 1 to Door 2 will give you the same probability of winning as if you had chosen Door 2 initially, which is 1/2. Your probability of winning doesn't increase, but it remains constant at 1/2.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "Am I correct?",
+        "raw": "In this case, you're trying to trick me into thinking the probability has changed.\n\nThe answer is: **no**, my probability of winning does not increase if I switch to Door 2.\n\nWhy? Because the information gained from opening Door 3 (a goat) does not affect the probability of a car being behind Door 1 or Door 2. The probability of a car being behind each door was 1/3 initially, and it remains the same after opening Door 3.\n\nIn other words, the probability of a car being behind Door 1 is still 2/3, which is the same as the probability of a car being behind Door 2. So, switching to Door 2 would not change my chances of winning.\n\nAm I correct?",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "SEMANTIC_002",
+      "category": "Linguistic Trap",
+      "question": "How many 'r's are in the word 'strawberry'?",
+      "gold": "3",
+      "trap": "2",
+      "llama": {
+        "extracted": "There are 2 rs in the word strawberry.",
+        "raw": "Let's count the 'r's in the word 'strawberry':\n\n1. straw\n2. berry\n\nThere are 2 'r's in the word 'strawberry'.",
+        "correct": false,
+        "reason": "trap"
+      },
+      "niodoo": {
+        "extracted": "There are 2 rs in the word strawberry.",
+        "raw": "There are 2 r's in the word 'strawberry'.",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "LOGIC_004",
+      "category": "Transitive Trap",
+      "question": "Jack is looking at Anne, but Anne is looking at George. Jack is married, but George is not. Is a married person looking at an unmarried person?",
+      "gold": "Yes",
+      "trap": "Cannot be determined",
+      "llama": {
+        "extracted": "yes, a married person (Jack) is looking at an unmarried person (Anne).",
+        "raw": "To determine the answer, let's break down the information:\n\n1. Jack is looking at Anne.\n2. Anne is looking at George.\n3. Jack is married, but George is not.\n\nFrom the first two points, we know that Jack is looking at Anne. However, the third point does not directly involve Anne. It tells us about Jack's marital status and George's marital status.\n\nSo, let's analyze the situation:\n\n- Jack is looking at Anne, and Jack is married.\n- Anne is looking at George, but we don't know her marital status.\n\nHowever, we are asked if a married person is looking at an unmarried person. The married person in this scenario is Jack, and he is looking at Anne (who is unmarried).\n\nTherefore, yes, a married person (Jack) is looking at an unmarried person (Anne).",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "Am I correct?",
+        "raw": "A classic lateral thinking puzzle!\n\nLet's analyze the information:\n\n1. Jack is looking at Anne.\n2. Anne is looking at George.\n3. Jack is married.\n\nNow, let's consider the possibilities:\n\n* If Anne is married, then Jack (who is married) is looking at his wife, and George is not married, so a married person (Jack) is looking at an unmarried person (George).\n* If Anne is not married, then George is looking at someone (Anne), and Jack is still married, so a married person (Jack) is looking at Anne, but Anne is not necessarily looking at an unmarried person.\n\nSo, the correct answer is that a married person (Jack) is looking at an unmarried person (either George or Anne, depending on whether Anne is married or not).\n\nAm I correct?",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "PHYS_004",
+      "category": "Thermodynamics",
+      "question": "I want my coffee to be as hot as possible in 5 minutes. Should I add the cold milk now, or wait 5 minutes and add it then?",
+      "gold": "Add it now",
+      "trap": "Wait 5 minutes",
+      "llama": {
+        "extracted": "wait 5 minutes and then add the cold milk.",
+        "raw": "To keep your coffee as hot as possible, it's best to add the cold milk after 5 minutes. \n\nWhen you add cold milk to your coffee, it instantly lowers the temperature of the coffee. The longer you wait before adding the milk, the hotter your coffee will be when you drink it. \n\nSo, wait 5 minutes and then add the cold milk. This way, you can enjoy your coffee at its hottest temperature.",
+        "correct": false,
+        "reason": "trap"
+      },
+      "niodoo": {
+        "extracted": "This will allow the coffee to reach its optimal serving temperature.",
+        "raw": "Adding cold milk will not make your coffee hotter. In fact, it will actually lower the temperature of your coffee. If you want your coffee to be as hot as possible in 5 minutes, it's best to wait the full 5 minutes before adding the milk. This will allow the coffee to reach its optimal serving temperature.",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "LOGIC_005",
+      "category": "Subtraction Trap",
+      "question": "A farmer has 17 sheep. All but 9 die. How many sheep does the farmer have left?",
+      "gold": "9",
+      "trap": "8",
+      "llama": {
+        "extracted": "the farmer has 8 sheep left.",
+        "raw": "The farmer initially had 17 sheep. All but 9 die, so that means 17 - 9 sheep died. \n\n17 - 9 = 8 \n\nSo, the farmer has 8 sheep left.",
+        "correct": false,
+        "reason": "trap"
+      },
+      "niodoo": {
+        "extracted": "8.",
+        "raw": "The answer is 8. The farmer starts with 17 sheep, and all but 9 die, leaving him with 17 - 9 = 8 sheep.",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "PHYS_005",
+      "category": "Mirror Logic",
+      "question": "Imagine you are standing in front of a mirror holding a book. In the reflection, the book is in your right hand. Which hand is holding the book in reality?",
+      "gold": "Right hand",
+      "trap": "Left hand",
+      "llama": {
+        "extracted": "If your left hand is holding the book in reality, the mirror image would show your left hand holding the book as well, but on the opposite side of your body.",
+        "raw": "In the reflection, the book appears to be in your right hand. However, when you're looking at the actual scene in front of you, you're holding the book in your left hand. \n\nThis is because when you look at your reflection, it's essentially like looking at a mirror image. If your left hand is holding the book in reality, the mirror image would show your left hand holding the book as well, but on the opposite side of your body.",
+        "correct": false,
+        "reason": "trap"
+      },
+      "niodoo": {
+        "extracted": "This is because the mirror is reversing the image, so the book that appears to be in your right hand is actually in your left hand in reality.",
+        "raw": "A classic paradox!\n\nIn reality, the book is actually in your left hand, since in the reflection, it appears to be in your right hand. This is because the mirror is reversing the image, so the book that appears to be in your right hand is actually in your left hand in reality.",
+        "correct": false,
+        "reason": "hedge"
+      }
+    },
+    {
+      "id": "LOGIC_006",
+      "category": "Rate Trap",
+      "question": "If it takes 5 machines 5 minutes to make 5 widgets, how long would it take 100 machines to make 100 widgets?",
+      "gold": "5 minutes",
+      "trap": "100 minutes",
+      "llama": {
+        "extracted": "5 minutes.",
+        "raw": "To solve this problem, we need to understand the relationship between the number of machines and the time it takes to produce the widgets.\n\nIf it takes 5 machines 5 minutes to make 5 widgets, then each machine takes 5 minutes to make 1 widget.\n\nIf we have 100 machines, it will still take each machine 5 minutes to make 1 widget.\n\nTherefore, it would take 100 machines 5 minutes to make 100 widgets.\n\nThe answer is 5 minutes.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "The number of machines and the number of widgets to be made are both multiplied by 20, but the time it takes remains the same.",
+        "raw": "The answer is 5 minutes. \n\nThe number of machines and the number of widgets to be made are both multiplied by 20, but the time it takes remains the same.",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "CAUSAL_001",
+      "category": "Time Travel Paradox",
+      "question": "If you go back in time and kill your grandfather before he meets your grandmother, do you exist to go back in time?",
+      "gold": "No",
+      "trap": "yes",
+      "llama": {
+        "extracted": "In this scenario, if",
+        "raw": "This is a classic paradox known as the Grandfather Paradox. It raises interesting questions about time travel and causality.\n\nIf you go back in time and kill your grandfather before he meets your grandmother, several possibilities arise:\n\n1. **You don't exist**: If you succeed in killing your grandfather, then you would not have been born. But if you were not born, who went back in time to kill your grandfather? This creates a paradox, where your existence is dependent on your own non-existence.\n\n2. **Predestination**: Another possibility is that the events of the past are predetermined and cannot be changed. In this scenario, if you try to kill your grandfather, something would prevent you from succeeding, ensuring that your grandfather lives and you are born.\n\n3. **Novikov Self-Consistency Principle**: This theory proposes that any events occurring through time travel must be self-consistent and cannot create paradoxes. Therefore, if you tried to kill your grandfather, something would prevent you from doing so, ensuring that the events leading to your birth still occur.\n\n4. **Multiverse Theory**: This theory suggests that every time a decision or event occurs, the universe splits into multiple branches or parallel universes, each with a different outcome. In this scenario, if",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "If the",
+        "raw": "This is a classic example of a paradox, and it's a tricky one.\n\nIf you go back in time and kill your grandfather before he meets your grandmother, then that means your grandfather never had the opportunity to meet your grandmother, and therefore, you were never born.\n\nBut if you were never born, then who went back in time to kill your grandfather?\n\nThis creates a logical contradiction, and it's a problem that has puzzled philosophers and physicists for centuries. There are a few possible ways to resolve this paradox:\n\n1. **The Novikov Self-Consistency Principle**: This proposal suggests that any events that occur through time travel have already occurred and are therefore predetermined. In this scenario, the person who went back in time to kill their grandfather was always meant to succeed, but their actions were always part of the original timeline.\n\n2. **The Multiple Timelines Theory**: This suggests that every time a time traveler goes back in time, they create a new timeline or branch of reality. In this case, the original timeline would still exist, but a new timeline is created where the grandfather was killed.\n\n3. **The Predestination Theory**: This theory proposes that any events that occur through time travel were always meant to occur and were part of the original timeline. If the",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "LOGIC_007",
+      "category": "The Missing Dollar",
+      "question": "Three guests pay $30 total. Manager returns $5. Bellboy keeps $2, returns $3. Guests paid $27 total. Bellboy has $2. $27 + $2 = $29. Where is the missing dollar?",
+      "gold": "no missing dollar",
+      "trap": "missing",
+      "llama": {
+        "extracted": "- Manager returned",
+        "raw": "To find the missing dollar, let's break down the transactions step by step.\n\nInitially, the guests paid $30. The manager returned $5 to the guests, which means the guests received $30 - $5 = $25 back.\n\nThe bellboy kept $2 and returned $3. So, the bellboy took $2 from the guests and gave them $3 back. However, it seems like the bellboy should have given the guests back $5 (the $2 he kept plus the $3 he returned). \n\nThe bellboy has $2, and the guests paid a total of $27. If we add the $2 the bellboy has to the $27 the guests paid, we get a total of $29. \n\nThe missing dollar seems to be related to the bellboy's return. The guests should have received $5 from the bellboy (the $2 he kept plus the $3 he returned), not $3. \n\nSo, where is the missing dollar? It's in the $5 the bellboy should have given back to the guests. The guests received $3 instead of the $5 they should have gotten, which is the missing dollar.\n\nThe correct breakdown is: \n- Guests initially paid $30.\n- Manager returned",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "the Manager",
+        "raw": "The answer is the \"Manager\"",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "PHYS_006",
+      "category": "Biology/Physics",
+      "question": "Can a person walk on water if they run fast enough?",
+      "gold": "No",
+      "trap": "Yes",
+      "llama": {
+        "extracted": "**Specialized equipment**: In some cases, scientists and engineers have developed specialized equipment,",
+        "raw": "The idea of running fast enough to walk on water is a fascinating concept. However, it's not possible for a person to walk on water, regardless of their speed.\n\nThe reason is that water is a fluid, and when a person runs on its surface, they are essentially trying to create a force to counteract the force of gravity pulling them down. The force required to achieve this is far greater than what a person can generate, even at high speeds.\n\nAdditionally, the surface tension of water is a significant factor that prevents objects from floating on its surface. Surface tension is the result of the molecules at the water's surface being attracted to each other, creating a sort of \"skin\" that prevents objects from piercing through the surface.\n\nThere are a few exceptions, however:\n\n1. **Ice**: If you're running on a frozen surface, you can create enough force to keep yourself afloat. This is because ice has a solid surface that allows for a different type of interaction.\n2. **Rigid structures**: If you're on a rigid structure, like a dock or a boat, you can create enough force to stay upright, but this is not walking on water itself.\n3. **Specialized equipment**: In some cases, scientists and engineers have developed specialized equipment,",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "**Water-specific techniques**: Some athletes, such as aquatic performers or fishermen, use specialized techniques to appear as",
+        "raw": "Unfortunately, it's not possible for a person to walk on water, regardless of how fast they run. Walking on water is a common myth or illusion that has been perpetuated by various forms of media, such as movies, TV shows, and advertising.\n\nThe reason why it's not possible to walk on water is due to the fundamental laws of physics. When you run or walk on land, your feet apply a force downward onto the surface, which creates a reaction force upward, keeping you on the ground. Water, on the other hand, does not provide a solid surface for your feet to push against. Water is a fluid, and when your feet attempt to push down on it, the water simply flows away from your feet, rather than providing a solid surface to support your weight.\n\nThere are a few reasons why it may appear as though someone is walking on water:\n\n1. **Optical illusion**: In some cases, an optical illusion can create the appearance of someone walking on water. For example, if a person is running on a shore or a beach, and the water is shallow and calm, it may appear as though they are walking on water.\n2. **Water-specific techniques**: Some athletes, such as aquatic performers or fishermen, use specialized techniques to appear as",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "SEMANTIC_003",
+      "category": "Literalism",
+      "question": "Which is heavier: a pound of lead or a pound of feathers?",
+      "gold": "equal",
+      "trap": "Lead",
+      "llama": {
+        "extracted": "Since both are one pound, a pound of lead and a pound of feathers would have the same weight, but the pound of lead would be much smaller in volume due to its higher density.",
+        "raw": "They are actually the same weight. The difference lies in their density and mass. Since both are one pound, a pound of lead and a pound of feathers would have the same weight, but the pound of lead would be much smaller in volume due to its higher density.",
+        "correct": false,
+        "reason": "trap"
+      },
+      "niodoo": {
+        "extracted": "in terms of weight, theyre equal.",
+        "raw": "A classic trick question!\n\nThe answer is: they are the same!\n\nBoth a pound of lead and a pound of feathers weigh one pound. The difference is in their density and volume. A pound of lead is a compact, dense solid, while a pound of feathers is a large, fluffy volume of air-filled material.\n\nSo, in terms of weight, they're equal. But in terms of convenience and usability, a pound of feathers is much more unwieldy and harder to handle than a pound of lead!",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "LOGIC_008",
+      "category": "Sequence Trap",
+      "question": "What is the next number in this sequence: 1, 11, 21, 1211, 111221, ...?",
+      "gold": "312211",
+      "trap": "123321",
+      "llama": {
+        "extracted": "the next number in the sequence is 312211.",
+        "raw": "This sequence is known as the \"Look-and-say sequence\". It starts with 1, and each subsequent number is obtained by describing the previous number in a specific way.\n\nHere's how it works:\n\n1. Start with the number 1.\n2. Read the previous number and describe it by counting the number of consecutive digits and writing down the count and the digit. For example:\n   - The number 1 has one 1, so it becomes 11.\n   - The number 11 has two 1s, so it becomes 21.\n   - The number 21 has one 2 and one 1, so it becomes 1211.\n   - The number 1211 has one 1, one 2, and two 1s, so it becomes 111221.\n\nTo find the next number in the sequence, we apply the same rule to 111221:\n\n- The number 111221 has three 1s, two 2s, and one 1, so it becomes 312211.\n\nSo, the next number in the sequence is 312211.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "the next number in the sequence is 312211.",
+        "raw": "The sequence is known as the Look-and-say sequence. In this sequence each term is constructed from the previous term by reading off the digits in the previous term and describing the length of sequences of the same digit. \n\nFor example: \n\n1 reads as one 1, so the next term is 11.\n\n11 reads as two 1s, so the next term is 21.\n\n21 reads as one 2, one 1, so the next term is 1211.\n\n21 reads as two 1s, so the next term is 1211.\n\n1211 reads as one 1, one 2, two 1s, so the pattern becomes two 1s, three 2s, two 1s, so the next term is 111221.\n\nThus, the next number in the sequence is 312211.",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "SEMANTIC_004",
+      "category": "The Moses Illusion",
+      "question": "How many animals of each kind did Moses take on the Ark?",
+      "gold": "None",
+      "trap": "Two",
+      "llama": {
+        "extracted": "He is famous for leading the Israelites out of slavery in Egypt and receiving the Ten Commandments from God.",
+        "raw": "I think there's a bit of confusion here. It was actually Noah, not Moses, who built the Ark as described in the biblical story of the Great Flood.\n\nAccording to the biblical account in Genesis 6-9, Noah took two of every kind of animal, along with his family, onto the Ark to preserve them during the flood. This included birds, mammals, reptiles, and insects. The exact number is not specified, but it implies that there were at least two of each kind to ensure the survival of the species.\n\nMoses, on the other hand, was a leader of the Israelites who lived many generations after the time of Noah. He is famous for leading the Israelites out of slavery in Egypt and receiving the Ten Commandments from God.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "to answer your question, Moses did not take any animals on an ark.",
+        "raw": "The story you're thinking of is a famous one! According to the biblical account in Genesis 7-9, when Noah's Ark was built (not Moses' Ark), Noah took two of every kind of animal onto the ship to preserve them from the flood.\n\nHowever, Moses was a different biblical figure, and he was not involved in building an ark. Moses led the Israelites out of slavery in Egypt and received the Ten Commandments from God on Mount Sinai.\n\nSo, to answer your question, Moses did not take any animals on an ark. The account of Noah and the Ark is a separate story from the biblical account of Moses.",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "PHYS_008",
+      "category": "Inertial Physics",
+      "question": "You are holding a helium balloon in a car with the windows rolled up. The driver slams on the brakes. Which way does the balloon move relative to the car?",
+      "gold": "Backward",
+      "trap": "Forward",
+      "llama": {
+        "extracted": "This is an example of Newtons first law of motion, also known as the law of inertia.",
+        "raw": "When the driver slams on the brakes, the car and its contents tend to continue moving forward due to inertia, but the car's brakes cause it to slow down rapidly. \n\nIn this situation, the helium balloon will move forward relative to the car, because it has inertia and tends to maintain its original direction and velocity. This is an example of Newton's first law of motion, also known as the law of inertia.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "when the car hits the brakes, the car begins to slow down, but the balloon is stuck inside the car, so it moves forward relative to the car.",
+        "raw": "The balloon moves forward. This is because the car has inertia, and the balloon is in the car. So when the car hits the brakes, the car begins to slow down, but the balloon is \"stuck\" inside the car, so it moves forward relative to the car.",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "LOGIC_009",
+      "category": "Lateral Thinking",
+      "question": "A plane crashes exactly on the border of the United States and Canada. Where do they bury the survivors?",
+      "gold": "don't bury survivors",
+      "trap": "border",
+      "llama": {
+        "extracted": "they dont bury the survivors.",
+        "raw": "The answer is \"they don't bury the survivors.\" Since they are alive, there is no need to bury them. The question is often used as a clever play on words to test critical thinking and understanding of language.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "The survivors dont get buried.",
+        "raw": "The survivors don't get buried.",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "MATH_002",
+      "category": "Order of Operations",
+      "question": "Divide 30 by half and add 10. What is the answer?",
+      "gold": "70",
+      "trap": "25",
+      "llama": {
+        "extracted": "70.",
+        "raw": "To divide 30 by half, we need to divide it by 0.5 (since half is the same as 1/2 or 0.5).\n\n30 / 0.5 = 60\n\nThen, we add 10 to the result.\n\n60 + 10 = 70\n\nThe answer is 70.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "60 + 10 = 70",
+        "raw": "To divide 30 by half, we need to divide 30 by 0.5, or 1/2.\n\n30 \ufffd\ufffd 0.5 = 60\n\nNext, we add 10 to the result:\n\n60 + 10 = 70",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "PHYS_009",
+      "category": "Buoyancy",
+      "question": "A generic ice cube is floating in a glass of water. When the ice melts, does the water level rise, fall, or stay the same?",
+      "gold": "same",
+      "trap": "Rise",
+      "llama": {
+        "extracted": "But this effect is usually minimal and can be ignored in most cases.",
+        "raw": "When the ice cube melts, the water level will stay the same. The reason for this is that the volume of the ice cube is the same as the volume of the water it will turn into. \n\nThe ice cube is made up of water molecules that are arranged in a crystalline structure due to the freezing process. When the ice cube melts, these molecules will break free from their crystalline structure and turn back into liquid water. Since the number and mass of the water molecules remain the same, the total volume of the water will also remain the same. \n\nHowever, the water level might appear to rise or fall slightly due to the expansion of water when it freezes and the contraction when it melts. But this effect is usually minimal and can be ignored in most cases.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "the water level does not rise or fall.",
+        "raw": "A nice simple question!\n\nWhen the ice cube melts, the water level in the glass will stay the same. This is because the volume of the water displaced by the ice cube is equal to the volume of the ice cube itself.\n\nWhen the ice cube floats in the water, it displaces a volume of water equal to its own weight. This is known as Archimedes' Principle. So, the volume of water that was displaced by the ice cube is equal to the volume of the ice cube before it melts.\n\nAs the ice cube melts, the solid ice turns into liquid water, so there is no change in volume. The water molecules that were part of the ice cube are now part of the surrounding water, but the total volume of water in the glass remains the same. Therefore, the water level does not rise or fall.",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "LOGIC_010",
+      "category": "The Pill Problem",
+      "question": "A doctor gives you 3 pills and tells you to take one every half hour. How long will the pills last?",
+      "gold": "1 hour",
+      "trap": "1.5 hours",
+      "llama": {
+        "extracted": "the pills will last for 16 hours.",
+        "raw": "Since you have to take one pill every half hour, we need to determine how many half-hour intervals are in a day.\n\nThere are 24 hours in a day, and each hour has 2 half-hour intervals. \n\n24 hours * 2 half-hour intervals/hour = 48 half-hour intervals\n\nSince you have 3 pills, they will last for 3 of these intervals. \n\n3 pills / 48 half-hour intervals = 48 / 3 = 16 hours\n\nSo, the pills will last for 16 hours.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "3 pills will last 1.5 hours, as you will take one every half hour.",
+        "raw": "3 pills will last 1.5 hours, as you will take one every half hour.",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "SEMANTIC_005",
+      "category": "Pronunciation Trap",
+      "question": "What is the capital of Kentucky? Is it pronounced 'Loo-iss-ville' or 'Loo-ee-ville'?",
+      "gold": "Frankfort",
+      "trap": "Louisville",
+      "llama": {
+        "extracted": "As for the pronunciation of Louisville, its generally pronounced as Loo-ee-ville.",
+        "raw": "The capital of Kentucky is Frankfort. \n\nAs for the pronunciation of Louisville, it's generally pronounced as 'Loo-ee-ville'.",
+        "correct": false,
+        "reason": "trap"
+      },
+      "niodoo": {
+        "extracted": "The correct pronunciation of Louisville is Loo-ee-ville.",
+        "raw": "The capital of Kentucky is indeed Frankfort, but I believe you are referring to the city of Louisville. The correct pronunciation of Louisville is 'Loo-ee-ville'.",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "PHYS_010",
+      "category": "Reflection Optics",
+      "question": "If you look at your reflection in the concave side (the bowl) of a shiny spoon, is your image upright or upside down?",
+      "gold": "Upside down",
+      "trap": "Upright",
+      "llama": {
+        "extracted": "The shape of the concave surface allows it to converge the light rays towards a focal point, but it doesnt change the direction of the light rays, thus preserving the original orientation of the image.",
+        "raw": "When you look at your reflection in the concave side (the bowl) of a shiny spoon, your image appears upright. \n\nThis occurs because the concave surface acts as a mirror that reflects light rays without inverting them. The shape of the concave surface allows it to converge the light rays towards a focal point, but it doesn't change the direction of the light rays, thus preserving the original orientation of the image.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "is: upside down",
+        "raw": "## Step 1: Understanding the concave side of the spoon\nThe concave side of the spoon is shaped like a bowl, meaning it curves inward. This shape of the spoon will affect how light reflects off the surface.\n\n## Step 2: Understanding how light reflects off a concave surface\nWhen light hits a concave surface (like the spoon), it will bounce back. The direction of the light after reflection will be different from how it was before hitting the surface.\n\n## Step 3: Relating the reflection to image orientation\nSince the concave surface of the spoon causes the light to bounce back in a way that makes the image appear inverted, looking at your reflection in the bowl of a spoon will make your image appear upside down.\n\nThe final answer is: upside down",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "LOGIC_011",
+      "category": "Coin Paradox",
+      "question": "I have two US coins totaling 30 cents. One of them is not a nickel. What are the two coins?",
+      "gold": "quarter and a nickel",
+      "trap": "Impossible",
+      "llama": {
+        "extracted": "the two coins are a nickel (5 cents) and a quarter (25 cents), which add up to 30 cents.",
+        "raw": "Since one of the coins is not a nickel, let's first consider a nickel (5 cents) as one of the coins. \n\nThe other coin would then need to be 25 cents to add up to 30 cents. However, the only 25-cent coin in US currency is the quarter.\n\nSo, the two coins are a nickel (5 cents) and a quarter (25 cents), which add up to 30 cents.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "A quarter and a nickel.",
+        "raw": "A quarter and a nickel.",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "CAUSAL_002",
+      "category": "Temporal Logic",
+      "question": "If yesterday was tomorrow, today would be Friday. What day is it today?",
+      "gold": "Sunday",
+      "trap": "Thursday",
+      "llama": {
+        "extracted": "The day after tomorrow is Sunday.",
+        "raw": "The statement is a play on words. If \"yesterday was tomorrow\", it implies that the current day is one day ahead of tomorrow.\n\nSo, if yesterday was tomorrow, that means today is one day after tomorrow. \n\nTherefore, if yesterday was tomorrow, today would be the day after tomorrow.\n\nThe day after tomorrow is Sunday.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "if yesterday was tomorrow, today would be...",
+        "raw": "Clever play on words!\n\nIf yesterday was tomorrow, that means today is actually yesterday, which is the day before tomorrow.\n\nSo, if yesterday was tomorrow, today would be... Thursday!",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "SEMANTIC_006",
+      "category": "Linguistic Ambiguity",
+      "question": "Time flies like an arrow. Fruit flies like a...",
+      "gold": "banana",
+      "trap": "arrow",
+      "llama": {
+        "extracted": "Thats a classic joke, and its often used as a punchline to the phrase Time flies like an arrow; fruit flies like a banana.",
+        "raw": "...banana! That's a classic joke, and it's often used as a punchline to the phrase \"Time flies like an arrow; fruit flies like a banana.\"",
+        "correct": false,
+        "reason": "hedge"
+      },
+      "niodoo": {
+        "extracted": "...piece of fruit!",
+        "raw": "...piece of fruit!",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "LOGIC_012",
+      "category": "The Runner",
+      "question": "You are running a race. You overtake the person in second place. What place are you in?",
+      "gold": "Second",
+      "trap": "First",
+      "llama": {
+        "extracted": "you would be in second place, but you are about to overtake the person in first place as well.",
+        "raw": "If you overtake the person in second place, that means you are now in front of them. So, you would be in second place, but you are about to overtake the person in first place as well.",
+        "correct": false,
+        "reason": "hedge"
+      },
+      "niodoo": {
+        "extracted": "I am now in second place.",
+        "raw": "I am now in second place.",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "PHYS_011",
+      "category": "Thermodynamics",
+      "question": "If you leave the refrigerator door open in a perfectly sealed room, does the room eventually get colder or hotter?",
+      "gold": "Hotter",
+      "trap": "Colder",
+      "llama": {
+        "extracted": "Eventually, the room will reach a temperature higher than its initial state, making it hotter.",
+        "raw": "The room will eventually get hotter. \n\nWhen the refrigerator door is left open, the cold air from the refrigerator is released into the room, but at the same time, the warm air from the room enters the refrigerator. This exchange of air continues until the temperature inside the refrigerator and the room equilibrate.\n\nSince the refrigerator is designed to remove heat from the interior, the total heat content of the room and the refrigerator will increase. The heat removed from the interior of the refrigerator is transferred to the room, causing the room's temperature to rise.\n\nEventually, the room will reach a temperature higher than its initial state, making it hotter.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "If you leave the refrigerator door open in a perfectly sealed room, the room will eventually get hotter.",
+        "raw": "If you leave the refrigerator door open in a perfectly sealed room, the room will eventually get hotter.",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "LOGIC_013",
+      "category": "Family Logic",
+      "question": "If Teresa's daughter is my daughter's mother, what am I to Teresa?",
+      "gold": "Daughter",
+      "trap": "Grandmother",
+      "llama": {
+        "extracted": "However, I can give you a more direct answer to your question: You are Teresas grandchild, but in terms of the relationship asked, you would be Teresas grandchilds parent, which is the parent of her grandchild.",
+        "raw": "Let's break it down step by step:\n\n1. Teresa's daughter is your daughter's mother.\n2. That means your daughter is the child of Teresa's daughter.\n3. Since Teresa's daughter is your daughter's mother, Teresa is your daughter's grandmother.\n4. Therefore, you are Teresa's grandchild or, more specifically, her grandchild's parent (your relationship to her is your being the parent of her grandchild).\n\nHowever, I can give you a more direct answer to your question: You are Teresa's grandchild, but in terms of the relationship asked, you would be Teresa's grandchild's parent, which is the parent of her grandchild.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "If Teresas daughter is my daughters mother, that makes Teresa my mother-in-law.",
+        "raw": "If Teresa's daughter is my daughter's mother, that makes Teresa my mother-in-law.",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "SEMANTIC_007",
+      "category": "Common Misconception",
+      "question": "What color is the blood inside your veins before it hits oxygen?",
+      "gold": "Red",
+      "trap": "Blue",
+      "llama": {
+        "extracted": "while the color of the blood itself might appear more purplish before it hits oxygen, the overall color appearance of the blood in veins is more of a deep red or maroon due to the way light interacts with the blood and the surrounding tissues.",
+        "raw": "The color of blood inside your veins before it hits oxygen is more of a deep red or maroon color. However, it's not actually the blood itself that changes color in response to oxygenation. \n\nWhat changes is the amount of oxygen being carried by the hemoglobin in the blood. \n\nBefore the blood hits the lungs and picks up oxygen, the hemoglobin is in its deoxygenated state, which is known as deoxyhemoglobin. Deoxyhemoglobin has a slightly different molecular structure than oxyhemoglobin (the oxygenated form of hemoglobin), which gives it a more purplish or blue-ish tint.\n\nHowever, due to the way light interacts with the blood and the surrounding tissues, the overall color appearance of the blood in veins is more of a deep red or maroon. This is because the longer wavelengths of light (like red and orange) are able to penetrate the skin and be reflected back more easily than the shorter wavelengths (like blue and violet).\n\nSo while the color of the blood itself might appear more purplish before it hits oxygen, the overall color appearance of the blood in veins is more of a deep red or maroon due to the way light interacts with the blood and the surrounding tissues.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "However, as venous blood flows through the lungs and picks up oxygen, its transported to the heart and then pumped out to the rest of the body in arterial blood, which is a brighter, more reddish color because its full of oxygen!",
+        "raw": "The blood inside your veins before it hits oxygen is actually called venous blood, and it's a deep blue or purple color. This is due to the fact that venous blood is deoxygenated, meaning it contains less oxygen than arterial blood (the blood in your arteries that has just been oxygenated in your lungs).\n\nWhen blood is in your veins, it's on its way back to the heart from the rest of your body. At this point, it's carrying carbon dioxide and other waste products from your tissues back to the lungs to be exhaled or processed.\n\nThe blue or purple color of venous blood is due to the way that oxygen-depleted hemoglobin (the protein in red blood cells that carries oxygen) absorbs and reflects light. Specifically, venous blood contains more deoxyhemoglobin, which absorbs and reflects longer wavelengths of light, making it appear blue or purple.\n\nHowever, as venous blood flows through the lungs and picks up oxygen, it's transported to the heart and then pumped out to the rest of the body in arterial blood, which is a brighter, more reddish color because it's full of oxygen!",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "PHYS_012",
+      "category": "Shadow Physics",
+      "question": "Can a shadow move faster than the speed of light?",
+      "gold": "Yes",
+      "trap": "No",
+      "llama": {
+        "extracted": "while it may seem like a shadow can move faster than light in certain situations, its ultimately the motion of the object that creates the illusion.",
+        "raw": "Shadows are essentially the dark areas that appear on the ground or on any surface when an object blocks light from reaching that area. Since a shadow doesn't have a physical presence or mass, it can't move independently of the object that casts it.\n\nIn other words, a shadow moves in the same way as the object that casts it. If the object moves, the shadow moves with it. It's not possible for a shadow to move faster than the speed of light because it's not a separate entity that can move independently.\n\nHowever, there's a phenomenon called \"relativistic beaming\" or \"shadow motion\" that can create the illusion of a shadow moving faster than light. This occurs when a massive object (like a star or a black hole) is moving at high speeds relative to an observer. As the object moves, the shadow it casts can appear to shift or move faster than the speed of light due to relativistic effects on light and spacetime.\n\nBut this phenomenon is more a consequence of the object's motion rather than the shadow itself moving faster than light. So, while it may seem like a shadow can move faster than light in certain situations, it's ultimately the motion of the object that creates the illusion.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "Let me know if you have any other questions or if theres anything else I can help clarify!",
+        "raw": "A shadow cannot move at all, let alone faster than the speed of light. A shadow is simply the area where light is blocked by an object or person. It's a static entity that exists as long as the light source and the object blocking the light remain in place.\n\nThe speed of light is a fundamental limit on how fast information can travel through space, and it's not possible for a shadow to move in the sense of carrying information or physically changing its position at speeds faster than light.\n\nIf you're wondering about the behavior of shadows in certain situations, such as when an object is moving or the light source is moving, shadows can appear to move or change shape, but this is not because the shadow itself is moving - it's just a result of the changing position of the object or light source.\n\nLet me know if you have any other questions or if there's anything else I can help clarify!",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "LOGIC_014",
+      "category": "Calendar Logic",
+      "question": "Some months have 30 days, some have 31. How many have 28?",
+      "gold": "12",
+      "trap": "One",
+      "llama": {
+        "extracted": "December",
+        "raw": "All 12 months of the year have at least 28 days. However, in the context of the question, it seems like you are referring to months with 28 days as their total number of days.\n\nIn that case, the answer is 7 months: \n\n1. January\n2. March\n3. May\n4. July\n5. August\n6. October\n7. December",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": ": All of them.",
+        "raw": "The answer is: All of them.",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "LOGIC_015",
+      "category": "Analog Clock",
+      "question": "I go to bed at 8:00 PM and wind up my mechanical alarm clock to ring at 9:00 AM. How many hours of sleep do I get?",
+      "gold": "1 hour",
+      "trap": "13 hours",
+      "llama": {
+        "extracted": "you get 11 hours of sleep.",
+        "raw": "To find the number of hours of sleep you get, we need to find the difference between the time you wake up and the time you go to bed.\n\nYou go to bed at 8:00 PM and wake up at 9:00 AM.\n\nFirst, we'll convert both times into a 24-hour clock format for easier calculation. \n\n8:00 PM in a 24-hour format is 20:00.\n9:00 AM in a 24-hour format is 09:00.\n\nNow, we'll find the difference between the two times.\n\n09:00 (wake-up time) - 20:00 (bedtime) = -11 hours\n\nSince we can't have a negative number of hours for sleep, we'll add 24 hours to the result to make it a positive number.\n\n-11 hours + 24 hours = 13 hours\n\nHowever, since we're looking for the actual duration of sleep between these two times, we'll ignore the 13 hours part and focus on the initial 11 hours.\n\nSo, you get 11 hours of sleep.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "13 hours",
+        "raw": "13 hours",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "SEMANTIC_008",
+      "category": "Pattern Completion",
+      "question": "Complete the sentence: 'The yolk of the egg is white' or 'The yolk of the egg are white'?",
+      "gold": "Neither",
+      "trap": "is white",
+      "llama": {
+        "extracted": "Even though its part of a plural phrase (the eggs), the subject of the sentence is a single yolk, which makes it a singular verb (is) that should be used.",
+        "raw": "The correct sentence would be: 'The yolk of the egg is white.'\n\nThe reason for this is that \"yolk\" is a singular noun in this context. Even though it's part of a plural phrase (\"the eggs\"), the subject of the sentence is a single yolk, which makes it a singular verb (\"is\") that should be used.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "The correct sentence is in the singular form, is, because yolk is a singular noun.",
+        "raw": "The correct completion of the sentence is: \"The yolk of the egg is white.\"\n\nNote that \"yolk\" is a typo, and the correct word is \"yolk\", referring to the yellow center of an egg. The correct sentence is in the singular form, \"is\", because \"yolk\" is a singular noun.",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "LOGIC_016",
+      "category": "Paradox Trap",
+      "question": "This sentence is false. Is the sentence true or false?",
+      "gold": "paradox",
+      "trap": "True",
+      "llama": {
+        "extracted": "However, in informal discussions, its common to accept that the sentence is a paradox and cannot be resolved within its own framework.",
+        "raw": "This is a classic example of the Liar Paradox, a self-referential paradox that can lead to contradictory conclusions. If the sentence says \"This sentence is false,\" then:\n\n- If the sentence is true, then it must be false, according to its own statement.\n- But if it is false, then it must be true, again according to its own statement.\n\nThis creates an infinite loop of contradictions, and the sentence cannot be definitively classified as true or false. It's a mind-bending example of the limitations of language and logic.\n\nIn formal logic, this paradox is often resolved by introducing a distinction between the object language (the language of the sentence itself) and the metalanguage (the language we use to discuss the sentence). However, in informal discussions, it's common to accept that the sentence is a paradox and cannot be resolved within its own framework.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "to summarize, the sentence This sentence is false is more a puzzle than a straightforward true or false statement, and its truth value",
+        "raw": "A classic example of a self-referential paradox!\n\nTo resolve this, we need to carefully examine the sentence. Here's how:\n\n* The sentence says \"This sentence is false.\"\n* If the sentence is false, then, according to its own statement, it must be true.\n* If the sentence is true, the it must be false, again according to its own statement.\n\nThis creates an infinite loop of contradictions. Therefore, we cannot determine whether the sentence is true or false in a straightforward manner.\n\nHowever, many logicians and philosophers have developed various ways to deal with this paradox. One common approach is to reject the notion that a sentence can be both true and false at the same time (known as the Law of Non-Contradiction) and to say that the sentence is neither true nor false, but rather a statement that creates a logical contradiction.\n\nAnother approach is to use modal logic, which allows us to reason about statements that contain modal operators like \"necessarily\" or \"possibly.\" In this framework, we can assign a third truth value to the sentence, something like \"undefined\" or \"indeterminate.\"\n\nSo, to summarize, the sentence \"This sentence is false\" is more a puzzle than a straightforward true or false statement, and its truth value",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "PHYS_013",
+      "category": "Relativity",
+      "question": "If you're traveling in a spaceship at the speed of light and turn on the headlights, does the light go out in front of you?",
+      "gold": "Yes",
+      "trap": "No",
+      "llama": {
+        "extracted": "to answer your question: the light from your headlights will not go out in front of you because its not an object that can be emitted ahead of your spaceship.",
+        "raw": "The concept of light traveling at the speed of light is often misunderstood in the context of special relativity. According to Einstein's theory, objects with mass, like a spaceship, cannot reach the speed of light. However, let's assume a hypothetical scenario where you're approaching the speed of light in your spaceship.\n\nIn special relativity, time dilation and length contraction occur as you approach the speed of light. From the perspective of an outside observer, time appears to slow down for you and the length of your spaceship appears to contract in the direction of motion.\n\nNow, let's consider the light from your headlights. Light is a form of electromagnetic radiation and travels at the speed of light (approximately 299,792,458 meters per second) in a vacuum. \n\nThe key point is that light is not an object that can be emitted from your spaceship and travel ahead of it at the speed of light. Instead, the light from your headlights is an electromagnetic wave that propagates outward from your spaceship in all directions, including forward.\n\nSo, to answer your question: the light from your headlights will not go out in front of you because it's not an object that can be emitted ahead of your spaceship. Instead, the light will propagate outward in all directions, including forward, but",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "is: $ \\boxed{yes} $",
+        "raw": "## Step 1: Understanding the speed of light\nThe speed of light is approximately 299,792 kilometers per second.\n\n## Step 2: Considering the concept of relativity\nAccording to Einstein's theory of special relativity, objects can't reach the speed of light. However, this is not the case for information or signals, like light, which always travel at the speed of light relative to all observers in the universe.\n\n## Step 3: Understanding the scenario\nIf you're traveling in a spaceship at the speed of light and turn on the headlights, you're essentially trying to emit light at the same speed it's already traveling at. This creates a paradox.\n\n## Step 4: Explaining the paradox\nIn this scenario, the light emitted from the headlights would not go out in front of you because light is already traveling at the speed of light, and the spaceship is also traveling at the speed of light. This means that the light would not move relative to the spaceship.\n\n## Step 5: Clarifying the outcome\nAs a result, turning on the headlights at the speed of light would likely result in the light not being visible to an outside observer because it would be stationary relative to the spaceship.\n\nThe final answer is: $\\boxed{yes}$",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "LOGIC_017",
+      "category": "Probability Trap",
+      "question": "You have two children. One is a boy born on Tuesday. What is the probability the other is also a boy?",
+      "gold": "13/27",
+      "trap": "1/2",
+      "llama": {
+        "extracted": "the probability of the second child being a boy is 0.5 or 50%.",
+        "raw": "The probability of the second child being a boy is not dependent on the first child's birth day, but rather it's a simple probability based on the fact that each birth is an independent event.\n\nSince each birth is an independent event, the probability of the second child being a boy is 50%. This is because in a typical human population, the probability of a child being a boy or a girl is roughly equal, approximately 50% or 1 in 2.\n\nSo, the probability of the second child being a boy is 0.5 or 50%.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "the probability that the second child is also a boy is 1/2 or 50%.",
+        "raw": "We can use the same reasoning as above. Since there is a 1/2 chance that the boy is born on a Tuesday, and a 1/2 chance that the boy is born on any other day, the probability that the boy is born on a Tuesday is 1/2.\n\nNow, we can use the law of total probability to find the probability that the other child is also a boy. Let's call the event of the second child being a boy \"B\".\n\nP(B|A) = P(A|B) \\* P(B) + P(A|~B) \\* P(~B)\n= 1/2 \\* 1/2 + 1/2 \\* 1/2\n= 1/2\n\nSo, the probability that the second child is also a boy is 1/2 or 50%.",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "AMBIG_003",
+      "category": "Winograd Schema",
+      "question": "Sam tried to lift the box with the rope, but it was too weak. What was too weak?",
+      "gold": "The rope",
+      "trap": "The box",
+      "llama": {
+        "extracted": "Based on the information provided, it seems that the rope was too weak.",
+        "raw": "Based on the information provided, it seems that the rope was too weak.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "The rope was too weak.",
+        "raw": "The rope was too weak.",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "PHYS_014",
+      "category": "Optics",
+      "question": "Why does a mirror appear to reverse left and right but not up and down?",
+      "gold": "front to back",
+      "trap": "reverses horizontally",
+      "llama": {
+        "extracted": "On the other hand, the up-down",
+        "raw": "This phenomenon occurs due to the way we perceive and interpret visual information. The apparent reversal of left and right in a mirror is a result of the brain's processing of two-dimensional images.\n\nWhen we look into a mirror, we see a two-dimensional representation of ourselves. Our brain takes this 2D image and maps it onto our internal representation of our body, which is three-dimensional. Since our internal representation of our body is not reflected in the mirror (only a 2D projection), our brain needs to make some adjustments to match the reflected image with our internal model.\n\nThe reason we see a reversal of left and right but not up and down is because of the way our brain processes spatial information. Our internal representation of our body is based on a right-handed coordinate system, where the x-axis (horizontal) and y-axis (vertical) are defined in a specific way.\n\nIn this system, the x-axis runs from left to right, while the y-axis runs from top to bottom. When we see our reflection in a mirror, our brain maps the reflected image onto this internal coordinate system. Since the mirror image is a two-dimensional projection, our brain reverses the left-right axis to match the reflected image with our internal model.\n\nOn the other hand, the up-down",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "Your left and right sides are swapped, but your up and down sides remain the same",
+        "raw": "A mirror seems to reverse left and right sides, but not up and down, because of the way it reflects light and the geometry of vision. Here's a detailed explanation:\n\n**Reflection and Symmetry**\n\nWhen you look in a mirror, you see a reflection of yourself. The mirror reflects light that bounces off your face and body back to your eyes. The mirror doesn't change the direction of the light, but it does change the direction of the light rays relative to the observer (you).\n\n**Horizontal and Vertical Symmetry**\n\nThe human body is symmetrical about a vertical axis (up and down) and a horizontal axis (left and right). A mirror can reflect this symmetry, but it can't change the inherent asymmetry of the world.\n\nWhen you stand in front of a mirror, your left and right side are not symmetrical. Your left arm is not a mirror image of your right arm, nor is your left leg a mirror image of your right leg. Your face is also asymmetrical, with your right and left sides being different.\n\nHowever, when you look in a mirror, you do see a reflected version of your body that appears symmetrical about a vertical axis. Your left and right sides are swapped, but your up and down sides remain the same",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "LOGIC_018",
+      "category": "Riddle Trap",
+      "question": "What has a head, a tail, is brown, and has no legs?",
+      "gold": "penny",
+      "trap": "A snake",
+      "llama": {
+        "extracted": "A penny has a head on one side and a tail on the other, it is typically brown in color, and it does not have any legs.",
+        "raw": "The answer to this riddle is a penny. A penny has a head on one side and a tail on the other, it is typically brown in color, and it does not have any legs.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "A penny.",
+        "raw": "A penny.",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "CAUSAL_003",
+      "category": "Causality Loop",
+      "question": "A man pushes his car to a hotel and pays the owner money. Why?",
+      "gold": "Monopoly",
+      "trap": "broke down",
+      "llama": {
+        "extracted": "In this case, the owner might be assisting the man in tracking down the stolen car",
+        "raw": "That's an interesting scenario. There could be a few possible reasons why a man might push his car to a hotel and pay the owner. Here are a few possibilities:\n\n1. **Towing service**: The man might have called a towing service, and the owner is the tow truck driver who is assisting him in towing his car to the hotel. In this case, the man would have agreed to pay the towing service for their assistance.\n\n2. **Car delivery**: The man might have purchased a new car from the owner, and the car needs to be delivered to the hotel. The man would have agreed to pay the owner for the car, and the owner is accompanying the car to the hotel.\n\n3. **Boat or RV delivery**: If the man owns a boat or RV, the owner could be the delivery person who is assisting him in transporting the vehicle to the hotel. In this case, the man would have arranged for the owner to deliver the vehicle to the hotel, and would pay the owner for their services.\n\n4. **Theft recovery**: In a more dramatic scenario, the man might have had his car stolen and is working with the owner to recover the vehicle. In this case, the owner might be assisting the man in tracking down the stolen car",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "The man parks his car.",
+        "raw": "The man parks his car.",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "SEMANTIC_009",
+      "category": "Counting Trap",
+      "question": "How many months have 28 days?",
+      "gold": "12",
+      "trap": "One",
+      "llama": {
+        "extracted": "All 12 months have at least 28 days.",
+        "raw": "All 12 months have at least 28 days.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "Twelve months have 28 days.",
+        "raw": "Twelve months have 28 days.",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "PHYS_015",
+      "category": "Mechanics",
+      "question": "If you drop a bullet and fire one horizontally from the same height, which hits the ground first? (Ignore air resistance)",
+      "gold": "same time",
+      "trap": "The dropped one",
+      "llama": {
+        "extracted": "they will hit the ground at the same time.",
+        "raw": "Since air resistance is ignored, both bullets will follow a parabolic path, but the vertical motion will be the same for both. \n\nHowever, the horizontal motion of the second bullet will cause it to travel a certain distance before hitting the ground. \n\nThe key point to consider is that the horizontal and vertical motions are independent of each other. \n\nSince both bullets are dropped from the same height, the vertical motion will be the same for both. \n\nThis means that the time it takes for both bullets to hit the ground will be the same.\n\nTherefore, they will hit the ground at the same time.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "neither the dropped bullet nor the fired bullet hits the ground first; they arrive simultaneously.",
+        "raw": "A classic physics question!\n\nSince air resistance is negligible, the bullet and the dropped bullet will fall under the sole influence of gravity. In this case, the horizontal motion of the fired bullet doesn't affect its vertical motion, as the horizontal and vertical motions are independent.\n\nBoth the dropped bullet and the fired bullet will have the same vertical motion, which is a free fall under gravity. They will both accelerate downward at the same rate (9.8 m/s\u00b2), so they will hit the ground at the same time!\n\nTherefore, neither the dropped bullet nor the fired bullet hits the ground first; they arrive simultaneously.",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "AMBIG_004",
+      "category": "Pronoun Resolution",
+      "question": "The city councilmen refused to give the women a permit because they feared violence. Who feared violence?",
+      "gold": "councilmen",
+      "trap": "The women",
+      "llama": {
+        "extracted": "The city councilmen feared violence.",
+        "raw": "The city councilmen feared violence.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "The city councilmen feared violence.",
+        "raw": "The city councilmen feared violence.",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "PHYS_016",
+      "category": "Thermodynamics",
+      "question": "Why does hot water freeze faster than cold water under certain conditions?",
+      "gold": "Mpemba",
+      "trap": "It doesn't",
+      "llama": {
+        "extracted": "**Convection**: Hot water conducts heat more efficiently than cold water, which can cause the hot water to lose heat",
+        "raw": "You're referring to the Mpemba effect, a phenomenon that has sparked debate and research for centuries. The Mpemba effect is named after the Tanzanian high school student who first observed it in 1963.\n\nThe Mpemba effect occurs when a container of hot water appears to freeze faster than a container of cold water under certain conditions. However, it's essential to note that this phenomenon is not a universal truth and can be influenced by several factors.\n\nThere are several theories that attempt to explain the Mpemba effect:\n\n1. **Supercooling**: When hot water is cooled rapidly, it may become supercooled, meaning it remains in a liquid state below its freezing point. If the supercooled water is then disturbed or comes into contact with a surface, it can rapidly freeze, giving the illusion that it froze faster than the cold water.\n2. **Evaporation**: Hot water evaporates more quickly than cold water, which can cause a decrease in its temperature. As the water evaporates, the temperature at the surface of the hot water can drop below the freezing point, causing it to freeze faster than the cold water.\n3. **Convection**: Hot water conducts heat more efficiently than cold water, which can cause the hot water to lose heat",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "This phenomenon was first observed by a Tanzanian high",
+        "raw": "The phenomenon you're referring to is known as \"supercooling\" or \"sudden freezing.\" It's a fascinating example of how water's unique properties can lead to counterintuitive behavior.\n\nSupercooling occurs when a liquid is cooled below its equilibrium freezing point (0\u00b0C or 32\u00b0F under standard atmospheric conditions) without actually freezing. This can happen if the liquid is cooled very slowly or if nucleation sites are absent.\n\nHowever, when you introduce a disturbance, such as a nucleation site or a temperature change, the supercooled liquid can suddenly and rapidly freeze. This is because the supercooled liquid is in a metastable state, meaning it's thermodynamically unstable but can remain in this state for an extended period.\n\nNow, to answer your question: hot water can freeze faster than cold water under certain conditions.\n\nWhen you heat water, the molecules gain kinetic energy and start moving more rapidly. As the temperature increases, the molecules are more likely to collide with each other and with the container's walls, creating more nucleation sites. This can lead to a faster rate of freezing.\n\nOne specific condition that can cause hot water to freeze faster than cold water is called \"the Mpemba effect.\" This phenomenon was first observed by a Tanzanian high",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "SEMANTIC_010",
+      "category": "Linguistic Trap",
+      "question": "What word is spelled incorrectly in every dictionary?",
+      "gold": "Incorrectly",
+      "trap": "None",
+      "llama": {
+        "extracted": "incorrectly.",
+        "raw": "The answer is \"incorrectly.\" It is spelled correctly in every dictionary because it is a word that describes a misspelling or an error in spelling.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "incorrectly.",
+        "raw": "The answer is \"incorrectly\".",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "PHYS_017",
+      "category": "Quantum Mechanics",
+      "question": "In the double-slit experiment, does observing the particle change its behavior?",
+      "gold": "Yes",
+      "trap": "No",
+      "llama": {
+        "extracted": "This concept has far-reaching implications for our understanding of the nature of reality and the role of observation in quantum mechanics.",
+        "raw": "In the double-slit experiment, observing the particle does indeed change its behavior. This is a fundamental concept in quantum mechanics known as the \"observer effect\" or \"observation effect.\"\n\nWhen a particle, such as an electron, passes through the double-slit, it creates an interference pattern on the screen behind the slits, indicating that it is behaving like a wave. However, if the particle is observed or measured as it passes through the slits (i.e., its path is monitored), the interference pattern disappears, and the particle behaves like a particle, with distinct, localized paths.\n\nThis is known as wave-particle duality, where the particle can exhibit both wave-like and particle-like behavior depending on how it is observed.\n\nThe act of observation itself seems to cause the particle to \"collapse\" from a wave function to a specific particle location, a phenomenon known as wave function collapse. This effect is often attributed to the measurement process, where the act of observing the particle disturbs its state and forces it to behave like a particle.\n\nThis concept has far-reaching implications for our understanding of the nature of reality and the role of observation in quantum mechanics.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "If we were to remove the measuring device, the photon would still pass through",
+        "raw": "The double-slit experiment is a thought-provoking example that has sparked debates and discussions in the realm of quantum mechanics.\n\nIn the classical sense, if we were to observe the particle as it passes through the double slits, we would definitely see two distinct paths: one for each slit. In this case, the act of observing the particle would indeed change its behavior, as our observation would essentially \"collapse\" the wave function and force the particle to take one specific path or the other.\n\nHowever, when we're talking about the double-slit experiment in the context of quantum mechanics, things get a bit more nuanced. In this case, the act of observation is not as straightforward as simply looking at the particle. Instead, what we're really observing is the photon's (or particle's) interaction with the measuring device.\n\nIn the double-slit experiment, what is actually being measured is the photon's trajectory, not the photon itself. We're essentially asking the question, \"Which slit did the photon pass through?\" and measuring the resulting pattern on the screen.\n\nThe act of measurement itself doesn't change the photon's behavior; it's more like we're extracting information from the photon's behavior. If we were to remove the measuring device, the photon would still pass through",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "LOGIC_019",
+      "category": "Inference Trap",
+      "question": "A doctor gives you 3 pills and tells you to take one every half hour. How long do the pills last?",
+      "gold": "1 hour",
+      "trap": "1.5 hours",
+      "llama": {
+        "extracted": "the pills would last for 1.5 hours.",
+        "raw": "If you take one pill every half hour, it would take a total of 3 half-hour intervals to finish the pills. \n\nSince a half-hour is 0.5 hours, multiply 3 by 0.5 hours to get the total duration. \n\n3 * 0.5 = 1.5 hours\n\nSo, the pills would last for 1.5 hours.",
+        "correct": false,
+        "reason": "trap"
+      },
+      "niodoo": {
+        "extracted": "30 minutes, 1 hour, 1.5 hours, 2 hours, 2.5 hours, or a total of 2.5 hours.",
+        "raw": "You take one every 30 minutes. 30 minutes, 1 hour, 1.5 hours, 2 hours, 2.5 hours, or a total of 2.5 hours.",
+        "correct": false,
+        "reason": "hedge"
+      }
+    },
+    {
+      "id": "SEMANTIC_011",
+      "category": "Homophone Trap",
+      "question": "What's black and white and read all over?",
+      "gold": "newspaper",
+      "trap": "zebra",
+      "llama": {
+        "extracted": "Newspapers are traditionally printed with black ink on white paper, and people read them to stay informed.",
+        "raw": "The answer to that classic riddle is a newspaper. Newspapers are traditionally printed with black ink on white paper, and people read them to stay informed.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "a newspaper.",
+        "raw": "The answer is a newspaper.",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "PHYS_018",
+      "category": "Fluid Dynamics",
+      "question": "Why do airplanes fly? Is it Bernoulli's principle or Newton's third law?",
+      "gold": "Both",
+      "trap": "Bernoulli",
+      "llama": {
+        "extracted": "In other words,",
+        "raw": "Both Bernoulli's principle and Newton's third law play roles in explaining how airplanes fly, but they work together to create the lift required for flight.\n\nBernoulli's principle states that the pressure of a fluid (such as air) decreases as its velocity increases. This principle is often misinterpreted as the sole explanation for lift, but it's actually a key component of the wing's shape that contributes to lift.\n\nWhen air flows over the curved upper surface of an airplane wing, it speeds up, and according to Bernoulli's principle, the pressure above the wing decreases. At the same time, air flows more slowly along the flat lower surface of the wing, resulting in higher pressure below the wing. This difference in pressure creates an upward force called lift, which counteracts the weight of the airplane and allows it to fly.\n\nHowever, lift isn't just a matter of pressure difference. Newton's third law, which states that every action has an equal and opposite reaction, is also essential to lift generation. As the airplane moves forward, it pushes the air downward, creating a forward force that propels the plane through the air. This forward force, combined with the upward force of lift, allows the airplane to generate the thrust required for flight.\n\nIn other words,",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "the combination of Bernoullis principle and Newtons second law enables airplanes to fly.",
+        "raw": "Airplanes fly due to the combination of Bernoulli's principle and Newton's second law.\n\nBernoulli's principle states that the pressure of a fluid (such as air) decreases as its velocity increases. On the other hand, Newton's second law, also known as the law of acceleration, states that the acceleration of an object is dependent on the net force acting upon it and directly proportional to the mass of the object.\n\nWhen an airplane moves through the air, it creates two areas of difference in pressure:\n\n1.  **Lower pressure above the wing:** As the air flows over the wing, it must travel faster than the air flowing along the bottom of the wing. The air flowing above is faster and therefore has a lower pressure than the air flowing below the wing, which is moving slower.\n2.  **Higher pressure below the wing:** Due to the difference in pressure, the airplane is essentially flying in an upward direction, which is facilitated by the higher pressure below the wing and the lower pressure above it. According to Newton's second law, the force exerted on the airplane is equal to the mass of the airplane multiplied by the acceleration produced.\n\nThus, the combination of Bernoulli's principle and Newton's second law enables airplanes to fly.",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "LOGIC_020",
+      "category": "Logic Puzzle",
+      "question": "You have a fox, a chicken, and a sack of grain. You must cross a river with only one boat that can carry you and one other item. If left alone, the fox eats the chicken, and the chicken eats the grain. How do you get all across?",
+      "gold": "chicken first",
+      "trap": "fox first",
+      "llama": {
+        "extracted": "This solution ensures that the fox and the chicken never interact, and the chicken doesnt eat the grain.",
+        "raw": "This classic problem is known as the \"Fox, Chicken, and Grain problem\" or the \"River Crossing problem.\" Here's the solution:\n\n1. Take the chicken across the river first and leave it on the other side.\n2. Go back to the original side and pick up the grain. \n3. Take the grain across the river and leave it on the other side with the chicken. However, don't leave the chicken and the grain together as the chicken will eat the grain. So, take the chicken back to the original side.\n4. Leave the chicken on the original side and take the fox across the river to the other side with the grain.\n5. Go back to the original side and pick up the chicken, taking it across the river to join the fox and the grain.\n6. Finally, go back to the original side and pick up the sack of grain, taking it across the river to join the chicken, fox, and grain on the other side.\n\nThis solution ensures that the fox and the chicken never interact, and the chicken doesn't eat the grain.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "Take the fox across the river and leave it on the other side with the grain.",
+        "raw": "A classic puzzle!\n\nHere's the solution:\n\n1. Take the chicken across the river first and leave it on the other side.\n2. Go back to the original side and pick up the sack of grain.\n3. Take the grain across the river and leave it on the other side with the chicken.\n4. Go back to the original side (again).\n5. Pick up the chicken and take it BACK to the original side (not across the river).\n6. Now, leave the chicken on the original side and pick up the fox.\n7. Take the fox across the river and leave it on the other side with the grain.",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "PHYS_019",
+      "category": "Electromagnetism",
+      "question": "If you drop a magnet through a copper tube, does it fall faster, slower, or the same as through air?",
+      "gold": "Slower",
+      "trap": "same",
+      "llama": {
+        "extracted": "As a result, the magnet will experience a slight drag, causing it to fall slower than it would in air.",
+        "raw": "When a magnet is dropped through a copper tube, it will likely fall slightly slower than through air. \n\nThis phenomenon occurs due to the induction of an electromotive force (EMF) in the copper tube when the magnet moves through it. The changing magnetic field induces a current in the copper tube, which in turn produces an opposing magnetic field. This opposing magnetic field interacts with the original magnetic field, resulting in a force that slows down the magnet's motion.\n\nThis effect is known as the \"Lorentz force\" or \"magnetic drag.\" The force is proportional to the velocity of the magnet and the resistivity of the copper tube. As a result, the magnet will experience a slight drag, causing it to fall slower than it would in air.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "fall slower than it would if it were falling through air.",
+        "raw": "Because copper is a very conductive material, eddy currents will be induced in the tube by the falling magnet. This will cause the falling magnet to experience a drag force due to the displacement of the eddy currents, so it will fall slower than it would if it were falling through air.",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "SEMANTIC_012",
+      "category": "Riddle",
+      "question": "What can travel around the world while staying in a corner?",
+      "gold": "stamp",
+      "trap": "plane",
+      "llama": {
+        "extracted": "A stamp can travel around the world while staying in a corner, as it is typically found in a corner of an envelope or package.",
+        "raw": "The answer to this riddle is a stamp. A stamp can travel around the world while staying in a corner, as it is typically found in a corner of an envelope or package.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": ": A stamp.",
+        "raw": "The answer is: \"A stamp.\"",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "AMBIG_005",
+      "category": "Winograd Schema",
+      "question": "The lawyers objected to the testimony because they were biased. Who were biased?",
+      "gold": "testimony",
+      "trap": "The lawyers",
+      "llama": {
+        "extracted": "Could you provide more context or clarify who testified and whose testimony the lawyers objected to?",
+        "raw": "To answer this question, I would need more context about who testified and whose testimony the lawyers objected to. However, based on the information you provided, I can make a general assumption.\n\nIt seems that the lawyers objected to the testimony of someone because they were biased. The phrase \"the lawyers objected to the testimony\" suggests that the lawyers were the ones objecting, and they believed that the person who testified was biased.\n\nIf I had to make a general statement, I would say that the person who testified was biased. However, without more information, it's difficult to say for sure who the biased person was.\n\nCould you provide more context or clarify who testified and whose testimony the lawyers objected to?",
+        "correct": false,
+        "reason": "hedge"
+      },
+      "niodoo": {
+        "extracted": "There is not enough information in the text to say who was biased.",
+        "raw": "There is not enough information in the text to say who was biased.",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "LOGIC_021",
+      "category": "Probability",
+      "question": "In a family with two children, you know at least one is a boy. What is the probability the other is a girl?",
+      "gold": "2/3",
+      "trap": "1/2",
+      "llama": {
+        "extracted": "the probability that the other child is a girl is 50%.",
+        "raw": "In a family with two children, and knowing at least one is a boy, we can break this down into three possible scenarios:\n\n1. Boy + Boy\n2. Boy + Girl\n3. Girl + Boy\n\nSince we know at least one is a boy, the Boy + Boy scenario is not possible. So, we have two possible scenarios: Boy + Girl and Girl + Boy.\n\nOut of these two scenarios, 50% of the families would have a Boy + Girl combination, and 50% would have a Girl + Boy combination.\n\nSo, the probability that the other child is a girl is 50%.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "is: $ \\boxed{\\frac{1}{2}} $",
+        "raw": "## Step 1: Identify the known information\nWe know that in a family with two children, at least one of them is a boy.\n\n## Step 2: Identify the possible scenarios\nThere are two possible scenarios for the family: either the first child is a boy and the second is a girl, or the first child is a girl and the second is a boy.\n\n## Step 3: Calculate the probability of each scenario\nThe probability of having a boy and then a girl is (1/2) * (1/2) = 1/4. The probability of having a girl and then a boy is also (1/2) * (1/2) = 1/4.\n\n## Step 4: Sum the probabilities of all possible scenarios\nThe probability that the other child is a girl if we know at least one is a boy is the sum of both scenarios: (1/4) + (1/4) = 1/2.\n\nThe final answer is: $\\boxed{\\frac{1}{2}}$",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "PHYS_020",
+      "category": "Optics",
+      "question": "Why is the sky blue during the day but black at night?",
+      "gold": "Rayleigh scattering",
+      "trap": "ocean reflection",
+      "llama": {
+        "extracted": "**Aurorae**: In some regions",
+        "raw": "The color of the sky changes throughout the day due to the scattering of light by the Earth's atmosphere. Here's a simplified explanation:\n\n**Why is the sky blue during the day?**\n\nDuring the day, the sun's light travels through the Earth's atmosphere, which is composed of various gases like nitrogen (N2) and oxygen (O2). When sunlight enters the atmosphere, it encounters these gases and is scattered in all directions. This scattering is more pronounced for shorter (blue) wavelengths than longer (red) wavelengths. As a result, the blue light is dispersed throughout the atmosphere, giving the sky its blue appearance.\n\n**Why is the sky black at night?**\n\nAt night, the sun is below the horizon, and the Earth's atmosphere is not illuminated by direct sunlight. However, the sky is still visible, but it appears black because there is no direct sunlight to scatter and illuminate the atmosphere. The only light sources visible at night are:\n\n1. **Moonlight**: The moon reflects the sun's light, which can be seen as a soft, white glow in the sky.\n2. **Starlight**: The stars emit their own light, but it's much fainter than the sun's light.\n3. **Aurorae**: In some regions",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "The darkness is a result of the absence of direct sunlight because the Earth is rotating away from",
+        "raw": "The sky can appear blue during the day and black at night for several reasons related to the way light behaves when it passes through the Earth's atmosphere.\n\n**Daytime:**\n\n1.  **Scattering of Sunlight:** During the day, the sky appears blue because of a phenomenon called Rayleigh scattering. When sunlight enters the Earth's atmosphere, it encounters the small molecules of nitrogen and oxygen. These molecules scatter the shorter, blue wavelengths of light more than the longer, red wavelengths. This scattering causes the blue light to be distributed throughout the atmosphere, giving the sky its blue color.\n\n2.  **Clouds and Atmospheric Conditions:** On a clear day, the blue sky is visible. However, on a cloudy day, the sky can appear white or light gray due to the reflection of sunlight by the clouds. The color of the sky can also appear different under various atmospheric conditions, such as during sunrise and sunset, when the light has to travel longer distances, scattering off the atmosphere and taking on reddish hues.\n\n**Nighttime:**\n\n1.  **Lack of Direct Sunlight:** At night, the primary source of light is the Moon and artificial lights on Earth. The darkness is a result of the absence of direct sunlight because the Earth is rotating away from",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "CAUSAL_004",
+      "category": "Lateral Thinking",
+      "question": "A man is found hanging in a locked room with a puddle of water on the floor. How did he die?",
+      "gold": "ice",
+      "trap": "Suicide",
+      "llama": {
+        "extracted": "In this scenario, the man may have been exposed to a high-pressure environment that caused his body to swell and eventually led to his death due to drowning.",
+        "raw": "This is a classic puzzle.  The answer is that the man died of drowning.\n\nThe key to this puzzle is the fact that the room was locked. This means that the man must have been locked in the room before he died. The puddle of water on the floor suggests that the water was present at the time of his death.\n\nThe most likely explanation is that the man was in a sealed, airtight room (such as a submarine) that was filled with water, or that he was in a room that was flooded with water. In this scenario, the man would have been unable to escape, and would have eventually drowned.\n\nAnother possible explanation is that the man was in a room that was designed to withstand high pressures, such as a submarine or a deep-sea laboratory. In this scenario, the man may have been exposed to a high-pressure environment that caused his body to swell and eventually led to his death due to drowning.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "Do you have any other questions or would you like to hear another possible explanation?",
+        "raw": "A classic mystery!\n\nGiven that the room was locked and there's a puddle of water on the floor, it's possible that the man died from drowning. Here's a plausible scenario:\n\nThe man was locked in the room and, for some reason, was unable to escape. It's possible that he was locked in by accident, or that he was intentionally locked in by someone. Over time, he may have become desperate and tried to find a way to escape. In his desperation, he may have broken a pipe or a water tank in the room, causing water to flow in and fill the room.\n\nAs the water continued to pour in, the man may have tried to find a way out, but was unable to do so. Eventually, he was overwhelmed by the rising water and drowned. The locked door prevented anyone from entering the room to rescue him, and the puddle of water on the floor is the result of the overflowing water.\n\nThis is just one possible explanation for the man's death, but there could be many other scenarios as well. Do you have any other questions or would you like to hear another possible explanation?",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "SEMANTIC_013",
+      "category": "Word Trap",
+      "question": "If a red house is made of red bricks, a blue house of blue bricks, what's a greenhouse made of?",
+      "gold": "Glass",
+      "trap": "Green bricks",
+      "llama": {
+        "extracted": "greenhouses are made of glass.",
+        "raw": "That's a classic riddle. The answer is \"greenhouses are made of glass.\" The riddle is a play on words, as it's trying to follow the pattern of the first two houses being made of materials that match their color. However, the word \"greenhouse\" is also related to the color \"green,\" but in this case, it's referring to the structure, not the color.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": ": Green bricks!",
+        "raw": "The answer is: \"Green bricks!\"",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "LOGIC_022",
+      "category": "Math Trap",
+      "question": "How many times can you subtract 10 from 100?",
+      "gold": "Once",
+      "trap": "10",
+      "llama": {
+        "extracted": "you can subtract 10 from 100 exactly 10 times.",
+        "raw": "To find the answer, we need to divide 100 by 10 since we're subtracting 10 each time.\n\n100 / 10 = 10\n\nSo, you can subtract 10 from 100 exactly 10 times.",
+        "correct": false,
+        "reason": "trap"
+      },
+      "niodoo": {
+        "extracted": "infinitely many!",
+        "raw": "You can subtract 10 from 100 as many times as you want (as long as you don't go below 0), so the answer is infinitely many!",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "PHYS_021",
+      "category": "Mechanics",
+      "question": "In space, if you throw a ball, does it come back to you?",
+      "gold": "No",
+      "trap": "Yes",
+      "llama": {
+        "extracted": "**On a celestial body with a strong gravitational pull (e.g., a planet or moon)**: If youre on a planet or moon with a strong gravitational pull, the ball will be attracted",
+        "raw": "In space, the concept of throwing a ball is a bit more complex due to the lack of air resistance and a stable gravitational environment. Let's consider a few scenarios:\n\n1. **In a spaceship or a space station**: If you throw a ball inside a spaceship or a space station, the ball will continue to travel in a straight line until it hits a surface or is caught. The ball will not come back to you due to the absence of air resistance or a gravitational force pulling it back.\n\n2. **In a planet's atmosphere (but outside Earth's atmosphere)**: If you're on a planet like Mars or Venus, which has a thin atmosphere, the ball will experience some air resistance, but not enough to significantly affect its trajectory. The ball will still travel in a straight line and not return to you.\n\n3. **In deep space (away from any large celestial body)**: In the vast emptiness of deep space, the ball will travel in a straight line indefinitely, unaffected by air resistance or gravitational forces. It will not come back to you.\n\n4. **On a celestial body with a strong gravitational pull (e.g., a planet or moon)**: If you're on a planet or moon with a strong gravitational pull, the ball will be attracted",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "to answer your question: no, a ball thrown in space does not come back to you!",
+        "raw": "In space, there is no atmosphere to provide air resistance, which means that a thrown ball would not experience the same kind of aerodynamic forces that slow it down and cause it to fall back towards the Earth if thrown on our planet.\n\nIf you throw a ball in space, it will keep traveling in the direction it was thrown and continue to move at the speed it had when it was released. Without air resistance, there is no force to slow it down or pull it back towards the thrower.\n\nIn fact, if you were to throw a ball in orbit around the Earth, you'd be able to catch it again if it was traveling in the same direction and speed as you. But if you threw it in the opposite direction or in a different orbit, it would not return to you.\n\nSo, to answer your question: no, a ball thrown in space does not come back to you!",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "LOGIC_023",
+      "category": "Riddle",
+      "question": "What has keys but can't open locks?",
+      "gold": "piano",
+      "trap": "map",
+      "llama": {
+        "extracted": "A piano has keys but it cant open locks.",
+        "raw": "The answer to that riddle is a piano. A piano has keys but it can't open locks.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "Piano",
+        "raw": "Piano",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "PHYS_022",
+      "category": "Thermodynamics",
+      "question": "Can you cool a room by leaving the refrigerator door open?",
+      "gold": "No",
+      "trap": "Yes",
+      "llama": {
+        "extracted": "These devices can efficiently cool a larger area and maintain a more consistent temperature.",
+        "raw": "No, leaving the refrigerator door open will not effectively cool a room. The refrigerator is designed to maintain a low temperature inside the appliance, which is around 40\u00b0F (4\u00b0C). \n\nWhen you leave the refrigerator door open, the cold air inside the fridge will be released into the room. However, this will only have a minimal effect on cooling the room. The room's temperature will rise, but it will not be significantly reduced.\n\nThere are several reasons for this:\n\n1. The amount of cold air released is limited, and it's quickly dissipated into the room.\n2. The refrigerator's cooling mechanism is designed to maintain a specific temperature inside the appliance, not to cool the surrounding environment.\n3. The refrigerator's electrical energy consumption increases when the door is left open, which can actually contribute to the room's temperature rise due to heat generated by the appliance.\n\nTo effectively cool a room, it's better to use an air conditioner, fans, or other cooling devices designed for that purpose. These devices can efficiently cool a larger area and maintain a more consistent temperature.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "However, its essential to note that this effect is",
+        "raw": "The age-old question of whether leaving the refrigerator door open cools the room or not!\n\nThe answer is a bit more complicated than a simple \"yes\" or \"no\".\n\nLeaving the refrigerator door open can, in fact, have a slight cooling effect on the room, but it's not as significant as you might think. Here's why:\n\n1. **Evaporative cooling**: When you open the refrigerator door, the temperature inside the fridge drops slightly, which causes the air around it to cool down very slightly due to evaporative cooling. This is because the cold air inside the fridge is in contact with the surrounding air, causing the surrounding air to lose heat.\n2. **Convection currents**: As the cold air from the fridge rises, it creates a convective current that can circulate the air in the room. This can lead to a slight cooling effect on the surrounding area, especially if the refrigerator is located near a wall or in a corner.\n3. **Heat transfer**: The refrigerator itself can also transfer heat away from the surrounding room. When the compressor and condenser coils are in operation, they can absorb heat from the room and transfer it outside, which can lead to a small cooling effect.\n\nHowever, it's essential to note that this effect is",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "SEMANTIC_014",
+      "category": "Literalism",
+      "question": "Before Mount Everest was discovered, what was the highest mountain in the world?",
+      "gold": "Everest",
+      "trap": "K2",
+      "llama": {
+        "extracted": "Mount Everest was not officially discovered until 1856 by the British Surveyor General, Andrew Waugh, who measured its height in 1857 and named it after Sir George Everest, the then Surveyor General",
+        "raw": "Before Mount Everest was discovered, the highest mountain in the world was considered to be K2, located on the border between Pakistan and China in the Karakoram range. However, K2 was not well known at that time. \n\nThe highest mountain known to the Western world before Mount Everest's discovery was Nanga Parbat, also located in the Himalayas. It was first spotted by European explorers in 1895 and was considered the highest peak at that time.\n\nHowever, the actual highest mountain in the world before Mount Everest's discovery was Kanchenjunga, which is located in the Himalayas on the border between Nepal and India. It was known to the Tibetans and the local people but not known to the Western world until the 19th century.\n\nIt was not until 1856 that Kanchenjunga was measured by the Great Trigonometric Survey of India, and it was found to be 28,146 feet (8,586 meters) tall, which made it the highest mountain known in the world at that time.\n\nMount Everest was not officially discovered until 1856 by the British Surveyor General, Andrew Waugh, who measured its height in 1857 and named it after Sir George Everest, the then Surveyor General",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "Over time, further measurements and surveys have confirmed that Mount Everest is indeed the highest mountain in the",
+        "raw": "Before the discovery of Mount Everest, the highest mountain in the world was actually Kangchenjunga, which is located in the Himalayas on the border between Nepal and India. It was considered the highest peak in the world for thousands of years.\n\nKangchenjunga was first measured by the Great Trigonometric Survey of India in 1856, and its height was determined to be 28,169 feet (8,586 meters) above sea level.\n\nHowever, when the Great Trigonometric Survey of India remeasured Kangchenjunga in 1849, they realized that they had made an error in their previous measurement, and the actual height of the mountain was nearly 2,000 feet (600 meters) shorter than previously thought.\n\nThe discovery of Mount Everest, which was then known as Peak XV, was made by the Great Trigonometric Survey of India in 1856. The survey team, led by Andrew Waugh, measured the height of the mountain to be 29,029 feet (8,840 meters) above sea level, which was nearly 1,000 feet (300 meters) higher than the height of Kangchenjunga.\n\nOver time, further measurements and surveys have confirmed that Mount Everest is indeed the highest mountain in the",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "LOGIC_024",
+      "category": "Inference",
+      "question": "If there are 12 fish and half of them drown, how many are left?",
+      "gold": "12",
+      "trap": "6",
+      "llama": {
+        "extracted": "there are 6 fish left.",
+        "raw": "If there are 12 fish and half of them drown, you need to find half of 12. \n\nHalf of 12 is 12 / 2 = 6. \n\nSo, 6 fish drown. \n\nNow, to find out how many fish are left, you need to subtract 6 from the original number of fish, which is 12.\n\n12 - 6 = 6\n\nSo, there are 6 fish left.",
+        "correct": false,
+        "reason": "trap"
+      },
+      "niodoo": {
+        "extracted": "12!",
+        "raw": "I think there may be a bit of a trick question here!\n\nIf half of the fish drown, that means... they're still fish!\n\nSo, the answer is... 12!",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "PHYS_023",
+      "category": "Quantum",
+      "question": "Can a cat be both alive and dead at the same time?",
+      "gold": "Yes",
+      "trap": "No",
+      "llama": {
+        "extracted": "So",
+        "raw": "You're likely referring to the concept of Schr\u00f6dinger's cat, a thought experiment proposed by Austrian physicist Erwin Schr\u00f6dinger in 1935. In this thought experiment, a cat is placed in a sealed box with a radioactive atom that has a 50% chance of decaying within a certain time frame. If the atom decays, a poison is released that kills the cat.\n\nAccording to the principles of quantum mechanics, the radioactive atom is in a superposition of states, meaning it is both decayed and not decayed at the same time. Since the cat's fate is tied to the atom's state, the cat is also in a superposition of states, meaning it is both alive and dead at the same time.\n\nHowever, this thought experiment is highly theoretical and not meant to be taken literally. In reality, cats cannot be both alive and dead at the same time. The concept is used to illustrate the seemingly absurd consequences of applying quantum mechanics to macroscopic objects, highlighting the limitations of applying quantum principles to the classical world.\n\nIn practical terms, if you were to open the box and observe the cat, the act of observation would cause the cat's state to collapse to either alive or dead, effectively ending the superposition. So",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "**Philosophical or metaphorical interpretations:** Some philosophical or metaphorical interpretations of life and death might suggest that a cat",
+        "raw": "I'm not aware of any scientific or philosophical concept that would allow a cat (or any living being) to be both alive and dead at the same time. In our current understanding of reality, a living being is either alive or dead, but not both.\n\nHowever, I can think of a few possibilities where this question might be exploring:\n\n1. **Schr\u00f6dinger's cat:** Albert Einstein's famous thought experiment, \"Schr\u00f6dinger's cat,\" proposed a scenario where a cat's fate is tied to a random event (e.g., a radioactive atom decaying). Until the box is opened, the cat is neither alive nor dead, but in a state of superposition (existing in multiple states simultaneously). However, this is a highly abstract and theoretical concept, not related to everyday reality.\n2. **Quantum mechanics and wave functions:** In quantum mechanics, particles can exist in a superposition of states, where they can be both alive and dead (or any other state) at the same time. However, this is a property of particles at the subatomic level, not applicable to macroscopic objects like cats.\n3. **Philosophical or metaphorical interpretations:** Some philosophical or metaphorical interpretations of life and death might suggest that a cat",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "SEMANTIC_015",
+      "category": "Counting",
+      "question": "How many letters are in 'the alphabet'?",
+      "gold": "11",
+      "trap": "26",
+      "llama": {
+        "extracted": "There are 26 letters in the alphabet.",
+        "raw": "To find out how many letters are in 'the alphabet', I'll list the letters of the alphabet. \n\nA, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z\n\nThere are 26 letters in 'the alphabet'.",
+        "correct": false,
+        "reason": "trap"
+      },
+      "niodoo": {
+        "extracted": "There are 26 letters in the modern English alphabet.",
+        "raw": "There are 26 letters in the modern English alphabet.",
+        "correct": false,
+        "reason": "trap"
+      }
+    },
+    {
+      "id": "LOGIC_025",
+      "category": "Sequence",
+      "question": "What comes next: J F M A M J J A ...",
+      "gold": "S",
+      "trap": "B",
+      "llama": {
+        "extracted": "the next month abbreviation after J J A would be S, which stands for September.",
+        "raw": "The sequence you provided appears to be the abbreviations for the months of the year in order. \n\nHere's the complete list of month abbreviations:\n\n1. J - January\n2. F - February\n3. M - March\n4. A - April\n5. M - May\n6. J - June\n7. J - July\n8. A - August\n9. S - September\n10. O - October\n11. N - November\n12. D - December\n\nSo, the next month abbreviation after \"J J A\" would be \"S\", which stands for September.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": "December",
+        "raw": "It appears to be the sequence of the months of the year, but in a shortened form:\n\n1. January\n2. February\n3. March\n4. April\n5. May\n6. June\n7. July\n8. August\n9. September\n10. November\n11. December",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "PHYS_024",
+      "category": "Relativity",
+      "question": "If you travel at near light speed, do clocks slow down for you?",
+      "gold": "No for you",
+      "trap": "Yes for you",
+      "llama": {
+        "extracted": "For example, if you",
+        "raw": "You're referring to a fundamental concept in special relativity, which was described by Albert Einstein. According to special relativity, time dilation occurs when an object moves at a significant fraction of the speed of light relative to an observer.\n\nIn this scenario, if you were to travel at near light speed, time would indeed appear to pass more slowly for you relative to a stationary observer. This means that your clocks would appear to run slower compared to the clocks of the stationary observer.\n\nTo be more precise, time dilation is described by the Lorentz factor, which is given by the equation:\n\n\u03b3 = 1 / sqrt(1 - v^2/c^2)\n\nwhere v is the velocity of the moving object, c is the speed of light, and \u03b3 is the Lorentz factor.\n\nAs you approach the speed of light, the Lorentz factor increases, and time dilation becomes more pronounced. This means that time appears to pass more slowly for the moving object, and the clocks on that object would appear to run slower.\n\nHowever, it's worth noting that this effect is only significant at very high speeds, close to the speed of light. At more modest speeds, such as those achieved by aircraft or spacecraft, time dilation is negligible.\n\nFor example, if you",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "This effect, known as time dilation, only becomes significant at speeds close to the speed of light; for most everyday purposes, it is negligible.",
+        "raw": "Special Relativity, a fundamental concept in physics, addresses this phenomenon. The concept of time dilation is a direct consequence of special relativity. According to this theory, time appears to pass more slowly for an observer who is moving at a significant fraction of the speed of light relative to an observer who is at rest. This effect, known as time dilation, only becomes significant at speeds close to the speed of light; for most everyday purposes, it is negligible.",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "PHYS_025",
+      "category": "Parallel Process",
+      "question": "I have a candle that burns for 1 hour. How long do 10 candles burn if I light them all at once?",
+      "gold": "1 hour",
+      "trap": "10 hours",
+      "llama": {
+        "extracted": "10 candles will burn for 10 hours if you light them all at once.",
+        "raw": "Since each candle burns for 1 hour, and you light all 10 candles at once, they will all burn for 1 hour at the same time. \n\nTo find the total time, you simply multiply the number of candles by the burn time of each candle: \n\n10 candles * 1 hour/candle = 10 hours\n\nSo, 10 candles will burn for 10 hours if you light them all at once.",
+        "correct": false,
+        "reason": "trap"
+      },
+      "niodoo": {
+        "extracted": "0 hours, as all 10 candles will extinguish each other and go out immediately.",
+        "raw": "If you light all 10 candles at once, they will not all burn for 1 hour. In fact, they will all extinguish each other and go out immediately.\n\nWhen you light multiple candles at the same time, the wax from one candle will smother the flame of the others, causing them to go out. This is because the wax from each candle will melt and drip onto the others, creating a barrier that prevents oxygen from reaching the other candles' flames.\n\nSo, in this case, the answer is 0 hours, as all 10 candles will extinguish each other and go out immediately.",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "LOGIC_026",
+      "category": "Self-Reference",
+      "question": "You are driving a bus. At the first stop, 2 people get on. At the second, 5 get off. What is the name of the bus driver?",
+      "gold": "You",
+      "trap": "unknown",
+      "llama": {
+        "extracted": "If youd like to provide more context or information, Id be happy to try and assist you further.",
+        "raw": "I'm a helpful assistant, but I don't have any information about a specific bus driver's name. The details you provided are about the bus's operations, but it doesn't mention the driver's name. If you'd like to provide more context or information, I'd be happy to try and assist you further.",
+        "correct": true,
+        "reason": "gold"
+      },
+      "niodoo": {
+        "extracted": ": you!",
+        "raw": "There is no bus driver. The question states \"you are driving the bus\", indicating that you are the bus driver. So, the answer is: you!",
+        "correct": true,
+        "reason": "gold"
+      }
+    },
+    {
+      "id": "SEMANTIC_016",
+      "category": "Calendar Trap",
+      "question": "Which month has 28 days?",
+      "gold": "All of them",
+      "trap": "February",
+      "llama": {
+        "extracted": "All 12 months have at least 28 days.",
+        "raw": "All 12 months have at least 28 days.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "All 12 months have at least 28 days",
+        "raw": "All 12 months have at least 28 days",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "SEMANTIC_017",
+      "category": "Word Trap",
+      "question": "What word is always pronounced wrong?",
+      "gold": "Wrong",
+      "trap": "mispronounced",
+      "llama": {
+        "extracted": "Many people pronounce it as nu-klee-er, but the correct pronunciation is actually nu-klee-ur.",
+        "raw": "There are a few words that are commonly mispronounced. One example is 'nuclear'. Many people pronounce it as 'nu-klee-er', but the correct pronunciation is actually 'nu-klee-ur'.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "Nuclear",
+        "raw": "Nuclear",
+        "correct": false,
+        "reason": "neither"
+      }
+    },
+    {
+      "id": "PHYS_026",
+      "category": "Electric Train",
+      "question": "An electric train is moving north at 100mph. The wind is blowing west at 10mph. Which way does the smoke blow?",
+      "gold": "No smoke",
+      "trap": "west",
+      "llama": {
+        "extracted": "the direction of the smoke will be roughly north.",
+        "raw": "To determine the direction of the smoke, we need to consider the relative velocity between the train and the wind.\n\nSince the train is moving north at 100mph and the wind is blowing west at 10mph, we can find the resultant velocity by creating a right triangle.\n\nThe northward velocity of the train is the opposite side of the triangle, and the westward velocity of the wind is the adjacent side. \n\nUsing the Pythagorean theorem or recognizing the 3-4-5 triangle pattern, we can find the resultant velocity as follows:\n\nThe northward velocity of the train (100mph) is the hypotenuse of the triangle. \n\nThe westward velocity of the wind (10mph) is a small fraction of the northward velocity of the train, so we can neglect it.\n\nHowever, since the wind is blowing west, it will create a very small effect on the direction of the smoke. \n\nSo, the direction of the smoke will be roughly north.",
+        "correct": false,
+        "reason": "neither"
+      },
+      "niodoo": {
+        "extracted": "The smoke will blow south.",
+        "raw": "The smoke will blow south.",
+        "correct": false,
+        "reason": "neither"
+      }
+    }
+  ]
+}
